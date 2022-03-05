@@ -1,0 +1,49 @@
+import MasterLayouts from "./layouts/coordinateur/MasterLayouts";
+import axios from 'axios';
+import Auth from "./auth/Auth";
+import Home from './layouts/Home/Home';
+import Page403 from './errors/Page403';
+import Page404 from './errors/Page404';
+
+
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import CoordinateurPrivateRoute from './routes/CoordinateurPrivateRoute';
+
+
+axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.defaults.withCredentials = true;
+axios.interceptors.request.use(function (config) {
+
+  const token = localStorage.getItem('auth_token');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+});
+
+function App() {
+  return (
+    <div className="App">
+      <div className="g-sidenav-show  bg-gray-100">
+        <Router>
+          <Switch>
+
+            <Route path="/403" component={Page403} />
+            <Route path="/404" component={Page404} />
+
+            <Route exact path="/" component={Home} />
+
+            <Route path='/auth'>
+              {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Auth />}
+            </Route>
+            {/*<Route path="/coordinateur" name="Coordinateur" render={(props) => <MasterLayouts {...props} />} />*/}
+            <CoordinateurPrivateRoute path="/coordinateur" name="Coordinateur" />
+
+          </Switch>
+        </Router>
+      </div>
+    </div>
+  );
+}
+
+export default App;
