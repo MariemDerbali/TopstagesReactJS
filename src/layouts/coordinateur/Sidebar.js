@@ -8,7 +8,7 @@ export default function Sidebar() {
             <div className="sidenav-header">
                 <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <Link className="navbar-brand m-0" to="/coordinateur/dashboard" target="_blank">
-                    <img src="../assets/img/logos/logo-topnet.png" className="navbar-brand-img h-100" alt="main_logo" />
+                    <img src="../assets/img/logos/logo-topnet.png" className="navbar-brand-img h-100" style={{ maxHeight: '4rem' }} alt="main_logo" />
 
                 </Link>
             </div>
@@ -16,9 +16,9 @@ export default function Sidebar() {
             <hr className="horizontal dark mt-0" />
 
             <div className="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav ">
                     <li className="nav-item">
-                        <Link className="nav-link  active" to="/coordinateur/dashboard">
+                        <Link className="nav-link active " to="/coordinateur/dashboard">
                             <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                 <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <title>shop </title>
@@ -59,19 +59,18 @@ export default function Sidebar() {
                                     </g>
                                 </svg>
                             </div>
-                            <span className="nav-link-text ms-1">Gestion utilisateur</span>
+                            <span className="nav-link-text ms-1" style={{ color: "#344767" }}>Gestion utilisateur</span>
                         </Link>
                         <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
-                            <li>
-                                <Link to="/coordinateur/Adduser">
+                            <li style={{ listStyleType: "none" }}>
+                                <Link className='nav-link ' to="/coordinateur/Adduser" >
                                     <i className="bi bi-circle"></i><span>Créer utilisateur</span>
                                 </Link>
-                            </li>
-                            <li>
-                                <Link to="/coordinateur/Users">
+                                <Link className='nav-link ' to="/coordinateur/Users">
                                     <i className="bi bi-circle"></i><span>Consulter utilisateur</span>
                                 </Link>
                             </li>
+
                         </ul>
                     </li>
 

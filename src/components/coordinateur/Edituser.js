@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import Loading from './Loading';
 
 export default function Edituser(props) {
 
@@ -38,7 +39,7 @@ export default function Edituser(props) {
 
 
             } else if (res.data.status === 404) {
-                swal("Error", res.data.message, "error");
+                swal("", res.data.message, "error");
                 history.push('/coordinateur/Users');
             }
             setLoading(false);
@@ -100,23 +101,21 @@ export default function Edituser(props) {
         axios.post(`/api/users/${user_id}`, formData).then(res => {
 
             if (res.data.status === 200) {
-                swal("Success", res.data.message, "success");
-                console.log(checkbox);
-                history.push('/coordinateur/Users')
+                swal("", res.data.message, "success");
+                history.push('/coordinateur/Users');
                 setError([]);
             } else if (res.data.status === 422) {
-                swal("All fields are mandetory", "", "error");
                 setError(res.data.errors);
             }
             else if (res.data.status === 404) {
-                swal("Error", res.data.message, "error");
+                swal("", res.data.message, "error");
                 history.push('/coordinateur/Users')
             }
         });
     }
 
     if (loading) {
-        <h1>Edit user loading</h1>
+        <Loading />
     }
 
 
@@ -210,7 +209,7 @@ export default function Edituser(props) {
                                     <div className='form-check'>
                                         <input name="etat" onChange={handleCheckbox} defaultChecked={checkbox.etat === 'inactive' ? true : false} className="form-check-input" id="flexCheckChecked" type="checkbox" />
                                         <label className="form-check-label" >
-                                            Désactiver utilisateur
+                                            Cochez pour désactiver l'utilisateur
                                         </label>
                                     </div>
                                 </div>

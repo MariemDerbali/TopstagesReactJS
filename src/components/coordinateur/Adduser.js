@@ -1,10 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 export default function Adduser() {
 
 
+    const history = useHistory();
     const [roleslist, setRoleslist] = useState([
 
     ]);
@@ -61,11 +63,11 @@ export default function Adduser() {
 
         axios.post('/api/users', formData).then(res => {
             if (res.data.status === 200) {
-                swal("Success", res.data.message, "success");
+                swal("", res.data.message, "success");
+                history.push('/coordinateur/Users')
                 // console.log(UserInput.role_id);
                 setError([]);
             } else if (res.data.status === 422) {
-                swal("All fields are mandetory", "", "error");
                 setError(res.data.errors);
             }
         })

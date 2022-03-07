@@ -1,13 +1,14 @@
-import MasterLayouts from "./layouts/coordinateur/MasterLayouts";
 import axios from 'axios';
 import Auth from "./auth/Auth";
 import Home from './layouts/Home/Home';
 import Page403 from './errors/Page403';
 import Page404 from './errors/Page404';
-
-
+import Forgotpassword from "./auth/Forgotpassword";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import CoordinateurPrivateRoute from './routes/CoordinateurPrivateRoute';
+import Resetforgottenpassword from "./auth/Resetforgottenpassword";
+import Resetfirstloginpassword from "./auth/Resetfirstloginpassword";
+
 
 
 axios.defaults.baseURL = 'http://localhost:8000/';
@@ -28,15 +29,25 @@ function App() {
         <Router>
           <Switch>
 
-            <Route path="/403" component={Page403} />
-            <Route path="/404" component={Page404} />
+            <Route exact path="/403" component={Page403} />
+            <Route exact path="/404" component={Page404} />
 
             <Route exact path="/" component={Home} />
 
-            <Route path='/auth'>
+            <Route exact path="/resetfirstloginpassword/:user_id" component={Resetfirstloginpassword} />
+
+            <Route path='/resetforgottenpassword/:id' >
+              {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Resetforgottenpassword />}
+            </Route>
+
+            <Route path='/forgotpassword'>
+              {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Forgotpassword />}
+            </Route>
+
+            <Route path='/auth' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Auth />}
             </Route>
-            {/*<Route path="/coordinateur" name="Coordinateur" render={(props) => <MasterLayouts {...props} />} />*/}
+
             <CoordinateurPrivateRoute path="/coordinateur" name="Coordinateur" />
 
           </Switch>

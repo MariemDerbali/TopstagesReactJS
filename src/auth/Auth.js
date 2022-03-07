@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
+import Footer from './Footer';
+import { Link } from "react-router-dom";
 
 export default function Auth() {
 
@@ -42,7 +44,7 @@ export default function Auth() {
                     //if registration=success
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
-                    swal("Success", res.data.message, "success");
+                    swal("Félicitations", res.data.message, "success");
                     //Checking for user role
                     if (res.data.role === '') {
                         historyLogin.push('/');
@@ -92,8 +94,6 @@ export default function Auth() {
 
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
-                    swal("Success", res.data.message, "success");
-
                     if (res.data.role === 'Coordinateur') {
                         historyLogin.push('/coordinateur/dashboard');
 
@@ -106,7 +106,14 @@ export default function Auth() {
 
                     swal("Warning", res.data.message, "warning");
 
-                } else {
+                } else if (res.data.status === 429) {
+                    swal("Oops", res.data.message, "error");
+
+                } else if (res.data.status === 204) {
+                    history.push(`/resetfirstloginpassword/${res.data.user_id}`);
+                    console.log(res.data.token);
+                }
+                else {
                     setLogin({ ...loginInput, error_list: res.data.validation_errors });
 
                 }
@@ -128,9 +135,9 @@ export default function Auth() {
                     <span className="mask bg-gradient-dark opacity-6"></span>
                     <div className="container">
                         <div className="row justify-content-center">
-                            <div className="col-lg-5 text-center mx-auto">
-                                <h1 className="text-white mb-2 mt-5">Welcome!</h1>
-                                <p className="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+                            <div className="col-lg-9 text-center mx-auto">
+                                <h1 className="text-white mb-2 mt-5">Bienvenue sur<span style={{ color: 'orange' }}> TOPSTAGES!</span></h1>
+                                <p className="text-lead text-white">Connectez-vous ou créez un nouveau compte gratuitement</p>
                             </div>
                         </div>
                     </div>
@@ -142,7 +149,7 @@ export default function Auth() {
                             <div className="card z-index-0">
                                 <div className="card-header pb-0 text-left bg-transparent">
                                     <h3 className="font-weight-bolder text-info text-gradient">Déjà inscrit?</h3>
-                                    <p className="mb-0">Entrez votre cin/passeport et votre mot de passe pour vous connecter </p>
+                                    <p className="mb-0">Veuillez saisir votre login et mot de passe pour accéder à votre espace </p>
                                 </div>
                                 <div className="card-body">
                                     <form role="form" onSubmit={loginSubmit}>
@@ -161,6 +168,11 @@ export default function Auth() {
                                             <button type="submit" className="btn bg-gradient-info w-100 mt-4 mb-0">Connexion</button>
                                         </div>
                                     </form>
+                                </div>
+                                <div className="card-footer text-center pt-0 px-lg-2 px-1">
+                                    <p className="mb-4 text-sm mx-auto">
+                                        <Link to="/forgotpassword" className="text-info text-gradient font-weight-bold">Mot de passe oublié ?</Link>
+                                    </p>
                                 </div>
 
                             </div>
@@ -228,18 +240,7 @@ export default function Auth() {
             </section>
 
 
-            <footer className="footer py-5">
-                <div className="container">
-
-                    <div className="row">
-                        <div className="col-8 mx-auto text-center mt-1">
-                            <p className="mb-0 text-secondary">
-                                © TOPSTAGES 2022
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     )
 }

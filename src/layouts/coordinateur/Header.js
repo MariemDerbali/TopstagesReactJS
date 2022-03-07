@@ -18,8 +18,7 @@ export default function Header() {
 
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
-                swal("Success", res.data.message, "success");
-                history.push('/');
+                history.push('/auth');
 
             }
 
@@ -48,7 +47,7 @@ export default function Header() {
                         <li className="nav-item dropdown pe-3">
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to="#" data-bs-toggle="dropdown">
-                                <img src="../assets/img/team-1.jpg" alt="Profile" className="avatar avatar-sm " />
+                                <img src="/assets/img/ivana-square.jpg" alt="Profile" className="avatar avatar-sm " />
                                 <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                             </Link>
 

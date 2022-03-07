@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Redirect, useHistory } from 'react-router-dom';
 import MasterLayouts from '../layouts/coordinateur/MasterLayouts';
 import axios from 'axios';
-import swal from 'sweetalert';
+import Loading from '../components/coordinateur/Loading';
 
 
 
@@ -27,8 +27,7 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
 
     axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         if (err.response.status === 401) {
-            swal("Unauthorized", err.response.data.message, "warning");
-            history.push('/');
+            history.push('/auth');
         }
         return Promise.reject(err);
     });
@@ -39,12 +38,10 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     }, function (error) {
         if (error.response.status === 403)//Access denied
         {
-            swal("ForbIdden", error.response.data.message, "warning");
-            history.push('/403');
+            history.push('/');
         }
         else if (error.response.status === 404)//Page not found
         {
-            swal("404 Error", "Url/Page Not Found", "warning");
             history.push('/404');
         }
         return Promise.reject(error);
@@ -54,7 +51,7 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
 
     if (loading) {
 
-        return <h1>Loading...</h1>
+        return <div className="row justify-content-center mt-12"> <Loading /></div>
     }
 
     return (
