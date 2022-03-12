@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import CoordinateurPrivateRoute from './routes/CoordinateurPrivateRoute';
 import Resetforgottenpassword from "./auth/Resetforgottenpassword";
 import Resetfirstloginpassword from "./auth/Resetfirstloginpassword";
+import ServiceFormationPrivateRoute from './routes/ServiceFormationPrivateRoute';
 
 
 
@@ -29,26 +30,26 @@ function App() {
         <Router>
           <Switch>
 
+            {/*All users Routes*/}
             <Route exact path="/403" component={Page403} />
             <Route exact path="/404" component={Page404} />
-
             <Route exact path="/" component={Home} />
 
+            {/*Auth Routes*/}
             <Route exact path="/resetfirstloginpassword/:user_id" component={Resetfirstloginpassword} />
-
             <Route path='/resetforgottenpassword/:id' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Resetforgottenpassword />}
             </Route>
-
             <Route path='/forgotpassword'>
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Forgotpassword />}
             </Route>
-
             <Route path='/auth' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Auth />}
             </Route>
 
+            {/*Private Routes*/}
             <CoordinateurPrivateRoute path="/coordinateur" name="Coordinateur" />
+            <ServiceFormationPrivateRoute path="/serviceformation" name="ServiceFormation" />
 
           </Switch>
         </Router>

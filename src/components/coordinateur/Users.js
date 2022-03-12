@@ -67,6 +67,18 @@ export default function Users() {
 
 
                             },
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Département</h1>
+                                , render: (users) => {
+                                    return (
+                                        <p className="text-xs font-weight-bold mb-0 ">{users.departement}</p>)
+                                }
+                                ,
+
+                                customFilterAndSearch: (term, users) => (users.departement)
+
+
+                            },
 
                             {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</h1>, render: users => {

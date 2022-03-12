@@ -14,6 +14,11 @@ export default function Edituser(props) {
 
     ]);
 
+    const [depslist, setDepslist] = useState([
+
+    ]);
+
+
 
     const [checkbox, setCheckbox] = useState([]);
     const handleCheckbox = (e) => {
@@ -25,6 +30,11 @@ export default function Edituser(props) {
         axios.get('/api/roles').then(res => {
             if (res.data.status === 200) {
                 setRoleslist(res.data.roles);
+            }
+        });
+        axios.get('/api/departements').then(res => {
+            if (res.data.status === 200) {
+                setDepslist(res.data.deps);
             }
         });
 
@@ -58,6 +68,7 @@ export default function Edituser(props) {
         cinpasseport: '',
         tel: '',
         role_id: '',
+        departement: '',
 
 
     });
@@ -87,6 +98,7 @@ export default function Edituser(props) {
         const formData = new FormData();
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
+        formData.append('departement', UserInput.departement);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -181,10 +193,22 @@ export default function Edituser(props) {
                                     <small className="text-danger">{errorlist.tel}</small>
                                 </div>
 
-                                <div className="col-md-6 mb-3">
-                                    <label className="form-label">Image</label>
-                                    <input name="image" onChange={handleImage} className="form-control" type="file" id="formFile" />
-                                    <small className="text-danger">{errorlist.image}</small>
+                                <div className="col-md-6">
+                                    <label className="form-label">Département</label>
+                                    <select name="departement" onChange={handleInput} value={UserInput.departement} className="form-select">
+                                        <option>Départements</option>
+                                        {
+                                            depslist.map((dep, index) => {
+                                                return (
+                                                    <option value={dep.id} key={index}>{dep.nomdep}</option>
+
+
+                                                )
+                                            })
+                                        }
+
+                                    </select>
+                                    <small className="text-danger">{errorlist.departement}</small>
                                 </div>
 
                                 <div className="col-md-6">
@@ -205,7 +229,12 @@ export default function Edituser(props) {
                                     <small className="text-danger">{errorlist.role_id}</small>
                                 </div>
 
-                                <div className="col-md-6 ">
+                                <div className="col-md-6 mb-3">
+                                    <label className="form-label">Image</label>
+                                    <input name="image" onChange={handleImage} className="form-control" type="file" id="formFile" />
+                                    <small className="text-danger">{errorlist.image}</small>
+                                </div>
+                                <div className="col-md-6 mt-4">
                                     <div className='form-check'>
                                         <input name="etat" onChange={handleCheckbox} defaultChecked={checkbox.etat === 'inactive' ? true : false} className="form-check-input" id="flexCheckChecked" type="checkbox" />
                                         <label className="form-check-label" >

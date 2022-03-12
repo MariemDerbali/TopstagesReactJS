@@ -10,6 +10,9 @@ export default function Adduser() {
     const [roleslist, setRoleslist] = useState([
 
     ]);
+    const [depslist, setDepslist] = useState([
+
+    ]);
 
     useEffect(() => {
         axios.get('/api/roles').then(res => {
@@ -17,6 +20,14 @@ export default function Adduser() {
                 setRoleslist(res.data.roles);
             }
         });
+
+        axios.get('/api/departements').then(res => {
+            if (res.data.status === 200) {
+                setDepslist(res.data.deps);
+            }
+        });
+
+
     }, []);
 
     const [UserInput, setUser] = useState({
@@ -29,6 +40,7 @@ export default function Adduser() {
         cinpasseport: '',
         tel: '',
         role_id: '',
+        departement: '',
 
     });
 
@@ -50,6 +62,7 @@ export default function Adduser() {
         const formData = new FormData();
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
+        formData.append('departement', UserInput.departement);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -136,12 +149,23 @@ export default function Adduser() {
                                     <small className="text-danger">{errorlist.tel}</small>
                                 </div>
 
-                                <div className="col-md-6 mb-3">
-                                    <label className="form-label">Image</label>
-                                    <input onChange={handleImage} name="image" className="form-control" type="file" id="formFile" />
-                                    <small className="text-danger">{errorlist.image}</small>
-                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">Départements</label>
+                                    <select name="departement" onChange={handleInput} value={UserInput.departement} className="form-select">
+                                        <option>Départements</option>
+                                        {
+                                            depslist.map((dep, index) => {
+                                                return (
+                                                    <option value={dep.id} key={index}>{dep.nomdep}</option>
 
+
+                                                )
+                                            })
+                                        }
+
+                                    </select>
+                                    <small className="text-danger">{errorlist.departement}</small>
+                                </div>
                                 <div className="col-md-6">
                                     <label className="form-label">Role</label>
                                     <select name="role_id" onChange={handleInput} value={UserInput.role_id} className="form-select">
@@ -159,7 +183,15 @@ export default function Adduser() {
                                     </select>
                                     <small className="text-danger">{errorlist.role_id}</small>
                                 </div>
-                                <div className="col-12">
+
+
+                                <div className="col-md-6 mb-3">
+                                    <label className="form-label">Image</label>
+                                    <input onChange={handleImage} name="image" className="form-control" type="file" id="formFile" />
+                                    <small className="text-danger">{errorlist.image}</small>
+                                </div>
+
+                                <div className="col-md-6 mt-4">
                                     <button type="submit" className="btn btn-primary">Créer</button>
                                 </div>
                             </form>
