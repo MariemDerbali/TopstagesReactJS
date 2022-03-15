@@ -97,6 +97,10 @@ export default function Auth() {
                     if (res.data.role === 'Coordinateur') {
                         historyLogin.push('/coordinateur/dashboard');
 
+                    } else if (res.data.role === 'ServiceFormation') {
+
+                        historyLogin.push('/serviceformation/dashboard');
+
                     } else {
                         historyLogin.push('/');
 

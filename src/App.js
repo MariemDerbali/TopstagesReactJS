@@ -37,12 +37,15 @@ function App() {
 
             {/*Auth Routes*/}
             <Route exact path="/resetfirstloginpassword/:user_id" component={Resetfirstloginpassword} />
+
             <Route path='/resetforgottenpassword/:id' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Resetforgottenpassword />}
             </Route>
+
             <Route path='/forgotpassword'>
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Forgotpassword />}
             </Route>
+
             <Route path='/auth' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Auth />}
             </Route>

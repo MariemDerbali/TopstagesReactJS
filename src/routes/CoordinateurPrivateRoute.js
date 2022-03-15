@@ -13,7 +13,7 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get('api/checkingAuthenticated').then(res => {
+        axios.get('api/checkingCoordinateur').then(res => {
             if (res.status === 200) {
                 setAuthenticated(true);
             }

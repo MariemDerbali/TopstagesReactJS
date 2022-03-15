@@ -7,7 +7,7 @@ export default function Sidebar() {
         <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
             <div className="sidenav-header">
                 <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                <Link className="navbar-brand m-0" to="/coordinateur/dashboard" target="_blank">
+                <Link className="navbar-brand m-0" to="/serviceformation/dashboard" target="_blank">
                     <img src="../assets/img/logos/logo-topnet.png" className="navbar-brand-img h-100" style={{ maxHeight: '4rem' }} alt="main_logo" />
 
                 </Link>

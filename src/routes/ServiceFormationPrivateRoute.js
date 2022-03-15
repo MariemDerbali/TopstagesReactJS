@@ -12,7 +12,7 @@ export default function ServiceFormationPrivateRoute({ ...rest }) {
     const history = useHistory();
 
     useEffect(() => {
-        axios.get('api/checkingAuthenticated').then(res => {
+        axios.get('api/checkingServiceFormation').then(res => {
             if (res.status === 200) {
                 setAuthenticated(true);
             }
@@ -35,7 +35,7 @@ export default function ServiceFormationPrivateRoute({ ...rest }) {
     axios.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
-        if (error.response.status === 403)//Access denied
+        if (error.response.status === 407)//Access denied
         {
             history.push('/');
         }
