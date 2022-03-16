@@ -1,46 +1,98 @@
-import React from 'react'
-import { useState } from "react"
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Addquestion() {
-    const [formValues, setFormValues] = useState([{ name: "", email: "" }])
-
-    let handleChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
-    }
-
-    let addFormFields = () => {
-        setFormValues([...formValues, { name: "", email: "" }])
-    }
-
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
 
 
+    const history = useHistory();
 
     function textimageCheck() {
+
         if (document.getElementById('text').checked) {
+
             document.getElementById('ifText').style.display = "block";
+            document.getElementById('inputtext').required = true
             document.getElementById('ifImage').style.display = "none";
             document.getElementById('ifTextImage').style.display = "none";
         }
         else if (document.getElementById('image').checked) {
+
             document.getElementById('ifImage').style.display = "block";
+            document.getElementById('inputimage').required = true
+
             document.getElementById('ifText').style.display = "none";
             document.getElementById('ifTextImage').style.display = "none";
         }
-        else {
+        else if (document.getElementById('textimage').checked) {
+
             document.getElementById('ifTextImage').style.display = "block";
+
+            document.getElementById('inputtextimage1').required = true
+            document.getElementById('inputtextimage2').required = true
+
+
+            document.getElementById('ifText').style.display = "none";
+            document.getElementById('ifImage').style.display = "none";
+
+        }
+        else {
+            document.getElementById('ifTextImage').style.display = "none";
             document.getElementById('ifText').style.display = "none";
             document.getElementById('ifImage').style.display = "none";
 
         }
 
+    }
+
+
+    const [QuestionInput, setQuestion] = useState({
+        questionText: '',
+        niveau: '',
+        duree: '',
+
+
+    });
+
+    const [picture, setPicture] = useState([]);
+    const [errorlist, setError] = useState([]);
+
+    const handleInput = (e) => {
+        e.persist();
+        setQuestion({ ...QuestionInput, [e.target.name]: e.target.value });
+    }
+
+    const handleImage = (e) => {
+        setPicture({ questionImage: e.target.files[0] });
+    }
+
+    const submitQuestion = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('questionImage', picture.questionImage);
+        formData.append('questionText', QuestionInput.questionText);
+        formData.append('niveau', QuestionInput.niveau);
+        formData.append('duree', QuestionInput.duree);
+
+
+
+        axios.post('/api/questions', formData).then(res => {
+            if (res.data.status === 200) {
+                swal("", res.data.message, "success");
+                history.push('/serviceformation/Questions');
+                setError([]);
+
+            } else if (res.data.status === 422) {
+                setError(res.data.errors);
+
+            } else if (res.data.status === 505) {
+                swal("", res.data.message, "warning");
+            }
+
+        })
     }
 
 
@@ -55,7 +107,7 @@ export default function Addquestion() {
                         </div>
                         <div className="card-body ">
 
-                            <form className="row"  >
+                            <form className="row" onSubmit={submitQuestion}  >
 
 
                                 <div className="col-md-6 col-12">
@@ -63,15 +115,19 @@ export default function Addquestion() {
                                         <label htmlFor=""><strong>Type de question</strong></label><br />
                                         <input type="radio" name="radio" value="text" id="text" onClick={textimageCheck} />&nbsp;<label htmlFor="">Text</label> &nbsp;&nbsp;&nbsp;
                                         <input type="radio" name="radio" value="image" id="image" onClick={textimageCheck} />&nbsp;<label htmlFor="">Image</label> &nbsp;&nbsp;&nbsp;
-                                        <input type="radio" name="radio" value="textimage" id="textimage" onClick={textimageCheck} defaultChecked />&nbsp;<label htmlFor="">Text et image</label>
+
+                                        <input type="radio" name="radio" value="textimage" id="textimage" onClick={textimageCheck}
+                                        />&nbsp;<label htmlFor="">Text et image</label>
 
                                     </div>
                                 </div>
-                                <span id="ifText" style={{ display: "none" }}>
+                                <span id="ifText" style={{ display: "none" }} >
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label className="form-label">Question text</label>
-                                            <input type="text" name="question" className="form-control" placeholder='Question' />
+                                            <input id='inputtext' onChange={handleInput} value={QuestionInput.questionText} type="text" name="questionText" className="form-control" placeholder='Question' />
+                                            <small className="text-danger">{errorlist.questionText}</small>
+
                                         </div>
                                     </div>
                                 </span>
@@ -80,77 +136,55 @@ export default function Addquestion() {
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Question image</label>
-                                            <input name="questionImage" className="form-control" type="file" id="formFile" />
+                                            <input id='inputimage' onChange={handleImage} name="questionImage" className="form-control" type="file" />
+                                            <small className="text-danger">{errorlist.questionImage}</small>
                                         </div>
                                     </div>
                                 </span>
 
 
-                                <span id="ifTextImage">
+                                <span id="ifTextImage" style={{ display: "none" }}  >
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label className="form-label">Question text</label>
-                                            <input type="text" name="question" className="form-control" placeholder='Question' />
+                                            <input id='inputtextimage1' onChange={handleInput} value={QuestionInput.questionText} type="text" name="questionText" className="form-control" placeholder='Question' />
+                                            <small className="text-danger">{errorlist.questionText}</small>
+
                                         </div>
 
 
                                         <div className="col-md-6 mb-3">
                                             <label className="form-label">Question image</label>
-                                            <input name="questionImage" className="form-control" type="file" id="formFile" />
+                                            <input id='inputtextimage2' onChange={handleImage} name="questionImage" className="form-control" type="file" />
+                                            <small className="text-danger">{errorlist.questionImage}</small>
+
                                         </div>
                                     </div>
                                 </span>
 
                                 <div className="col-md-6">
                                     <label className="form-label">Durée de la question (s)</label>
-                                    <input type="text" name="duree" className="form-control" placeholder='Durée question (s)' />
+                                    <input onChange={handleInput} value={QuestionInput.duree} type="text" name="duree" className="form-control" placeholder='Durée question (s)' />
+                                    <small className="text-danger">{errorlist.duree}</small>
+
                                 </div>
 
 
 
                                 <div className="col-md-6">
                                     <label className="form-label">Niveau de difficulté</label>
-                                    <select name="niveau" className="form-select">
+                                    <select onChange={handleInput} value={QuestionInput.niveau} name="niveau" className="form-select">
                                         <option >Niveau de difficulté</option>
                                         <option>Facile</option>
                                         <option>Moyenne</option>
                                         <option>difficile</option>
                                     </select>
+                                    <small className="text-danger">{errorlist.niveau}</small>
                                 </div>
 
-                                <div className="col-md-6" >
-                                    <label>Réponse 1</label>
-                                    <input type="text" className="form-control" name="name" value="" />
-                                    <input name="questionImage" className="form-control mt-2" type="file" id="formFile" />
-                                    <select name="niveau" className="form-select mt-2">
-                                        <option >Réponse correcte?</option>
-                                        <option>Oui</option>
-                                        <option>Non</option>
 
-                                    </select>
-                                </div>
-                                {formValues.map((element, index) => (
-                                    <div className="col-md-6" key={index}>
-                                        <label>Réponse {index + 2}</label>
-                                        <input type="text" className="form-control" name="name" value={element.name || ""} onChange={e => handleChange(index, e)} />
-                                        <input name="questionImage" className="form-control mt-2" type="file" id="formFile" />
-                                        <select name="niveau" className="form-select mt-2">
-                                            <option >Réponse correcte?</option>
-                                            <option>Oui</option>
-                                            <option>Non</option>
 
-                                        </select>
-                                        {
-                                            index >= 1 ?
-                                                <button type="button" className="btn btn-outline-danger mt-2" onClick={() => removeFormFields(index)}>x</button>
-                                                : null
-                                        }
-                                    </div>
 
-                                ))}
-                                <div className="col-sm-12 mt-2">
-                                    <button className="btn btn-outline-success " type="button" onClick={() => addFormFields()}>Ajouter réponse</button>
-                                </div>
                                 <div className="col-md-6 mt-4">
                                     <button type="submit" className="btn btn-primary">Créer</button>
                                 </div>
