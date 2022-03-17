@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "./MaterialTableIcons";
 import Loading from './Loading';
+import '../ServiceFormation/myStyle.css';
 
 
 export default function Users() {

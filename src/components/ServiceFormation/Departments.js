@@ -17,7 +17,6 @@ export default function Departments() {
 
         axios.get('/api/departments').then(res => {
             if (res.data.status === 200) {
-                //console.log(res.data.users);
                 setDepartment(res.data.deps);
                 setLoading(false);
             }

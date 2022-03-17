@@ -36,6 +36,7 @@ const routes = [
     { path: '/serviceformation/questions', exact: true, name: 'Questions', component: Questions },
     { path: '/serviceformation/Addquestion', exact: true, name: 'Addquestion', component: Addquestion },
 
+
 ]
     ;
 
