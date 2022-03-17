@@ -145,6 +145,7 @@ export default function Addquestion() {
                 swal("", res.data.message, "success");
                 //history.push('/serviceformation/Questions');
                 setReponseList(reponse => [...reponse, res.data.reponse]);
+
                 setError([]);
 
             } else if (res.data.status === 422) {
@@ -385,8 +386,10 @@ export default function Addquestion() {
                                     , render: reponse => {
                                         return (
                                             <div className="d-flex px-2 py-1">
+
+
                                                 <div>
-                                                    <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" />
+                                                    {reponse.reponseImage ? <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" /> : <span className="badge rounded-pill bg-light text-dark">Sans image</span>}
                                                 </div>
 
                                             </div>)
@@ -400,7 +403,11 @@ export default function Addquestion() {
                                     title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse text</h1>
                                     , render: (reponse) => {
                                         return (
-                                            <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p>)
+                                            <div>
+                                                {reponse.reponseText ? <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p> : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
+                                            </div>
+
+                                        )
                                     }
                                     ,
 
@@ -419,7 +426,6 @@ export default function Addquestion() {
                                     customFilterAndSearch: (term, reponse) => ((reponse.reponseCorrecte).toLowerCase()).indexOf(term.toLowerCase()) != -1
 
                                 },
-
 
 
 

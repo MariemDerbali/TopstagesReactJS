@@ -12,6 +12,7 @@ import Adddepartment from '../components/ServiceFormation/Adddeparment';
 import Editdepartment from '../components/ServiceFormation/Editdepartment';
 import Questions from '../components/ServiceFormation/Questions';
 import Addquestion from '../components/ServiceFormation/Addquestion';
+import Editquestion from '../components/ServiceFormation/Editquestion';
 
 
 const routes = [
@@ -19,9 +20,10 @@ const routes = [
     /*Coordinateur Routes*/
     { path: '/coordinateur', exact: true, name: 'Coordinateur' },
     { path: '/coordinateur/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
+    { path: '/coordinateur/profil', exact: true, name: 'Profil', component: Profil },
+
     { path: '/coordinateur/users', exact: true, name: 'Users', component: Users },
     { path: '/coordinateur/Adduser', exact: true, name: 'Adduser', component: Adduser },
-    { path: '/coordinateur/profil', exact: true, name: 'Profil', component: Profil },
     { path: '/coordinateur/edit-user/:_id', exact: true, name: 'Edituser', component: Edituser },
 
     /*ServiceFormation Routes*/
@@ -35,6 +37,7 @@ const routes = [
 
     { path: '/serviceformation/questions', exact: true, name: 'Questions', component: Questions },
     { path: '/serviceformation/Addquestion', exact: true, name: 'Addquestion', component: Addquestion },
+    { path: '/serviceformation/edit-question/:_id', exact: true, name: 'Editquestion', component: Editquestion },
 
 
 ]
