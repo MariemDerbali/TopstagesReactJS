@@ -1,7 +1,8 @@
 import React from 'react'
-import Footer from './Footer'
-import Header from './Header'
-import Sidebar from './Sidebar'
+import Footer from '../Footer'
+import Header from '../Header'
+import Sidebar from '../Sidebar'
+
 import Dashboard from '../../components/coordinateur/Dashboard'
 
 import routes from '../../routes/routes'

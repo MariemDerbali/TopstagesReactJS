@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Redirect, useHistory } from 'react-router-dom';
 import MasterLayouts from '../layouts/coordinateur/MasterLayouts';
 import axios from 'axios';
-import Loading from '../components/coordinateur/Loading';
-
+import Loading from '../layouts/Loading';
 
 
 export default function CoordinateurPrivateRoute({ ...rest }) {

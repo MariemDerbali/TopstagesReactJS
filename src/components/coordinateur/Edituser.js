@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
-import Loading from './Loading';
+import Loading from '../../layouts/Loading';
 
 export default function Edituser(props) {
 
@@ -188,7 +188,7 @@ export default function Edituser(props) {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Tél</label>
+                                    <label className="form-label">Téléphone</label>
                                     <input type="text" name="tel" onChange={handleInput} value={UserInput.tel} className="form-control" placeholder="Tél" />
                                     <small className="text-danger">{errorlist.tel}</small>
                                 </div>

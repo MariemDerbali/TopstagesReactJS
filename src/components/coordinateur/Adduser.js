@@ -88,9 +88,9 @@ export default function Adduser() {
 
     return (
         <div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="card mb-4">
+            <div className="row justify-content-center">
+                <div className="col-8 ">
+                    <div className="card mb-4 shadow-lg p-3 mb-5 bg-white rounded">
                         <div className="card-header pb-0">
                             <h6>Créer utilisateur</h6>
                         </div>
@@ -120,7 +120,7 @@ export default function Adduser() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Email</label>
+                                    <label className="form-label">E-mail</label>
                                     <input onChange={handleInput} value={UserInput.email} type="email" name="email" className="form-control" placeholder='Email' />
                                     <small className="text-danger">{errorlist.email}</small>
                                 </div>
@@ -144,8 +144,8 @@ export default function Adduser() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Tél</label>
-                                    <input onChange={handleInput} value={UserInput.tel} type="text" name="tel" className="form-control" placeholder="Tél" />
+                                    <label className="form-label">Téléphone</label>
+                                    <input onChange={handleInput} value={UserInput.tel} type="text" name="tel" className="form-control" placeholder="Téléphone" />
                                     <small className="text-danger">{errorlist.tel}</small>
                                 </div>
 
@@ -167,9 +167,9 @@ export default function Adduser() {
                                     <small className="text-danger">{errorlist.departement}</small>
                                 </div>
                                 <div className="col-md-6">
-                                    <label className="form-label">Role</label>
+                                    <label className="form-label">Rôle</label>
                                     <select name="role_id" onChange={handleInput} value={UserInput.role_id} className="form-select">
-                                        <option>Role</option>
+                                        <option>Rôle</option>
                                         {
                                             roleslist.map((role, index) => {
                                                 return (

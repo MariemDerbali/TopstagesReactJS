@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "../coordinateur/MaterialTableIcons";
-import Loading from '../coordinateur/Loading';
+import Loading from '../../layouts/Loading';
 
 export default function Editquestion(props) {
 

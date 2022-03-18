@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "./MaterialTableIcons";
-import Loading from './Loading';
+import Loading from '../../layouts/Loading';
 import '../ServiceFormation/myStyle.css';
 
 
@@ -33,8 +33,8 @@ export default function Users() {
 
     else {
         return (
-            <div className="row">
-                <div className="col-12">
+            <div className="row ">
+                <div className="col-12 ">
                     <MaterialTable
                         columns={[
                             {

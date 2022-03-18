@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
-import Loading from '../coordinateur/Loading';
+import Loading from '../../layouts/Loading';
 
 export default function Editdepartment(props) {
 
