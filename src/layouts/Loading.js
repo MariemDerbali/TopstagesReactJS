@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Un spinner pour indiquer que la page est en cours de chargement
 export default function Loading() {
     return (
 

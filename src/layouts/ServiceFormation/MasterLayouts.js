@@ -11,11 +11,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 export default function MasterLayouts() {
     return (
         <div>
-            <Sidebar />
+            <Sidebar />{/*afficher la barre latérale de page */}
             <main className="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
-                <Header />
+                <Header />  {/*afficher l'en-tête de  page*/}
                 <div className="container-fluid py-4">
                     <Switch>
+                        {/*afficher l'accès aux pages en fonction des options de la barre latérale*/}
                         {routes.map((route, idx) => {
                             return (
                                 route.component && (
@@ -26,9 +27,10 @@ export default function MasterLayouts() {
 
                             )
                         })}
+                        {/*La page affichée par défaut est le tableau de bord*/}
                         <Redirect from="serviceformation" to="/serviceformation/dashboard" />
                     </Switch>
-                    <Footer />
+                    <Footer /> {/*afficher le pied de page */}
                 </div>
             </main>
         </div>

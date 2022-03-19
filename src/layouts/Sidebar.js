@@ -9,17 +9,23 @@ import Loading from './Loading';
 export default function Sidebar() {
 
 
+    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
+    //Le useState() est un Hook qui vous permet d'avoir des variables d'état dans les composants fonctionnels.
+    // Le premier élément est l’état initial et le second est une fonction qui est utilisée pour mettre à jour l’état.
+    //Variables d'état pour obtenir la liste des utilisateurs
     const [user, setUser] = useState([]);
 
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
-        axios.get('/api/currentuser').then(res => {
+        //l'API de l'utilisateur authentifié actuel
+        axios.get('/api/currentuser').then(res => { //si l'utilisateur est trouvé
             if (res.data.status === 200) {
-
+                //stockage de l'utilisateur authentifié actuel dans les variables d'état
                 setUser(res.data.currentuser);
-
-            } else if (res.data.status === 404) {
+            } else if (res.data.status === 404) {//si l'utilisateur non trouvé
+                //afficher un message d'erreur
                 swal("", res.data.message, "error");
             }
         });
@@ -37,8 +43,9 @@ export default function Sidebar() {
             </div>
 
             <hr className="horizontal dark mt-0" />
-            {user.role_id == 'ServiceFormation' ?
+            {user.role_id == 'ServiceFormation' ?//si l'ustilisateur authentifié actuel est un service formation
 
+                //afficher ses fonctionnalités dans la barre latérale
                 <div className="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
                     <ul className="navbar-nav ">
                         <li className="nav-item">
@@ -139,7 +146,9 @@ export default function Sidebar() {
                     </ul>
                 </div>
 
-                : user.role_id == 'Coordinateur' ?
+                : user.role_id == 'Coordinateur' ?//sinon si l'ustilisateur authentifié actuel est un coordinateur
+
+                    //afficher ses fonctionnalités dans la barre latérale
 
                     <div className="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
                         <ul className="navbar-nav ">
@@ -204,7 +213,7 @@ export default function Sidebar() {
 
 
                         </ul>
-                    </div> : <Loading />
+                    </div> : <Loading />//sinon afficher un spinner
             }
 
 

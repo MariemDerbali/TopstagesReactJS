@@ -5,41 +5,54 @@ import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "../coordinateur/MaterialTableIcons";
 
+//pour créer une question
 export default function Addquestion() {
 
+    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
-
+    //pour afficher les champs de question
     function textimageCheck() {
 
+        //si la question s'agit de text seulement
         if (document.getElementById('text').checked) {
 
+            //afficher la zone de texte
             document.getElementById('ifText').style.display = "block";
+            //indication que le champ de texte est requis
             document.getElementById('inputtext').required = true
+            //masquer la zone d'image
             document.getElementById('ifImage').style.display = "none";
+            //masquer la zone de text et image(le DIV pour la question qui s'agit de text et image)
             document.getElementById('ifTextImage').style.display = "none";
         }
+        //si la question s'agit d'image seulement
         else if (document.getElementById('image').checked) {
-
+            //afficher la zone d'image
             document.getElementById('ifImage').style.display = "block";
+            //indication que le champ d'image est requis
             document.getElementById('inputimage').required = true
-
+            //masquer la zone de texte
             document.getElementById('ifText').style.display = "none";
+            //masquer la zone de text et image(le DIV pour la question qui s'agit de text et image)
             document.getElementById('ifTextImage').style.display = "none";
         }
+        //si la question s'agit de texte et image
         else if (document.getElementById('textimage').checked) {
-
+            //afficher la zone de texte et image
             document.getElementById('ifTextImage').style.display = "block";
-
+            //indication que le champ de texte est requis
             document.getElementById('inputtextimage1').required = true
+            //indication que le champ d'image est requis
             document.getElementById('inputtextimage2').required = true
 
-
+            //masquer la zone de texte(le DIV pour la question qui s'agit de texte seulement)
             document.getElementById('ifText').style.display = "none";
+            //masquer la zone d'image(le DIV pour la question qui s'agit d'image seulement)
             document.getElementById('ifImage').style.display = "none";
 
         }
-        else {
+        else {//si le service formation n'a pas encore précisé le type de question, alors masquer toutes les zones de saisie
             document.getElementById('ifTextImage').style.display = "none";
             document.getElementById('ifText').style.display = "none";
             document.getElementById('ifImage').style.display = "none";
@@ -48,36 +61,45 @@ export default function Addquestion() {
 
     }
 
+    //pour afficher les champs de réponse
     function ReptextimageCheck() {
-
+        //si la réponse s'agit de text seulement
         if (document.getElementById('Reptext').checked) {
 
+            //afficher la zone de texte
             document.getElementById('ifRepText').style.display = "block";
+            //indication que le champ de texte est requis
             document.getElementById('inputReptext').required = true
+            //masquer la zone d'image
             document.getElementById('ifRepImage').style.display = "none";
+            //masquer la zone de text et image(le DIV pour la réponse qui s'agit de text et image)
             document.getElementById('ifRepTextImage').style.display = "none";
         }
+        //si la réponse s'agit d'image seulement
         else if (document.getElementById('Repimage').checked) {
-
+            //afficher la zone d'image
             document.getElementById('ifRepImage').style.display = "block";
+            //indication que le champ d'image est requis
             document.getElementById('inputRepimage').required = true
-
+            //masquer la zone de texte
             document.getElementById('ifRepText').style.display = "none";
+            //masquer la zone de text et image(le DIV pour la réponse qui s'agit de text et image)
             document.getElementById('ifRepTextImage').style.display = "none";
-        }
+        }//si la réponse s'agit de texte et image
         else if (document.getElementById('Reptextimage').checked) {
-
+            //afficher la zone de texte et image
             document.getElementById('ifRepTextImage').style.display = "block";
-
+            //indication que le champ de texte est requis
             document.getElementById('inputReptextimage1').required = true
+            //indication que le champ d'image est requis
             document.getElementById('inputReptextimage2').required = true
-
-
+            //masquer la zone de texte(le DIV pour la réponse qui s'agit de texte seulement)
             document.getElementById('ifRepText').style.display = "none";
+            //masquer la zone d'image (le DIV pour la question qui s'agit d'image seulement)
             document.getElementById('ifRepImage').style.display = "none";
 
         }
-        else {
+        else {//si le service formation n'a pas encore précisé le type de réponse, alors masquer toutes les zones de saisie
             document.getElementById('ifTextImage').style.display = "none";
             document.getElementById('ifText').style.display = "none";
             document.getElementById('ifImage').style.display = "none";
@@ -87,6 +109,10 @@ export default function Addquestion() {
     }
 
 
+    //Le useState() est un Hook qui vous permet d'avoir des variables d'état dans les composants fonctionnels.
+    // Le premier élément est l’état initial et le second est une fonction qui est utilisée pour mettre à jour l’état.
+
+    //variables d'état pour obtenir les valeurs saisies des champs de question
     const [QuestionInput, setQuestion] = useState({
         questionText: '',
         niveau: '',
@@ -94,9 +120,11 @@ export default function Addquestion() {
 
 
     });
+
+    //variables d'état pour obtenir l'id de question
     const [questionid, setQuestionID] = useState([]);
 
-
+    //variables d'état pour obtenir les valeurs saisies des champs de réponses
     const [ReponseInput, setReponse] = useState({
         reponseText: '',
         reponseCorrecte: '',
@@ -104,57 +132,70 @@ export default function Addquestion() {
 
     });
 
-
+    //Variables d'état pour obtenir la liste des réponses
     const [reponse, setReponseList] = useState([]);
 
+    //variables d'état pour obtenir l'image saisie de question
     const [picture, setPicture] = useState([]);
+
+    //variables d'état pour obtenir l'image saisie de réponse
     const [picturerep, setPicturerep] = useState([]);
 
+    //varibale d'état pour les erreurs
     const [errorlist, setError] = useState([]);
 
+
+    //Puisque la valeur du champ est en permanence pilotée par l’état React.
+    //Pour mettre à jour l'état local React
+    //pour la question
     const handleInput = (e) => {
-        e.persist();
-        setQuestion({ ...QuestionInput, [e.target.name]: e.target.value });
+        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
+        setQuestion({ ...QuestionInput, [e.target.name]: e.target.value }); //Stocker les valeurs saisies des champs de la question dans les variables d'état
     }
-
+    //pour la question
     const handleImage = (e) => {
-        setPicture({ questionImage: e.target.files[0] });
+        setPicture({ questionImage: e.target.files[0] });//Stocker le valeur saisie de champ image de la question dans les variables d'état
     }
 
+    //Pour mettre à jour l'état local React
+    //pour la réponse
     const handleInputrep = (e) => {
-        e.persist();
-        setReponse({ ...ReponseInput, [e.target.name]: e.target.value });
+        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
+        setReponse({ ...ReponseInput, [e.target.name]: e.target.value }); //Stocker les valeurs saisies des champs de la réponse dans les variables d'état
     }
 
+    //pour la réponse
     const handleImagerep = (e) => {
-        setPicturerep({ reponseImage: e.target.files[0] });
+        setPicturerep({ reponseImage: e.target.files[0] });//Stocker le valeur saisie de champ image de la réponse dans les variables d'état
     }
 
+    //fonction pour créer une réponse
     const submitReponse = (e) => {
-        e.preventDefault();
+        e.preventDefault();//C'est une méthode présente dans l'interface événementielle. Cette méthode empêche le navigateur d'exécuter le comportement par défaut de l'élément sélectionné. Cette méthode ne peut annuler l'événement que si l'événement est annulable.
 
+        // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
         formData.append('reponseImage', picturerep.reponseImage);
         formData.append('reponseText', ReponseInput.reponseText);
         formData.append('reponseCorrecte', ReponseInput.reponseCorrecte);
 
-        formData.append('questionID', questionid);
+        formData.append('questionID', questionid);//obtenir l'id de la question actuelle
 
+        //l'API pour créer une réponse
         axios.post('/api/reponses', formData).then(res => {
-            if (res.data.status === 200) {
-                swal("", res.data.message, "success");
-                //history.push('/serviceformation/Questions');
-                setReponseList(reponse => [...reponse, res.data.reponse]);
-
+            if (res.data.status === 200) {//si la réponse est créee
+                swal("", res.data.message, "success");//afficher un message de succès
+                setReponseList(reponse => [...reponse, res.data.reponse]);//stockage la liste des réponses dans les variables détat
+                //puisqu'il n'y a pas des erreurs des données saisies, stocker donc une liste vide pour les erreurs dans les variables d'état
                 setError([]);
 
-            } else if (res.data.status === 422) {
+            } else if (res.data.status === 422) {//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
                 setError(res.data.errors);
 
-            } else if (res.data.status === 423) {
+            } else if (res.data.status === 423) {//afficher un message d'erreur si le service formation crée une réponse avant de créer une question
                 swal("", res.data.message, "warning");
 
-            } else if (res.data.status === 505) {
+            } else if (res.data.status === 505) {//afficher un message d'erreur si le service formation n'a pas précisé le type de réponse
                 swal("", res.data.message, "warning");
             }
 
@@ -163,9 +204,11 @@ export default function Addquestion() {
 
     }
 
+    //fonction pour créer une question
     const submitQuestion = (e) => {
-        e.preventDefault();
+        e.preventDefault();//C'est une méthode présente dans l'interface événementielle. Cette méthode empêche le navigateur d'exécuter le comportement par défaut de l'élément sélectionné. Cette méthode ne peut annuler l'événement que si l'événement est annulable.
 
+        // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
         formData.append('questionImage', picture.questionImage);
         formData.append('questionText', QuestionInput.questionText);
@@ -173,18 +216,18 @@ export default function Addquestion() {
         formData.append('duree', QuestionInput.duree);
 
 
-
+        //l'API pour créer une question
         axios.post('/api/questions', formData).then(res => {
-            if (res.data.status === 200) {
-                swal("", res.data.message, "success");
-                setQuestionID(res.data.questionId);
-                // history.push('/serviceformation/Questions');
+            if (res.data.status === 200) {//si la question est créee
+                swal("", res.data.message, "success");//afficher un message de succès
+                setQuestionID(res.data.questionId);//stockage des questions dans les variables détat
+                //puisqu'il n'y a pas des erreurs des données saisies, stocker donc une liste vide pour les erreurs dans les variables d'état
                 setError([]);
 
-            } else if (res.data.status === 422) {
+            } else if (res.data.status === 422) {//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
                 setError(res.data.errors);
 
-            } else if (res.data.status === 505) {
+            } else if (res.data.status === 505) {//afficher un message d'erreur si le service formation n'a pas précisé le type de question
                 swal("", res.data.message, "warning");
             }
 

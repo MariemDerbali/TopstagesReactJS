@@ -4,13 +4,15 @@ import MasterLayouts from '../layouts/coordinateur/MasterLayouts';
 import axios from 'axios';
 import Loading from '../layouts/Loading';
 
-
+////Pour protéger les routes pour le coordinateur
 export default function CoordinateurPrivateRoute({ ...rest }) {
 
     const [Authenticated, setAuthenticated] = useState(false);
     const [loading, setloading] = useState(true);
     const history = useHistory();
 
+
+    //Pour vérifier que l'utilisateur authentifié est un coordinateur
     useEffect(() => {
         axios.get('api/checkingCoordinateur').then(res => {
             if (res.status === 200) {
@@ -24,6 +26,7 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
 
     }, []);
 
+    //diriger vers la page d'authentification si l'utilisateur n'est pas authentifié
     axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         if (err.response.status === 401) {
             history.push('/auth');
@@ -32,14 +35,15 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     });
 
 
+    //Si l'utilisateur authentifié n'est pas un coordinateur
     axios.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
-        if (error.response.status === 403)//Access denied
+        if (error.response.status === 403)//Accès refusé
         {
             history.push('/');
-        }
-        else if (error.response.status === 404)//Page not found
+        }//Sinon si la page demandée est introuvable
+        else if (error.response.status === 404)//Page introuvable
         {
             history.push('/404');
         }
@@ -48,16 +52,19 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
 
     );
 
+    //si la page demandée est en cours de chargement afficher un spinner
     if (loading) {
 
         return <div className="row justify-content-center mt-12"> <Loading /></div>
     }
 
+    //Sidebar
     return (
         <Route {...rest}
             render={({ props, location }) =>
-                Authenticated ?
+                Authenticated ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)
                     (<MasterLayouts {...props} />) :
+                    //Sinon diriger l'utilisateur vers la page d'authentification
                     (<Redirect to={{ pathname: "/login", state: { from: location } }} />)
             }
         />

@@ -6,25 +6,27 @@ import tableIcons from "../coordinateur/MaterialTableIcons";
 
 import Loading from '../../layouts/Loading';
 
+//pour consulter la liste des départements
 export default function Departments() {
 
-
+    //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);
-
+    //Varibles d'état pour obtenir la liste des départements
     const [deps, setDepartment] = useState([]);
 
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
-
+        //l'API pour obtenir la liste des départements
         axios.get('/api/departments').then(res => {
-            if (res.data.status === 200) {
-                setDepartment(res.data.deps);
-                setLoading(false);
+            if (res.data.status === 200) {//si nous avons obtenu la liste
+                setDepartment(res.data.deps); //stockage des départements dans les variables détat
+                setLoading(false);//arrêter le chargement de la page
             }
 
         });
     }, []);
 
-
+    //si la page est en cours de chargement, donc afficher un spinner
     if (loading) {
         return <Loading />
     }
@@ -38,41 +40,54 @@ export default function Departments() {
 
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom département</h1>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom département</h1>//Cellule d'en-tête <th>
                                 , render: (deps) => {
                                     return (
+                                        //Cellule de données <td>
                                         <p className="text-xs font-weight-bold mb-0">{deps.nomdep}</p>)
                                 }
                                 ,
-
-                                customFilterAndSearch: (term, deps) => ((deps.nomdep).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (term, deps) => ((deps.nomdep).toLowerCase()).indexOf(term.toLowerCase()) != -1//filtrer et rechercher par nom 
 
 
                             },
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef département</h1>, render: deps => {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef département</h1>//Cellule d'en-tête <th>
+                                , render: deps => {
                                     return (
+                                        //Cellule de données <td>
                                         <span className="text-xs text-secondary mb-0">{deps.chefdep}</span>
 
                                     )
                                 },
-                                customFilterAndSearch: (term, deps) => ((deps.chefdep).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (term, deps) => ((deps.chefdep).toLowerCase()).indexOf(term.toLowerCase()) != -1//filtrer et rechercher par chéf département
 
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7">Etat</h1>, render: deps => {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7">Etat</h1>//Cellule d'en-tête <th>
+                                , render: deps => {
                                     return (
+                                        //Cellule de données <td>
                                         <div className="align-middle text-center text-sm">
-
-                                            {(deps.etat === 'inactive') ? <span className="badge badge-sm bg-gradient-danger">Désactivé</span> : <span className="badge badge-sm bg-gradient-success">Activé</span>}
+                                            {/*si l'état de département est désactivé */}
+                                            {(deps.etat === 'inactive') ?
+                                                //donc afficher désactivé
+                                                <span className="badge badge-sm bg-gradient-danger">Désactivé</span>
+                                                /*sinon si l'état de département est activé donc afficher activé */
+                                                : <span className="badge badge-sm bg-gradient-success">Activé</span>}
                                         </div>
                                     );
                                 }
                             },
                             {
-                                title: <h1 className="text-secondary opacity-7 "></h1>, render: deps => {
+                                title: <h1 className="text-secondary opacity-7 "></h1>//Cellule d'en-tête <th>
+                                , render: deps => {
                                     return (
+                                        //Cellule de données <td>
+                                        //Afficher l'icône de modification qui s'agit d'un lien de modification de département
                                         <Link to={`edit-department/${deps._id}`} >   <svg className="text-dark" width="16px" height="16px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                             <title>settings</title>
                                             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -98,9 +113,9 @@ export default function Departments() {
                         ]
 
                         }
-                        data={deps}
-                        title={<h6>Liste départements</h6>}
-                        icons={tableIcons}
+                        data={deps}//la liste des départements
+                        title={<h6>Liste départements</h6>}//titre de tableau
+                        icons={tableIcons}//icônes de tableau
 
                     />
                 </div>

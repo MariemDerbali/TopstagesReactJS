@@ -6,27 +6,29 @@ import tableIcons from "./MaterialTableIcons";
 import Loading from '../../layouts/Loading';
 import '../ServiceFormation/myStyle.css';
 
-
+//pour consulter la liste des utilisateurs
 export default function Users() {
 
 
+    //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);
 
+    //Varibles d'état pour obtenir la liste des utilisateurs
     const [users, setUser] = useState([]);
 
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
-
+        //l'API pour obtenir la liste des utilisateurs
         axios.get('/api/users').then(res => {
-            if (res.data.status === 200) {
-                //console.log(res.data.users);
-                setUser(res.data.users);
-                setLoading(false);
+            if (res.data.status === 200) {//si nous avons obtenu la liste
+                setUser(res.data.users);  //stockage des utilisateurs dans les variables détat
+                setLoading(false);//arrêter le chargement de la page
             }
 
         });
     }, []);
 
-
+    //si la page est en cours de chargement, donc afficher un spinner
     if (loading) {
         return <Loading />
     }
@@ -38,9 +40,10 @@ export default function Users() {
                     <MaterialTable
                         columns={[
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Utilisateur</h1>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Utilisateur</h1>//Cellule d'en-tête <th>
                                 , render: users => {
                                     return (
+                                        //Cellule de données <td>
                                         <div className="d-flex px-2 py-1">
                                             <div>
                                                 <img src={`http://127.0.0.1:8000/${users.image}`} className="avatar avatar-sm me-3" alt="user1" />
@@ -52,38 +55,42 @@ export default function Users() {
                                         </div>)
                                 }
                                 ,
-                                customFilterAndSearch: (term, users) => ((users.nom + ' ' + users.prenom).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (term, users) => ((users.nom + ' ' + users.prenom).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par nom et prénom
 
                             },
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rôle</h1>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rôle</h1>//Cellule d'en-tête <th>
                                 , render: (users) => {
                                     return (
-                                        <p className="text-xs font-weight-bold mb-0">{users.role_id}</p>)
+                                        <p className="text-xs font-weight-bold mb-0">{users.role_id}</p>)//Cellule de données <td>
                                 }
                                 ,
 
-                                customFilterAndSearch: (term, users) => ((users.role_id).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (term, users) => ((users.role_id).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par rôle
 
 
                             },
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Département</h1>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Département</h1>//Cellule d'en-tête <th>
                                 , render: (users) => {
                                     return (
-                                        <p className="text-xs font-weight-bold mb-0 ">{users.departement}</p>)
+                                        <p className="text-xs font-weight-bold mb-0 ">{users.departement}</p>)//Cellule de données <td>
                                 }
                                 ,
-
-                                customFilterAndSearch: (term, users) => (users.departement)
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (users) => (users.departement)//filtrer et rechercher par département
 
 
                             },
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</h1>, render: users => {
-                                    return (
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</h1>//Cellule d'en-tête <th>
+                                ,
+                                render: users => {
+                                    return (//Cellule de données <td>
                                         <span className="text-xs text-secondary mb-0">{users.tel}</span>
 
                                     )
@@ -91,49 +98,65 @@ export default function Users() {
 
                             },
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cin/Passeport</h1>, render: users => {
-                                    return (
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cin/Passeport</h1>//Cellule d'en-tête <th>
 
+                                , render: users => {
+                                    return (
+                                        //Cellule de données <td>
                                         <span className="text-xs text-secondary mb-0">{users.cinpasseport}</span>
                                     )
                                 }
                                 ,
-                                customFilterAndSearch: (term, users) => (users.cinpasseport).indexOf(term) != -1
+                                //pour personnaliser le filtrage et la recherche
+                                customFilterAndSearch: (term, users) => (users.cinpasseport).indexOf(term) != -1//filtrer et rechercher par cin/passeport
 
 
                             },
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresse</h1>, render: users => {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresse</h1>//Cellule d'en-tête <th>
+                                , render: users => {
                                     return (
-                                        <span className="text-secondary text-xs font-weight-bold">{users.adresse}</span>
+                                        <span className="text-secondary text-xs font-weight-bold">{users.adresse}</span>//Cellule de données <td>
                                     )
                                 },
 
                             },
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</h1>, render: users => {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</h1>//Cellule d'en-tête <th>
+                                , render: users => {
                                     return (
+                                        //Cellule de données <td>
                                         <span className="text-secondary text-xs font-weight-bold">{users.matricule}</span>
 
                                     )
                                 },
 
-                                customFilterAndSearch: (users) => (users.matricule)
+                                //pour personnaliser le filtre et la recherche
+                                customFilterAndSearch: (users) => (users.matricule)//filtrer et rechercher par matricule
 
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Etat</h1>, render: users => {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Etat</h1>//Cellule d'en-tête <th>
+                                , render: users => {
                                     return (
+                                        //Cellule de données <td>
                                         <div className="align-middle text-center text-sm">
-
-                                            {(users.etat === 'inactive') ? <span className="badge badge-sm bg-gradient-danger">Désactivé</span> : <span className="badge badge-sm bg-gradient-success">Activé</span>}
+                                            {/*si l'état de compte d'utilisateur est désactivé */}
+                                            {(users.etat === 'inactive') ?
+                                                //donc afficher désactivé
+                                                <span className="badge badge-sm bg-gradient-danger">Désactivé</span>
+                                                /*sinon si l'état de compte d'utilisateur est activé donc afficher activé */
+                                                : <span className="badge badge-sm bg-gradient-success">Activé</span>}
                                         </div>
                                     );
                                 }
                             },
                             {
-                                title: <h1 className="text-secondary opacity-7"></h1>, render: users => {
+                                title: <h1 className="text-secondary opacity-7"></h1>//Cellule d'en-tête <th>
+                                , render: users => {
                                     return (
+                                        //Cellule de données <td>
+                                        //Afficher l'icône de modification qui s'agit d'un lien de modification de l'utilisateur
                                         <Link to={`edit-user/${users._id}`} >   <svg className="text-dark" width="16px" height="16px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                             <title>settings</title>
                                             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -159,9 +182,9 @@ export default function Users() {
                         ]
 
                         }
-                        data={users}
-                        title={<h6>Liste utilisateurs</h6>}
-                        icons={tableIcons}
+                        data={users}//la liste des utilisateurs
+                        title={<h6>Liste utilisateurs</h6>}//titre de tableau
+                        icons={tableIcons}//icônes de tableau
 
                     />
                 </div>
