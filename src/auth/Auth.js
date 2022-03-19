@@ -116,6 +116,9 @@ export default function Auth() {
                 } else if (res.data.status === 204) {
                     history.push(`/resetfirstloginpassword/${res.data.user_id}`);
                     console.log(res.data.token);
+                } else if (res.data.status === 533) {
+                    swal("Oops", res.data.message, "error");
+
                 }
                 else {
                     setLogin({ ...loginInput, error_list: res.data.validation_errors });

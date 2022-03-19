@@ -38,7 +38,7 @@ export default function Editdepartment(props) {
 
 
         const dep_id = props.match.params._id//obtenir l'id de département à partir des paramètres d'URL
-
+        //l'API pour afficher le département
         axios.get(`/api/edit-department/${dep_id}`).then(res => {
             if (res.data.status === 200) {//si le département est trouvé
                 //stockage de département dans les variables d'état

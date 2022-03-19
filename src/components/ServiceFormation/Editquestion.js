@@ -7,54 +7,74 @@ import MaterialTable from 'material-table';
 import tableIcons from "../coordinateur/MaterialTableIcons";
 import Loading from '../../layouts/Loading';
 
+//pour modifier une question
 export default function Editquestion(props) {
 
 
-
+    //varibale d'état pour les erreurs des données saisies
     const [errorlist, setError] = useState([]);
+
+    //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);
+
+    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
 
-    {/* Updating a question*/ }
 
+    //Puisque la valeur du champ est en permanence pilotée par l’état React.
+    //Pour mettre à jour l'état local React
+    //variable d'état pour la case à cocher
     const [checkbox, setCheckbox] = useState([]);
     const handleCheckbox = (e) => {
-        e.persist();
+        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
+        //Stocker le valeur de la case à cocher dans les variables d'état
         setCheckbox({ ...checkbox, [e.target.name]: e.target.checked });
     }
 
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
 
 
-        const question_id = props.match.params._id
+        const question_id = props.match.params._id//obtenir l'id de question à partir des paramètres d'URL
+        //l'API pour afficher la question
         axios.get(`/api/edit-question/${question_id}`).then(res => {
-            if (res.data.status === 200) {
-                setQuestion(res.data.question);
-            } else if (res.data.status === 404) {
-                swal("", res.data.message, "error");
-                history.push('/serviceformation/Questions');
+            if (res.data.status === 200) {//si la question est trouvée
+                setQuestion(res.data.question);//stockage de la question dans les variables d'état
+
+            } else if (res.data.status === 404) {//si la question est non trouvée
+                swal("", res.data.message, "error");//afficher un message d'erreur
+                history.push('/serviceformation/Questions');//rediriger le service formation vers la page de consultation des questions
             }
-            setLoading(false);
+            setLoading(false);//arrêter le chargement de la page
         });
 
     }, [props.match.params._id, history]);
 
+
+    //variables d'état pour obtenir les valeurs saisies des champs de la question
     const [QuestionInput, setQuestion] = useState({
         questionText: '',
         niveau: '',
         duree: '',
     });
 
+    //Puisque la valeur du champ est en permanence pilotée par l’état React.
+    //Pour mettre à jour l'état local React
+    //pour la question
     const handleInput = (e) => {
-        e.persist();
-        setQuestion({ ...QuestionInput, [e.target.name]: e.target.value });
+        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
+        setQuestion({ ...QuestionInput, [e.target.name]: e.target.value });//Stocker les valeurs saisies des champs de la question dans les variables d'état
     }
+
+    //variables d'état pour obtenir l'image saisie de question
     const [picture, setPicture] = useState([]);
+    //pour la question
     const handleImage = (e) => {
         setPicture({ questionImage: e.target.files[0] });
     }
 
+    //fonction pour modifier une question
     const updateQuestion = (e) => {
         e.preventDefault();
 
@@ -99,6 +119,10 @@ export default function Editquestion(props) {
             }
         });
     }
+
+
+
+
 
     {/* Get the responses list of current question*/ }
     const [reponse, setReponseList] = useState([

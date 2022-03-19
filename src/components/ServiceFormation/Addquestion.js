@@ -425,14 +425,19 @@ export default function Addquestion() {
                         <MaterialTable
                             columns={[
                                 {
-                                    title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse image</h1>
+                                    title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse image</h1> //Cellule d'en-tête <th>
                                     , render: reponse => {
-                                        return (
+                                        return (//Cellule de données <td>
                                             <div className="d-flex px-2 py-1">
 
 
                                                 <div>
-                                                    {reponse.reponseImage ? <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" /> : <span className="badge rounded-pill bg-light text-dark">Sans image</span>}
+                                                    {/*si la réponse s'agit d'image */}
+                                                    {reponse.reponseImage ?
+                                                        //donc afficher l'image
+                                                        <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" />
+                                                        //sinon afficher sans image
+                                                        : <span className="badge rounded-pill bg-light text-dark">Sans image</span>}
                                                 </div>
 
                                             </div>)
@@ -443,30 +448,39 @@ export default function Addquestion() {
 
 
                                 {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse text</h1>
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse text</h1>//Cellule d'en-tête <th>
                                     , render: (reponse) => {
                                         return (
                                             <div>
-                                                {reponse.reponseText ? <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p> : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
+                                                {/*si la réponse s'agit de texte */}
+                                                {reponse.reponseText ?
+                                                    //donc afficher le texte
+                                                    <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p>
+                                                    //sinon afficher sans texte
+                                                    : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
                                             </div>
 
                                         )
                                     }
                                     ,
 
-                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseText).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                    //pour personnaliser le filtre et la recherche
+                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseText).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher texte de réponse
 
 
                                 },
 
                                 {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse correcte?</h1>, render: reponse => {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse correcte?</h1> //Cellule d'en-tête <th>
+                                    , render: reponse => {
                                         return (
+                                            //Cellule de données <td>
                                             <span className="text-xs text-secondary mb-0">{reponse.reponseCorrecte}</span>
 
                                         )
                                     },
-                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseCorrecte).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                    //pour personnaliser le filtre et la recherche
+                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseCorrecte).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par la nature de réponse
 
                                 },
 
@@ -475,9 +489,9 @@ export default function Addquestion() {
                             ]
 
                             }
-                            data={reponse}
-                            title={<h6>Liste réponses</h6>}
-                            icons={tableIcons}
+                            data={reponse}//la liste des utilisateurs
+                            title={<h6>Liste réponses</h6>}//titre de tableau
+                            icons={tableIcons}//icônes de tableau
 
                         />
                     </div>

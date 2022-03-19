@@ -6,7 +6,7 @@ import tableIcons from "../coordinateur/MaterialTableIcons";
 import './myStyle.css';
 import Loading from '../../layouts/Loading';
 
-
+//pour consulter la liste des questions
 export default function Questions() {
 
 
