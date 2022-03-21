@@ -144,8 +144,8 @@ export default function Adduser() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">E-mail</label>
-                                    <input onChange={handleInput} value={UserInput.email} type="email" name="email" className="form-control" placeholder='Email' />
+                                    <label className="form-label">Adresse e-mail</label>
+                                    <input onChange={handleInput} value={UserInput.email} type="email" name="email" className="form-control" placeholder='Adresse e-mail' />
                                     <small className="text-danger">{errorlist.email}</small>
                                 </div>
 

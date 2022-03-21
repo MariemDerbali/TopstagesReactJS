@@ -217,8 +217,8 @@ export default function Auth() {
                                             </div>
 
                                             <div className="col-md-6">
-                                                <label className="form-label">Email</label>
-                                                <input onChange={handleInput} value={registerInput.email} type="email" name="email" className="form-control" placeholder='Email' />
+                                                <label className="form-label">Adresse e-mail</label>
+                                                <input onChange={handleInput} value={registerInput.email} type="email" name="email" className="form-control" placeholder='Adresse e-mail' />
                                                 <span className="text-danger">{registerInput.error_list.email}</span>
                                             </div>
 

@@ -40,9 +40,11 @@ export default function Resetfirstloginpassword() {
                     swal("Félicitations", res.data.message, "success");
                     history.push("/auth");
 
+                } else if (res.data.status === 501) {
+                    swal("Attention", res.data.message, "warning");
                 } else if (res.data.status === 404) {
-                    // swal("Oops", res.data.message, "error");
-                    console.log(user_id);
+                    swal("Oops", res.data.message, "error");
+                    // console.log(user_id);
 
                 }
                 else {
@@ -67,7 +69,7 @@ export default function Resetfirstloginpassword() {
                         <div className="col-lg-5 col-md-7 mx-auto">
                             <div className="card z-index-0 mt-sm-12 mt-9 mb-4">
                                 <div className="card-header text-center pt-4 pb-1">
-                                    <h3 className="font-weight-bolder mb-1">Réinitialiser votre mot de passe</h3>
+                                    <h3 className="font-weight-bolder mb-1">Changer votre mot de passe</h3>
                                     <p>Votre mot de passe a expiré. Veuillez saisir un nouveau mot de passe</p>
 
                                 </div>
@@ -88,7 +90,7 @@ export default function Resetfirstloginpassword() {
                                         </div>
 
                                         <div className="text-center">
-                                            <button type="submit" className="btn bg-gradient-dark btn-lg w-100 my-4 mb-2">Réinitialiser le mot de passe!</button>
+                                            <button type="submit" className="btn bg-gradient-dark btn-lg w-100 my-4 mb-2">Changer le mot de passe!</button>
                                         </div>
                                     </form>
                                 </div>

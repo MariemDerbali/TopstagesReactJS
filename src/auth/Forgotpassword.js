@@ -34,6 +34,7 @@ export default function Forgetpassword() {
                 if (res.data.status === 200) {
 
                     swal("Félicitations", res.data.message, "success");
+                    history.push("/auth");
 
                 } else if (res.data.status === 401) {
 

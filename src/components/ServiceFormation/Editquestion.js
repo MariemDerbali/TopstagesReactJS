@@ -601,9 +601,6 @@ export default function Editquestion(props) {
                                                                 {reponse.reponseText ? <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p> : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
                                                             </div>)
                                                     }
-                                                    ,
-
-                                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseText).toLowerCase()).indexOf(term.toLowerCase()) != -1
 
 
                                                 },
