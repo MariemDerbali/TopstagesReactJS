@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Footer from './Footer'
+import Footer from '../../Footer'
 
 
 export default function Forgotpassword() {
@@ -63,7 +62,7 @@ export default function Forgotpassword() {
                                     </p>
                                 </div>
                                 <div className="card-body">
-                                    <form role="form" onSubmit={forgotpasswordSubmit} >
+                                    <form onSubmit={forgotpasswordSubmit} >
 
                                         <div className="mb-3">
                                             <input onChange={handleInput} value={forgotpasswordInput.email} name="email" type="email" className="form-control" placeholder="Email" a-label="Email" aria-describedby="email-addon" />

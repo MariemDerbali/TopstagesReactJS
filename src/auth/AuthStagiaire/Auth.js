@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-import Footer from './Footer';
+import Footer from '../Footer';
 import { Link } from "react-router-dom";
 
 export default function Auth() {
@@ -47,7 +47,7 @@ export default function Auth() {
                     swal("Félicitations", res.data.message, "success");
                     //Checking for user role
                     if (res.data.role === '') {
-                        historyLogin.push('/');
+                        history.push('/');
                     }
                 } else { setRegister({ ...registerInput, error_list: res.data.validation_errors }); }
             });
@@ -140,7 +140,7 @@ export default function Auth() {
                                     <p className="mb-0">Veuillez saisir votre login et mot de passe pour accéder à votre espace </p>
                                 </div>
                                 <div className="card-body">
-                                    <form role="form" onSubmit={loginSubmit}>
+                                    <form onSubmit={loginSubmit}>
                                         <label>Cin/Passeport</label>
                                         <div className="mb-3">
                                             <input onChange={handleInputLogin} value={loginInput.cinpasseport} name="cinpasseport" type="text" className="form-control" placeholder="Cin/Passeport" a-label="Email" aria-describedby="email-addon" />
@@ -174,7 +174,7 @@ export default function Auth() {
                                 </div>
 
                                 <div className="card-body">
-                                    <form role="form text-left" onSubmit={registerSubmit}>
+                                    <form onSubmit={registerSubmit}>
                                         <div className='row'>
 
 

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-import { Link, useParams } from "react-router-dom";
-import Footer from './Footer'
+import { useParams } from "react-router-dom";
+import Footer from '../Footer'
 
 
 export default function Resetfirstloginpassword() {
@@ -74,7 +74,7 @@ export default function Resetfirstloginpassword() {
 
                                 </div>
                                 <div className="card-body">
-                                    <form role="form" onSubmit={resetfirstloginpasswordSubmit} >
+                                    <form onSubmit={resetfirstloginpasswordSubmit} >
 
                                         <div className="mb-3">
                                             <label className="form-label">Nouveau mot de passe</label>

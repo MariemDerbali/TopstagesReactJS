@@ -31,7 +31,7 @@ export default function Header() {
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
                 //redirection vers la page d'authentification aprés la déconnexion
-                if (user.role_id == 'Stagiaire') {
+                if (user.role_id === 'Stagiaire') {
                     history.push('/auth');
                 }
                 else {

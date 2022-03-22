@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import swal from 'sweetalert';
-import { useHistory } from "react-router-dom";
 import Loading from './Loading';
 
 
 export default function Sidebar() {
 
 
-    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
-    const history = useHistory();
 
     //Le useState() est un Hook qui vous permet d'avoir des variables d'état dans les composants fonctionnels.
     // Le premier élément est l’état initial et le second est une fonction qui est utilisée pour mettre à jour l’état.
@@ -34,16 +31,16 @@ export default function Sidebar() {
 
     return (
         <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-            <div className="sidenav-header">
+            <div className="sidenav-header mb-6">
                 <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <Link className="navbar-brand m-0" to="#" target="_blank">
 
-                    <img src="../assets/img/logos/TOPSTAGES.png" className="navbar-brand-img h-100" style={{ maxHeight: '3rem' }} alt="main_logo" />
+                    <img src="../assets/img/logos/topstageslogo.png" className="navbar-brand-img h-100" style={{ maxHeight: '110px', marginLeft: '25px' }} alt="main_logo" />
                 </Link>
             </div>
 
             <hr className="horizontal dark mt-0" />
-            {user.role_id == 'ServiceFormation' ?//si l'ustilisateur authentifié actuel est un service formation
+            {user.role_id === 'ServiceFormation' ?//si l'ustilisateur authentifié actuel est un service formation
 
                 //afficher ses fonctionnalités dans la barre latérale
                 <div className="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
@@ -146,7 +143,7 @@ export default function Sidebar() {
                     </ul>
                 </div>
 
-                : user.role_id == 'Coordinateur' ?//sinon si l'ustilisateur authentifié actuel est un coordinateur
+                : user.role_id === 'Coordinateur' ?//sinon si l'ustilisateur authentifié actuel est un coordinateur
 
                     //afficher ses fonctionnalités dans la barre latérale
 

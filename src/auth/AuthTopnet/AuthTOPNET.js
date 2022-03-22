@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-import Footer from './Footer';
+import Footer from '../Footer';
 import { Link } from "react-router-dom";
 
 export default function Auth() {
@@ -103,7 +103,7 @@ export default function Auth() {
                                     <p className="mb-0">Veuillez saisir votre login et mot de passe pour accéder à votre espace </p>
                                 </div>
                                 <div className="card-body">
-                                    <form role="form" onSubmit={loginSubmit}>
+                                    <form onSubmit={loginSubmit}>
                                         <label>Login</label>
                                         <div className="mb-3">
                                             <div className="input-group mb-3">

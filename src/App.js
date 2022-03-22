@@ -1,16 +1,16 @@
 import axios from 'axios';
-import Auth from "./auth/Auth";
-import AuthTOPNET from "./auth/AuthTOPNET";
+import Auth from "./auth/AuthStagiaire/Auth";
+import AuthTOPNET from "./auth/AuthTopnet/AuthTOPNET";
 import Home from './layouts/Home/Home';
 import Page403 from './errors/Page403';
 import Page404 from './errors/Page404';
-import Forgotpassword from "./auth/Forgotpassword";
-import TopnetForgotpassword from './auth/TopnetForgotpassword';
+import Forgotpassword from "./auth/forgotpassword/stagiaire/Forgotpassword";
+import TopnetForgotpassword from './auth/forgotpassword/topnet/TopnetForgotpassword';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import CoordinateurPrivateRoute from './routes/CoordinateurPrivateRoute';
-import Resetforgottenpassword from "./auth/Resetforgottenpassword";
-import TopnetResetForgottenpassword from './auth/TopnetResetforgottenpassword';
-import Resetfirstloginpassword from "./auth/Resetfirstloginpassword";
+import Resetforgottenpassword from "./auth/forgotpassword/stagiaire/Resetforgottenpassword";
+import TopnetResetForgottenpassword from './auth/forgotpassword/topnet/TopnetResetforgottenpassword';
+import Resetfirstloginpassword from "./auth/AuthTopnet/Resetfirstloginpassword";
 import ServiceFormationPrivateRoute from './routes/ServiceFormationPrivateRoute';
 
 
