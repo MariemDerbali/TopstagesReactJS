@@ -38,7 +38,7 @@ export default function Resetfirstloginpassword() {
                 if (res.data.status === 200) {
 
                     swal("Félicitations", res.data.message, "success");
-                    history.push("/auth");
+                    history.push("/auth-topnet");
 
                 } else if (res.data.status === 501) {
                     swal("Attention", res.data.message, "warning");

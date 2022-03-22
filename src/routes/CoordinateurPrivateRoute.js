@@ -29,7 +29,7 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     //diriger vers la page d'authentification si l'utilisateur n'est pas authentifié
     axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err) {
         if (err.response.status === 401) {
-            history.push('/auth');
+            history.push('/auth-topnet');
         }
         return Promise.reject(err);
     });

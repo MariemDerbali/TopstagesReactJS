@@ -109,9 +109,9 @@ export default function Editdepartment(props) {
 
     return (
         <div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="card mb-4">
+            <div className="row justify-content-center mt-5">
+                <div className="col-8">
+                    <div className="card mb-12">
                         <div className="card-header pb-0">
                             <h6>Modifier utilisateur</h6>
                         </div>

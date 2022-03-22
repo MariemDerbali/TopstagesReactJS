@@ -37,7 +37,7 @@ export default function Resetforgottenpassword() {
         }
 
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post('/api/reset-forgottenpassword', data).then(res => {
+            axios.post('/api/stagiaire-reset-forgottenpassword', data).then(res => {
 
 
                 if (res.data.status === 200) {

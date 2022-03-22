@@ -89,35 +89,16 @@ export default function Auth() {
         }
 
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post('api/login', data).then(res => {
+            axios.post('api/login-stagiaire', data).then(res => {
                 if (res.data.status === 200) {
 
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
-                    if (res.data.role === 'Coordinateur') {
-                        historyLogin.push('/coordinateur/dashboard');
-
-                    } else if (res.data.role === 'ServiceFormation') {
-
-                        historyLogin.push('/serviceformation/dashboard');
-
-                    } else {
-                        historyLogin.push('/');
-
-                    }
+                    historyLogin.push('/');
 
                 } else if (res.data.status === 401) {
 
                     swal("Warning", res.data.message, "warning");
-
-                } else if (res.data.status === 429) {
-                    swal("Oops", res.data.message, "error");
-
-                } else if (res.data.status === 204) {
-                    history.push(`/resetfirstloginpassword/${res.data.user_id}`);
-                    console.log(res.data.token);
-                } else if (res.data.status === 533) {
-                    swal("Oops", res.data.message, "error");
 
                 }
                 else {

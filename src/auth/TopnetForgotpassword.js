@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import Footer from './Footer'
 
 
-export default function Forgotpassword() {
+export default function TopnetForgotpassword() {
 
     const history = useHistory();
 
-    const [forgotpasswordInput, setForgotpassword] = useState({
+    const [topnetforgotpasswordInput, setTopnetForgotpassword] = useState({
 
         email: '',
         error_list: [],
@@ -18,29 +18,29 @@ export default function Forgotpassword() {
 
     const handleInput = (e) => {
         e.persist();
-        setForgotpassword({ ...forgotpasswordInput, [e.target.name]: e.target.value });
+        setTopnetForgotpassword({ ...topnetforgotpasswordInput, [e.target.name]: e.target.value });
     }
 
-    const forgotpasswordSubmit = (e) => {
+    const TopnetforgotpasswordSubmit = (e) => {
         e.preventDefault();
 
         const data = {
-            email: forgotpasswordInput.email,
+            email: topnetforgotpasswordInput.email,
         }
 
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post('/api/stagiaire-forgot-password', data).then(res => {
+            axios.post('/api/forgot-password', data).then(res => {
 
                 if (res.data.status === 200) {
 
                     swal("Félicitations", res.data.message, "success");
-                    history.push("/auth");
+                    history.push("/auth-topnet");
 
                 } else if (res.data.status === 401) {
 
                     swal("Attention", res.data.message, "warning");
                 } else {
-                    setForgotpassword({ ...forgotpasswordInput, error_list: res.data.validation_errors });
+                    setTopnetForgotpassword({ ...topnetforgotpasswordInput, error_list: res.data.validation_errors });
                 }
             });
         });
@@ -63,11 +63,11 @@ export default function Forgotpassword() {
                                     </p>
                                 </div>
                                 <div className="card-body">
-                                    <form role="form" onSubmit={forgotpasswordSubmit} >
+                                    <form role="form" onSubmit={TopnetforgotpasswordSubmit} >
 
                                         <div className="mb-3">
-                                            <input onChange={handleInput} value={forgotpasswordInput.email} name="email" type="email" className="form-control" placeholder="Email" a-label="Email" aria-describedby="email-addon" />
-                                            <span className="text-danger">{forgotpasswordInput.error_list.email}</span>
+                                            <input onChange={handleInput} value={topnetforgotpasswordInput.email} name="email" type="email" className="form-control" placeholder="Email" a-label="Email" aria-describedby="email-addon" />
+                                            <span className="text-danger">{topnetforgotpasswordInput.error_list.email}</span>
                                         </div>
 
                                         <div className="text-center">

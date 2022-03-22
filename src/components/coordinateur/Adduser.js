@@ -41,6 +41,9 @@ export default function Adduser() {
 
     }, []);
 
+
+    const loginConcat = "TOPNET/";
+
     //variables d'état pour obtenir les valeurs saisies des champs
     const [UserInput, setUser] = useState({
         matricule: '',
@@ -49,7 +52,7 @@ export default function Adduser() {
         email: '',
         password: '',
         adresse: '',
-        cinpasseport: '',
+        loginTOPNET: '',
         tel: '',
         role_id: '',
         departement: '',
@@ -89,7 +92,7 @@ export default function Adduser() {
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
         formData.append('matricule', UserInput.matricule);
-        formData.append('cinpasseport', UserInput.cinpasseport);
+        formData.append('loginTOPNET', loginConcat + UserInput.loginTOPNET);
         formData.append('adresse', UserInput.adresse);
         formData.append('email', UserInput.email);
         formData.append('password', UserInput.password);
@@ -155,17 +158,21 @@ export default function Adduser() {
                                     <small className="text-danger">{errorlist.password}</small>
                                 </div>
 
+                                <div className="col-md-6" style={{ marginTop: '30px' }}>
+                                    <div className="input-group mb-3">
+                                        <span className="input-group-text" id="topnet">TOPNET/</span>
+                                        <input onChange={handleInput} value={UserInput.loginTOPNET} name="loginTOPNET" type="text" className="form-control" placeholder="Login" a-label="Email" aria-describedby="topnet" />
+                                        <span className="text-danger">{errorlist.loginTOPNET}</span>
+                                    </div>
+                                </div>
+
                                 <div className="col-md-6">
                                     <label className="form-label">Adresse</label>
                                     <input onChange={handleInput} value={UserInput.adresse} type="text" name="adresse" className="form-control" placeholder="Adresse" />
                                     <small className="text-danger">{errorlist.adresse}</small>
                                 </div>
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Cin/Passeport</label>
-                                    <input onChange={handleInput} value={UserInput.cinpasseport} type="text" name="cinpasseport" className="form-control" placeholder="Cin/Passeport" />
-                                    <small className="text-danger">{errorlist.cinpasseport}</small>
-                                </div>
+
 
                                 <div className="col-md-6">
                                     <label className="form-label">Téléphone</label>

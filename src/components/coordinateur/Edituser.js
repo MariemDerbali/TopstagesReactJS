@@ -86,7 +86,7 @@ export default function Edituser(props) {
         email: '',
         password: '',
         adresse: '',
-        cinpasseport: '',
+        loginTOPNET: '',
         tel: '',
         role_id: '',
         departement: '',
@@ -126,7 +126,7 @@ export default function Edituser(props) {
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
         formData.append('matricule', UserInput.matricule);
-        formData.append('cinpasseport', UserInput.cinpasseport);
+        formData.append('loginTOPNET', UserInput.loginTOPNET);
         formData.append('adresse', UserInput.adresse);
         formData.append('email', UserInput.email);
         formData.append('password', UserInput.password);
@@ -207,9 +207,9 @@ export default function Edituser(props) {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Cin/Passeport</label>
-                                    <input type="text" name="cinpasseport" onChange={handleInput} value={UserInput.cinpasseport} className="form-control" placeholder="Cin/Passeport" disabled />
-                                    <small className="text-danger">{errorlist.cinpasseport}</small>
+                                    <label className="form-label">Login</label>
+                                    <input type="text" name="loginTOPNET" onChange={handleInput} value={UserInput.loginTOPNET} className="form-control" placeholder="Login" disabled />
+                                    <small className="text-danger">{errorlist.loginTOPNET}</small>
                                 </div>
 
                                 <div className="col-md-6">

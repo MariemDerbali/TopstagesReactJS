@@ -98,17 +98,14 @@ export default function Users() {
 
                             },
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cin/Passeport</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Login</h1>//Cellule d'en-tête <th>
 
                                 , render: users => {
                                     return (
                                         //Cellule de données <td>
-                                        <span className="text-xs text-secondary mb-0">{users.cinpasseport}</span>
+                                        <span className="text-xs text-secondary mb-0">{users.loginTOPNET}</span>
                                     )
                                 }
-                                ,
-                                //pour personnaliser le filtrage et la recherche
-                                customFilterAndSearch: (term, users) => (users.cinpasseport).indexOf(term) != -1//filtrer et rechercher par cin/passeport
 
 
                             },
