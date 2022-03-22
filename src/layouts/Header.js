@@ -95,14 +95,14 @@ export default function Header() {
 
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 {/*si l'utilisateur authentifié actuel est un service formation , donc afficher l'option de chemin d'accès à son profil */}
-                                {user.role_id == 'ServiceFormation' ? <li>
+                                {user.role_id === 'ServiceFormation' ? <li>
                                     <Link className="dropdown-item d-flex align-items-center" to="/serviceformation/profil">
                                         <i className="bi bi-person"></i>
                                         <span>Mon profil</span>
                                     </Link>
                                 </li>
                                     /*si l'utilisateur authentifié actuel est un coordinateur , donc afficher l'option de chemin d'accès à son profil */
-                                    : user.role_id == 'Coordinateur' ?
+                                    : user.role_id === 'Coordinateur' ?
                                         <li>
                                             <Link className="dropdown-item d-flex align-items-center" to="/coordinateur/profil">
                                                 <i className="bi bi-person"></i>
