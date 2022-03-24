@@ -35,7 +35,7 @@ export default function Users() {
 
     else {
         return (
-            <div className="row ">
+            <div className="row " >
                 <div className="col-12 ">
                     <MaterialTable
                         columns={[

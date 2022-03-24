@@ -115,7 +115,7 @@ export default function Adduser() {
 
     return (
         <div>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center" >
                 <div className="col-8 ">
                     <div className="card mb-4 shadow-lg p-3 mb-5 bg-white rounded">
                         <div className="card-header pb-0">

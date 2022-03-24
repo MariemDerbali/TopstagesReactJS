@@ -1217,11 +1217,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .contact .info i {
   font-size: 20px;
-  color: #00a6eb;
+  color: #ef8e1f;
   float: left;
   width: 44px;
   height: 44px;
-  border: 1px solid #00a6eb;
+  border: 1px solid #ef8e1f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1242,7 +1242,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 .contact .info:hover i {
-  background: #00a6eb;
+  background: #ef8e1f;
   color: #fff;
 }
 .contact .php-email-form {
@@ -1268,7 +1268,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .php-email-form .sent-message {
   display: none;
   color: #fff;
-  background: #18d26e;
+  background: #ef8e1f;
   text-align: center;
   padding: 15px;
   font-weight: 600;
@@ -1286,7 +1286,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
+  border: 3px solid #ef8e1f;
   border-top-color: #eee;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
@@ -1315,7 +1315,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
 }
 .contact .php-email-form button[type=submit]:hover {
-  background: #2ae149;
+  background: #ef8e1f;
 }
 @-webkit-keyframes animate-loading {
   0% {

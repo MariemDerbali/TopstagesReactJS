@@ -16,7 +16,7 @@ export default function Home() {
                 <div className="container d-flex align-items-center">
 
                     <h1 className="logo me-auto"><Link to="index.html">
-                        <img src="../assets/img/logos/topstageslogo.png" className="navbarHome-brand-img h-100" style={{ maxHeight: '100px' }} alt="main_logo" />
+                        <img src="../assets/img/logos/logo-topstages.png" className="navbarHome-brand-img h-100" style={{ maxHeight: '90px' }} alt="main_logo" />
                     </Link></h1>
                     <Link to="index.html" className="logo me-auto me-lg-0">
                         <img src="assetsHomePage/img/logo.png" alt="" className="img-fluid" /></Link>
@@ -27,9 +27,8 @@ export default function Home() {
                             <li><Link to="" onClick={() => window.location.replace("/#apropos")}>À propos</Link></li>
 
                             <li><Link to="" onClick={() => window.location.replace("/#services")}>Services</Link></li>
-                            <li><Link to="" onClick={() => window.location.replace("/#portfolio")}>Portfolio</Link></li>
 
-                            <li><Link to="contact.html">Contact</Link></li>
+                            <li><Link to="" onClick={() => window.location.replace("/#contact")}>Contact</Link></li>
 
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
@@ -50,17 +49,17 @@ export default function Home() {
                     <div className="carousel-inner">
                         <div className="carousel-item active">
                             <div className="carousel-container">
-                                <div className="carousel-content animate__animated animate__fadeInUp">
-                                    <h2>Bienvenue sur<span> TOPSTAGES!</span></h2>
+                                <div className="carousel-content animate__animated animate__fadeInUp text-center">
+                                    <h2 >Bienvenue sur<span> TOPSTAGES!</span></h2>
                                     <p>Recherchez parmi nos offres et décrochez le stage fait pour vous!</p>
-                                    <div className="text-center"><Link to="/auth" className="btn-get-started">Connexion</Link></div>
+                                    <Link to="/auth" className="btn-get-started">Connexion</Link>
                                 </div>
                             </div>
                             <img src="../assetsHomePage/img/slide/slide-1.jpg" className="d-block w-100" alt="..." />
                         </div>
                         <div className="carousel-item">
                             <div className="carousel-container">
-                                <div className="carousel-content animate__animated animate__fadeInUp">
+                                <div className="carousel-content animate__animated animate__fadeInUp text-center">
                                     <h2>Bienvenue sur <span>TOPSTAGES!</span></h2>
                                     <p>Recherchez parmi nos offres et décrochez le stage fait pour vous!</p>
                                     <div className="text-center"><Link to="/auth" className="btn-get-started">Connexion</Link></div>
@@ -70,7 +69,7 @@ export default function Home() {
                         </div>
                         <div className="carousel-item">
                             <div className="carousel-container">
-                                <div className="carousel-content animate__animated animate__fadeInUp">
+                                <div className="carousel-content animate__animated animate__fadeInUp text-center">
                                     <h2>Bienvenue sur <span>TOPSTAGES!</span></h2>
                                     <p>Recherchez parmi nos offres et décrochez le stage fait pour vous!</p>
                                     <div className="text-center"><Link to="/auth" className="btn-get-started">Connexion</Link></div>
@@ -97,8 +96,8 @@ export default function Home() {
 
                             <div className="row content">
                                 <div className="col-lg-6" data-aos="fade-right">
-                                    <h2>Eum ipsam laborum deleniti velitena</h2>
-                                    <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+                                    <h2>La plateforme efficace et dynamique pour les étudiants</h2>
+                                    <h3>Nous recrutons régulièrement des stagiaires et les candidatures sont acceptées tout au long de l'année. Vous pouvez postuler à tout moment sur notre plateforme en ligne.</h3>
                                 </div>
                                 <div className="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
                                     <p>
@@ -205,118 +204,8 @@ export default function Home() {
                         </div>
                     </section>
 
-                    <section id="portfolio" className="portfolio">
-                        <div className="container">
 
-                            <div className="row" data-aos="fade-up">
-                                <div className="col-lg-12 d-flex justify-content-center">
-                                    <ul id="portfolio-flters">
-                                        <li data-filter="*" className="filter-active">All</li>
-                                        <li data-filter=".filter-app">App</li>
-                                        <li data-filter=".filter-card">Card</li>
-                                        <li data-filter=".filter-web">Web</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="row portfolio-container" data-aos="fade-up">
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-app">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-1.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>App 1</h4>
-                                        <p>App</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="App 1"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-web">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-2.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Web 3</h4>
-                                        <p>Web</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Web 3"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-app">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-3.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>App 2</h4>
-                                        <p>App</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="App 2"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-4.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Card 2</h4>
-                                        <p>Card</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Card 2"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-web">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-5.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Web 2</h4>
-                                        <p>Web</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Web 2"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-app">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-6.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>App 3</h4>
-                                        <p>App</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="App 3"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-7.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Card 1</h4>
-                                        <p>Card</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Card 1"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-card">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-8.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Card 3</h4>
-                                        <p>Card</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Card 3"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-4 col-md-6 portfolio-item filter-web">
-                                    <img src="assetsHomePage/img/portfolio/portfolio-9.jpg" className="img-fluid" alt="" />
-                                    <div className="portfolio-info">
-                                        <h4>Web 3</h4>
-                                        <p>Web</p>
-                                        <Link to="assetsHomePage/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" className="portfolio-lightbox preview-link" title="Web 3"><i className="bx bx-plus"></i></Link>
-                                        <Link to="portfolio-details.html" className="details-link" title="More Details"><i className="bx bx-link"></i></Link>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </section>
-
-                    <section id="clients" className="clients">
+                    <section id="clients" className="clients mt-5">
                         <div className="container" data-aos="fade-up">
 
                             <div className="section-title">
@@ -378,6 +267,72 @@ export default function Home() {
                         </div>
                     </section>
                 </div>
+
+
+                <div className="map-section">
+                    <iframe style={{ border: '0', width: '100%', height: '350px' }} src="https://maps.google.com/maps?q=Topnet&t=&z=7&ie=UTF8&iwloc=&output=embed" frameBorder="0" allowFullScreen></iframe>
+                </div>
+
+                <section id="contact" className="contact mb-4">
+                    <div className="container">
+
+                        <div className="row justify-content-center" data-aos="fade-up">
+
+                            <div className="col-lg-10">
+
+                                <div className="info-wrap">
+                                    <div className="row">
+                                        <div className="col-lg-4 info">
+                                            <i className="bi bi-geo-alt"></i>
+                                            <h4>Lieu:</h4>
+                                            <p>Immeuble Topnet Centre Urbain Nord,<br />1080 Tunis</p>
+                                        </div>
+
+                                        <div className="col-lg-4 info mt-4 mt-lg-0">
+                                            <i className="bi bi-envelope"></i>
+                                            <h4>Adresse e-mail:</h4>
+                                            <p>topstages@gmail.com</p>
+                                        </div>
+
+                                        <div className="col-lg-4 info mt-4 mt-lg-0">
+                                            <i className="bi bi-phone"></i>
+                                            <h4>Téléphone:</h4>
+                                            <p>+216 71 185 000</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="row mt-5 justify-content-center" data-aos="fade-up">
+                            <div className="col-lg-10">
+                                <form action="forms/contact.php" method="post" role="form" className="php-email-form">
+                                    <div className="row">
+                                        <div className="col-md-6 form-group">
+                                            <input type="text" name="name" className="form-control" id="name" placeholder="Votre nom" required />
+                                        </div>
+                                        <div className="col-md-6 form-group mt-3 mt-md-0">
+                                            <input type="email" className="form-control" name="email" id="email" placeholder="Votre adresse e-mail" required />
+                                        </div>
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <input type="text" className="form-control" name="subject" id="subject" placeholder="Sujet" required />
+                                    </div>
+                                    <div className="form-group mt-3">
+                                        <textarea className="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                                    </div>
+
+                                    <div className="text-center"><button type="submit">Envoyer</button></div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
             </main>
 
             <footer id="footer">
@@ -435,12 +390,9 @@ export default function Home() {
 
                     <div className="me-md-auto text-center text-md-start">
                         <div className="copyright">
-                            &copy; Copyright <strong><span>Company</span></strong>. All Rights Reserved
+                            &copy; <strong><span>TOPSTAGES</span></strong>. Tous les droits sont réservés
                         </div>
-                        <div className="credits">
 
-                            Designed by <Link to="https://bootstrapmade.com/">BootstrapMade</Link>
-                        </div>
                     </div>
                     <div className="social-links text-center text-md-right pt-3 pt-md-0">
                         <Link to="#" className="twitter"><i className="bx bxl-twitter"></i></Link>

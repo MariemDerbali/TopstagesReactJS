@@ -95,7 +95,7 @@ export default function Auth() {
                         </div>
                     </div>
                 </div>
-                <div className="container">
+                <div className="container" data-aos="fade-up">
                     <div className="row mt-lg-n10 mt-md-n11 mt-n10">
 
                         <div className="col-xl-4 col-lg-5 col-md-7 mx-auto">
