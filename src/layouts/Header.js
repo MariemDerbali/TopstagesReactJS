@@ -27,17 +27,11 @@ export default function Header() {
         //l'API de déconnexion
         axios.post('/api/logout').then(res => {
             if (res.data.status === 200) {
+
                 //suppression du jeton d'authentification et du nom d'utilisateur authentifié du stockage local
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
-                //redirection vers la page d'authentification aprés la déconnexion
-                if (user.role_id === 'Stagiaire') {
-                    history.push('/auth');
-                }
-                else {
-                    history.push('/auth-topnet');
-                }
-
+                window.location.reload();
 
             }
 

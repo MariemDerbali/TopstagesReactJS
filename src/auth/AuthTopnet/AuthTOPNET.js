@@ -41,10 +41,12 @@ export default function Auth() {
 
                     if (res.data.role === 'Coordinateur') {
                         history.push('/coordinateur/dashboard');
+                        window.location.reload();
 
                     } else if (res.data.role === 'ServiceFormation') {
 
                         history.push('/serviceformation/dashboard');
+                        window.location.reload();
 
                     } else {
                         history.push('/');

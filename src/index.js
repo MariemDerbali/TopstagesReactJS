@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import "./assets/css/soft-ui-dashboard.min.css?v=1.0.3";
-import "./assets/js/core/bootstrap.min.js";
+import "./assetsDashboard/css/soft-ui-dashboard.min.css?v=1.0.3";
+import "./assetsDashboard/js/core/bootstrap.min.js";
 
 
 ReactDOM.render(

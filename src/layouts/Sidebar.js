@@ -50,7 +50,7 @@ export default function Sidebar() {
                                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                     <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                         <title>spaceship</title>
-                                        <g stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+                                        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                             <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fillRule="nonzero">
                                                 <g transform="translate(1716.000000, 291.000000)">
                                                     <g transform="translate(4.000000, 301.000000)">
@@ -76,7 +76,7 @@ export default function Sidebar() {
                                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                     <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                         <title>office</title>
-                                        <g stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+                                        <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                             <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fillRule="nonzero">
                                                 <g transform="translate(1716.000000, 291.000000)">
                                                     <g id="office" transform="translate(153.000000, 2.000000)">
@@ -154,7 +154,7 @@ export default function Sidebar() {
                                     <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                         <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                             <title>spaceship</title>
-                                            <g stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+                                            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                                 <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fillRule="nonzero">
                                                     <g transform="translate(1716.000000, 291.000000)">
                                                         <g transform="translate(4.000000, 301.000000)">
@@ -180,7 +180,7 @@ export default function Sidebar() {
                                     <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                         <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                             <title>customer-support</title>
-                                            <g stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+                                            <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                                 <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fillRule="nonzero">
                                                     <g transform="translate(1716.000000, 291.000000)">
                                                         <g transform="translate(1.000000, 0.000000)">
