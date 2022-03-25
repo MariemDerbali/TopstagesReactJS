@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Redirect, useHistory } from 'react-router-dom';
-import MasterLayouts from '../layouts/coordinateur/MasterLayouts';
+import MasterLayouts from '../layouts/Topnet/Coordinateur/MasterLayouts';
 import axios from 'axios';
-import Loading from '../layouts/Loading';
+import Loading from '../layouts/Topnet/Loading';
 
 ////Pour protéger les routes pour le coordinateur
 export default function CoordinateurPrivateRoute({ ...rest }) {

@@ -12,6 +12,7 @@ import Resetforgottenpassword from "./auth/forgotpassword/stagiaire/Resetforgott
 import TopnetResetForgottenpassword from './auth/forgotpassword/topnet/TopnetResetforgottenpassword';
 import Resetfirstloginpassword from "./auth/AuthTopnet/Resetfirstloginpassword";
 import ServiceFormationPrivateRoute from './routes/ServiceFormationPrivateRoute';
+import StagiairePrivateRoute from "./routes/StagiairePrivateRoute";
 
 
 axios.defaults.baseURL = 'http://localhost:8000/';
@@ -37,6 +38,7 @@ function App() {
             <Route exact path="/404" component={Page404} />
             <Route exact path="/" component={Home} />
 
+
             {/*Auth Routes*/}
             <Route exact path="/resetfirstloginpassword/:user_id" component={Resetfirstloginpassword} />
 
@@ -57,10 +59,6 @@ function App() {
             </Route>
 
 
-
-
-
-
             {/*TOPNET*/}
 
             <Route path='/auth-TOPNET' >
@@ -78,14 +76,13 @@ function App() {
 
 
 
-
-
-
-
-
             {/*Private Routes*/}
             <CoordinateurPrivateRoute path="/coordinateur" name="Coordinateur" />
             <ServiceFormationPrivateRoute path="/serviceformation" name="ServiceFormation" />
+
+
+            <StagiairePrivateRoute path="/monprofil" name="MonProfil" />
+
 
           </Switch>
         </Router>

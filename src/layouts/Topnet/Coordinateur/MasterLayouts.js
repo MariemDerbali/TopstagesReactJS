@@ -3,9 +3,9 @@ import Footer from '../Footer'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 
-import Dashboard from '../../components/coordinateur/Dashboard'
 
-import routes from '../../routes/routes'
+
+import routes from '../../../routes/routes'
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 

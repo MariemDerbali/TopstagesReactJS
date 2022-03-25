@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import tableIcons from "../coordinateur/MaterialTableIcons";
+import tableIcons from "../Coordinateur/MaterialTableIcons";
 
 //pour créer une question
 export default function Addquestion() {

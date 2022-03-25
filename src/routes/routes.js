@@ -1,18 +1,20 @@
-import Dashboard from '../components/coordinateur/Dashboard';
-import Adduser from '../components/coordinateur/Adduser';
-import Edituser from '../components/coordinateur/Edituser';
-import Users from '../components/coordinateur/Users';
+import Dashboard from '../components/Topnet/Coordinateur/Dashboard';
+import Adduser from '../components/Topnet/Coordinateur/Adduser';
+import Edituser from '../components/Topnet/Coordinateur/Edituser';
+import Users from '../components/Topnet/Coordinateur/Users';
 
-import Profil from '../components/Profil';
+import Profil from '../components/Topnet/Profil';
 
 
-import DashboardServiceFormation from '../components/ServiceFormation/DashboardServiceFormation';
-import Departments from '../components/ServiceFormation/Departments';
-import Adddepartment from '../components/ServiceFormation/Adddeparment';
-import Editdepartment from '../components/ServiceFormation/Editdepartment';
-import Questions from '../components/ServiceFormation/Questions';
-import Addquestion from '../components/ServiceFormation/Addquestion';
-import Editquestion from '../components/ServiceFormation/Editquestion';
+import DashboardServiceFormation from '../components/Topnet/ServiceFormation/DashboardServiceFormation';
+import Departments from '../components/Topnet/ServiceFormation/Departments';
+import Adddepartment from '../components/Topnet/ServiceFormation/Adddeparment';
+import Editdepartment from '../components/Topnet/ServiceFormation/Editdepartment';
+import Questions from '../components/Topnet/ServiceFormation/Questions';
+import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
+import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
+
+import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
 
 
 const routes = [
@@ -52,6 +54,11 @@ const routes = [
     { path: '/serviceformation/Addquestion', exact: true, name: 'Addquestion', component: Addquestion },
     //Route pour modifier une question et des réponses
     { path: '/serviceformation/edit-question/:_id', exact: true, name: 'Editquestion', component: Editquestion },
+
+    /*--------------------------------------------------------------------------------------------------------------------------------------*/
+
+    /* Routes privés pour le stagiaire*/
+    { path: '/profil', exact: true, name: 'MonProfil', component: StagiaireProfil },
 
 
 ]

@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import tableIcons from "../coordinateur/MaterialTableIcons";
+import tableIcons from "../Coordinateur/MaterialTableIcons";
 
-import Loading from '../../layouts/Loading';
+import Loading from '../../../layouts/Topnet/Loading';
 
 //pour consulter la liste des départements
 export default function Departments() {

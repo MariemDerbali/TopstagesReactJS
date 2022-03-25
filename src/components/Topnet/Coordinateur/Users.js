@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "./MaterialTableIcons";
-import Loading from '../../layouts/Loading';
+import Loading from '../../../layouts/Topnet/Loading'
 import '../ServiceFormation/myStyle.css';
 
 //pour consulter la liste des utilisateurs
