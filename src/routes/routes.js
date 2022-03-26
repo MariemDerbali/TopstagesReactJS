@@ -5,7 +5,6 @@ import Users from '../components/Topnet/Coordinateur/Users';
 
 import Profil from '../components/Topnet/Profil';
 
-
 import DashboardServiceFormation from '../components/Topnet/ServiceFormation/DashboardServiceFormation';
 import Departments from '../components/Topnet/ServiceFormation/Departments';
 import Adddepartment from '../components/Topnet/ServiceFormation/Adddeparment';
@@ -15,11 +14,12 @@ import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
 import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
 
 import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
+import Monespace from '../components/Stagiaire/Monespace';
 
 
 const routes = [
 
-    /*Routes privés Pour le coordinateur*/
+    /*----------------------------------------Routes privés pour le coordinateur----------------------------------------------------------------------------------------------*/
 
     { path: '/coordinateur', exact: true, name: 'Coordinateur' },
     //Route pour le tableau de bord
@@ -33,9 +33,8 @@ const routes = [
     //Route pour modifier un utlisateur
     { path: '/coordinateur/edit-user/:_id', exact: true, name: 'Edituser', component: Edituser },
 
-    /*--------------------------------------------------------------------------------------------------------------------------------------*/
+    /*----------------------------------------Routes privés pour le service formation----------------------------------------------------------------------------------------------*/
 
-    /* Routes privés pour le service formation*/
 
     { path: '/serviceformation', exact: true, name: 'ServiceFormation' },
     //Route pour le tableau de bord
@@ -55,10 +54,12 @@ const routes = [
     //Route pour modifier une question et des réponses
     { path: '/serviceformation/edit-question/:_id', exact: true, name: 'Editquestion', component: Editquestion },
 
-    /*--------------------------------------------------------------------------------------------------------------------------------------*/
+    /*----------------------------------------Routes privés pour le stagiaire----------------------------------------------------------------------------------------------*/
 
-    /* Routes privés pour le stagiaire*/
-    { path: '/profil', exact: true, name: 'MonProfil', component: StagiaireProfil },
+
+    { path: '/stagiaire', exact: true, name: 'Stagiaire' },
+    { path: '/stagiaire/profil', exact: true, name: 'MonProfil', component: StagiaireProfil },
+    { path: '/stagiaire/monespace', exact: true, name: 'Monespace', component: Monespace },
 
 
 ]

@@ -27,6 +27,10 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
+
+
+
+
   return (
     <div className="App">
       <div className="g-sidenav-show  bg-gray-100">
@@ -81,7 +85,7 @@ function App() {
             <ServiceFormationPrivateRoute path="/serviceformation" name="ServiceFormation" />
 
 
-            <StagiairePrivateRoute path="/monprofil" name="MonProfil" />
+            <StagiairePrivateRoute path="/stagiaire" name="Stagiaire" />
 
 
           </Switch>

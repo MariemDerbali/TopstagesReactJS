@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios";
+import swal from 'sweetalert';
 import { Link } from 'react-router-dom'
 import "./css/Homestyle.css"
 
 export default function Home() {
+
+
 
 
     return (
@@ -29,6 +33,7 @@ export default function Home() {
                             <li><Link to="" onClick={() => window.location.replace("/#services")}>Services</Link></li>
 
                             <li><Link to="" onClick={() => window.location.replace("/#contact")}>Contact</Link></li>
+
 
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>
@@ -270,7 +275,7 @@ export default function Home() {
 
 
                 <div className="map-section">
-                    <iframe style={{ border: '0', width: '100%', height: '350px' }} src="https://maps.google.com/maps?q=Topnet&t=&z=7&ie=UTF8&iwloc=&output=embed" frameBorder="0" allowFullScreen></iframe>
+                    <iframe style={{ border: '0', width: '100%', height: '350px' }} src="https://maps.google.com/maps?q=Immeuble%20Topnet%20Centre%20Urbain%20Nord,%201080%20Tunis&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" allowFullScreen></iframe>
                 </div>
 
                 <section id="contact" className="contact mb-4">

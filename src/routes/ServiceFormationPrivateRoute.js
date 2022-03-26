@@ -8,7 +8,7 @@ import Loading from '../layouts/Topnet/Loading';
 ////Pour protéger les routes pour le service formation
 export default function ServiceFormationPrivateRoute({ ...rest }) {
 
-    const [Authenticated, setAuthenticated] = useState(false);
+    const [AuthenticatedServiceFormation, setAuthenticatedServiceFormation] = useState(false);
     const [loading, setloading] = useState(true);
     const history = useHistory();
 
@@ -16,12 +16,12 @@ export default function ServiceFormationPrivateRoute({ ...rest }) {
     useEffect(() => {
         axios.get('api/checkingServiceFormation').then(res => {
             if (res.status === 200) {
-                setAuthenticated(true);
+                setAuthenticatedServiceFormation(true);
             }
             setloading(false);
         });
         return () => {
-            setAuthenticated(false);
+            setAuthenticatedServiceFormation(false);
         }
 
     }, []);
@@ -60,10 +60,10 @@ export default function ServiceFormationPrivateRoute({ ...rest }) {
     return (
         <Route {...rest}
             render={({ props, location }) =>
-                Authenticated ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)
+                AuthenticatedServiceFormation ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)
                     (<MasterLayouts {...props} />) :
                     //Sinon diriger l'utilisateur vers la page d'authentification
-                    (<Redirect to={{ pathname: "/login", state: { from: location } }} />)
+                    (<Redirect to={{ pathname: "/auth-topnet", state: { from: location } }} />)
             }
         />
     )

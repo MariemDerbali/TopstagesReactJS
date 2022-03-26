@@ -2,9 +2,6 @@ import React from 'react'
 import Footer from '../Footer'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-
-
-
 import routes from '../../../routes/routes'
 import { Switch, Route, Redirect } from 'react-router-dom';
 

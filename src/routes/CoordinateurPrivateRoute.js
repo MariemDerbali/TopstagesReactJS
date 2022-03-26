@@ -7,7 +7,7 @@ import Loading from '../layouts/Topnet/Loading';
 ////Pour protéger les routes pour le coordinateur
 export default function CoordinateurPrivateRoute({ ...rest }) {
 
-    const [Authenticated, setAuthenticated] = useState(false);
+    const [AuthenticatedCoordinateur, setAuthenticatedCoordinateur] = useState(false);
     const [loading, setloading] = useState(true);
     const history = useHistory();
 
@@ -16,12 +16,12 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     useEffect(() => {
         axios.get('api/checkingCoordinateur').then(res => {
             if (res.status === 200) {
-                setAuthenticated(true);
+                setAuthenticatedCoordinateur(true);
             }
             setloading(false);
         });
         return () => {
-            setAuthenticated(false);
+            setAuthenticatedCoordinateur(false);
         }
 
     }, []);
@@ -62,10 +62,10 @@ export default function CoordinateurPrivateRoute({ ...rest }) {
     return (
         <Route {...rest}
             render={({ props, location }) =>
-                Authenticated ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)
+                AuthenticatedCoordinateur ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)
                     (<MasterLayouts {...props} />) :
                     //Sinon diriger l'utilisateur vers la page d'authentification
-                    (<Redirect to={{ pathname: "/login", state: { from: location } }} />)
+                    (<Redirect to={{ pathname: "/auth-topnet", state: { from: location } }} />)
             }
         />
     )
