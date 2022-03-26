@@ -13,6 +13,10 @@ import Questions from '../components/Topnet/ServiceFormation/Questions';
 import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
 import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
 
+import DashboardEncadrant from '../components/Topnet/Encadrant/DashboardEncadrant';
+import DashboardChefDepartement from '../components/Topnet/ChefDepartement/DashboardChefDepartement';
+
+
 import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
 import Monespace from '../components/Stagiaire/Monespace';
 
@@ -54,13 +58,26 @@ const routes = [
     //Route pour modifier une question et des réponses
     { path: '/serviceformation/edit-question/:_id', exact: true, name: 'Editquestion', component: Editquestion },
 
+    /*----------------------------------------Routes privés pour l'encadrant----------------------------------------------------------------------------------------------*/
+
+    { path: '/encadrant', exact: true, name: 'Encadrant' },
+    { path: '/encadrant/profil', exact: true, name: 'Profil', component: Profil },
+    { path: '/encadrant/dashboard', exact: true, name: 'DashboardEncadrant', component: DashboardEncadrant },
+
+
+    /*----------------------------------------Routes privés pour le chéf département----------------------------------------------------------------------------------------------*/
+
+    { path: '/chefdepartement', exact: true, name: 'ChefDepartement' },
+    { path: '/chefdepartement/profil', exact: true, name: 'Profil', component: Profil },
+    { path: '/chefdepartement/dashboard', exact: true, name: 'DashboardChefDepartement', component: DashboardChefDepartement },
+
+
     /*----------------------------------------Routes privés pour le stagiaire----------------------------------------------------------------------------------------------*/
 
 
     { path: '/stagiaire', exact: true, name: 'Stagiaire' },
     { path: '/stagiaire/profil', exact: true, name: 'MonProfil', component: StagiaireProfil },
     { path: '/stagiaire/monespace', exact: true, name: 'Monespace', component: Monespace },
-
 
 ]
     ;

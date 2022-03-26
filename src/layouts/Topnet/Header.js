@@ -103,8 +103,22 @@ export default function Header() {
                                                 <span>Mon profil</span>
                                             </Link>
                                         </li> :
-                                        //Sinon afficher le spinner
-                                        <Loading />
+                                        user.role_id === 'Encadrant' ?
+                                            <li>
+                                                <Link className="dropdown-item d-flex align-items-center" to="/encadrant/profil">
+                                                    <i className="bi bi-person"></i>
+                                                    <span>Mon profil</span>
+                                                </Link>
+                                            </li> :
+                                            user.role_id === 'ChefDepartement' ?
+                                                <li>
+                                                    <Link className="dropdown-item d-flex align-items-center" to="/chefdepartement/profil">
+                                                        <i className="bi bi-person"></i>
+                                                        <span>Mon profil</span>
+                                                    </Link>
+                                                </li> :
+                                                //Sinon afficher le spinner
+                                                <Loading />
                                 }
 
 

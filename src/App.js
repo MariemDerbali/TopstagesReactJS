@@ -13,6 +13,8 @@ import TopnetResetForgottenpassword from './auth/forgotpassword/topnet/TopnetRes
 import Resetfirstloginpassword from "./auth/AuthTopnet/Resetfirstloginpassword";
 import ServiceFormationPrivateRoute from './routes/ServiceFormationPrivateRoute';
 import StagiairePrivateRoute from "./routes/StagiairePrivateRoute";
+import EncadrantPrivateRoute from './routes/EncadrantPrivateRoute';
+import ChefDepartementPrivateRoute from './routes/ChefDepartementPrivateRoute';
 
 
 axios.defaults.baseURL = 'http://localhost:8000/';
@@ -83,9 +85,10 @@ function App() {
             {/*Private Routes*/}
             <CoordinateurPrivateRoute path="/coordinateur" name="Coordinateur" />
             <ServiceFormationPrivateRoute path="/serviceformation" name="ServiceFormation" />
-
-
+            <EncadrantPrivateRoute path="/encadrant" name="Encadrant" />
+            <ChefDepartementPrivateRoute path="/chefdepartement" name="ChefDepartement" />
             <StagiairePrivateRoute path="/stagiaire" name="Stagiaire" />
+
 
 
           </Switch>

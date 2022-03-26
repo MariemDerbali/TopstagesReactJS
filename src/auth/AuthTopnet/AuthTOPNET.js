@@ -48,7 +48,21 @@ export default function Auth() {
                         history.push('/serviceformation/dashboard');
                         window.location.reload();
 
-                    } else {
+                    }
+                    else if (res.data.role === 'Encadrant') {
+
+                        history.push('/encadrant/dashboard');
+                        window.location.reload();
+
+                    }
+                    else if (res.data.role === 'ChefDepartement') {
+
+                        history.push('/chefdepartement/dashboard');
+                        window.location.reload();
+
+                    }
+
+                    else {
                         history.push('/');
 
                     }
