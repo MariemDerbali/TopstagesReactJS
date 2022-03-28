@@ -33,6 +33,7 @@ export default function Home() {
                             <li><Link to="" onClick={() => window.location.replace("/#services")}>Services</Link></li>
 
                             <li><Link to="" onClick={() => window.location.replace("/#contact")}>Contact</Link></li>
+                            <li><Link to="" onClick={() => window.location.replace("/offresdestage")}>Offres de stage</Link></li>
 
 
                         </ul>

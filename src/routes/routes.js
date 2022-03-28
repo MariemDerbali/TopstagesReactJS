@@ -20,6 +20,10 @@ import DashboardChefDepartement from '../components/Topnet/ChefDepartement/Dashb
 import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
 import Monespace from '../components/Stagiaire/Monespace';
 
+import Addoffre from '../components/Topnet/Encadrant/Addoffre';
+import Offres from '../components/Topnet/Encadrant/Offres';
+import Editoffre from '../components/Topnet/Encadrant/Editoffre';
+
 
 const routes = [
 
@@ -63,6 +67,11 @@ const routes = [
     { path: '/encadrant', exact: true, name: 'Encadrant' },
     { path: '/encadrant/profil', exact: true, name: 'Profil', component: Profil },
     { path: '/encadrant/dashboard', exact: true, name: 'DashboardEncadrant', component: DashboardEncadrant },
+    { path: '/encadrant/Addoffre', exact: true, name: 'Addoffre', component: Addoffre },
+    { path: '/encadrant/offres', exact: true, name: 'Offres', component: Offres },
+    { path: '/encadrant/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
+
+
 
 
     /*----------------------------------------Routes privés pour le chéf département----------------------------------------------------------------------------------------------*/
