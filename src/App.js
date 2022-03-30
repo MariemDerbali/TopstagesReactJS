@@ -17,6 +17,7 @@ import EncadrantPrivateRoute from './routes/EncadrantPrivateRoute';
 import ChefDepartementPrivateRoute from './routes/ChefDepartementPrivateRoute';
 
 import Offresdestage from './layouts/Home/Offresdestage';
+import TestPsychotechnique from './layouts/Home/TestPsychotechnique';
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -45,6 +46,9 @@ function App() {
             <Route exact path="/404" component={Page404} />
             <Route exact path="/" component={Home} />
             <Route exact path='/offresdestage' component={Offresdestage} />
+
+            <Route exact path='/test-psychotechnique/:idoffre' component={TestPsychotechnique} />
+
 
 
 
