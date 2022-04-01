@@ -35,6 +35,12 @@ export default function Home() {
                             <li><Link to="" onClick={() => window.location.replace("/#contact")}>Contact</Link></li>
                             <li><Link to="" onClick={() => window.location.replace("/offresdestage")}>Offres de stage</Link></li>
 
+                            {localStorage.getItem('auth_token') ?
+                                <li><Link to="" onClick={() => window.location.replace("/stagiaire/monespace")}>Mon espace</Link></li> :
+                                <Link to="/auth" >Mon espace</Link>
+                            }
+
+
 
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>

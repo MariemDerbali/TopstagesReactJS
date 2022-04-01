@@ -94,7 +94,7 @@ export default function Auth() {
 
                     localStorage.setItem('auth_token', res.data.token);
                     localStorage.setItem('auth_name', res.data.username);
-                    historyLogin.push('/stagiaire/profil');
+                    historyLogin.push('/');
                     window.location.reload();
 
 
