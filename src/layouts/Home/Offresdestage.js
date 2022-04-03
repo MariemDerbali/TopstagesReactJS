@@ -156,34 +156,33 @@ export default function Offresdestage() {
                             /**sinon afficher les offres de stage*/
                             (filteredOffres.map((offre, index) => {
 
-                                if ((offre.etatoffre === 'active') && (offre.etatpartage === 'published')) {
-                                    return (
-                                        <div className="col-md-6  " key={index}  >
-                                            <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
-                                                <div className="card h-100">
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{offre.sujet}</h5>
-                                                        <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
-                                                        <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
+                                return (
+                                    <div className="col-md-6  " key={index}  >
+                                        <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
+                                            <div className="card h-100">
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{offre.sujet}</h5>
+                                                    <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
+                                                    <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
 
-                                                        <p className="card-text font-weight-bold">
-                                                            <span style={{ color: '#111c6b' }}>Technologies: </span>
-                                                            <span className="badge bg-light text-dark" style={{ whiteSpace: 'normal' }}> {offre.technologies}</span>
+                                                    <p className="card-text font-weight-bold">
+                                                        <span style={{ color: '#111c6b' }}>Technologies: </span>
+                                                        <span className="badge bg-light text-dark" style={{ whiteSpace: 'normal' }}> {offre.technologies}</span>
 
-                                                        </p>
-                                                        <hr className="my-4" />
-                                                        {localStorage.getItem('auth_token') ?
-                                                            <Link to={`/test-psychotechnique/${stagiaire._id}`} ><button type="button" className="btn btn-info ">Postuler!</button></Link> :
-                                                            <Link to="/auth" ><button type="button" className="btn btn-info ">Postuler!</button></Link>
-                                                        }
-                                                    </div>
+                                                    </p>
+                                                    <hr className="my-4" />
+                                                    {localStorage.getItem('auth_token') ?
+                                                        <Link to={`/test-psychotechnique/${stagiaire._id}`} ><button type="button" className="btn btn-info ">Postuler!</button></Link> :
+                                                        <Link to="/auth" ><button type="button" className="btn btn-info ">Postuler!</button></Link>
+                                                    }
                                                 </div>
                                             </div>
-
                                         </div>
 
-                                    )
-                                }
+                                    </div>
+
+                                )
+
                             })
                             )
                     }
