@@ -12,7 +12,7 @@ export default function Profil() {
     // Le premier élément est l’état initial et le second est une fonction qui est utilisée pour mettre à jour l’état.
 
 
-    //Varibles d'état pour obtenir la liste des utilisateurs
+    //Varibles d'état pour obtenir l'utilisateur authentifié
     const [user, setUser] = useState([]);
     //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);

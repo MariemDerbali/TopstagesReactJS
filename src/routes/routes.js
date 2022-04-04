@@ -14,15 +14,15 @@ import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
 import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
 
 import DashboardEncadrant from '../components/Topnet/Encadrant/DashboardEncadrant';
-import DashboardChefDepartement from '../components/Topnet/ChefDepartement/DashboardChefDepartement';
-
-
-import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
-import Monespace from '../components/Stagiaire/Monespace';
-
 import Addoffre from '../components/Topnet/Encadrant/Addoffre';
 import Offres from '../components/Topnet/Encadrant/Offres';
 import Editoffre from '../components/Topnet/Encadrant/Editoffre';
+
+import DashboardChefDepartement from '../components/Topnet/ChefDepartement/DashboardChefDepartement';
+import Encadrants from '../components/Topnet/ChefDepartement/Encadrants';
+
+import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
+import Monespace from '../components/Stagiaire/Monespace';
 
 
 const routes = [
@@ -79,7 +79,10 @@ const routes = [
     { path: '/chefdepartement', exact: true, name: 'ChefDepartement' },
     { path: '/chefdepartement/profil', exact: true, name: 'Profil', component: Profil },
     { path: '/chefdepartement/dashboard', exact: true, name: 'DashboardChefDepartement', component: DashboardChefDepartement },
-
+    { path: '/chefdepartement/encadrants', exact: true, name: 'Encadrants', component: Encadrants },
+    { path: '/chefdepartement/Addoffre', exact: true, name: 'Addoffre', component: Addoffre },
+    { path: '/chefdepartement/offres', exact: true, name: 'Offres', component: Offres },
+    { path: '/chefdepartement/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
 
     /*----------------------------------------Routes privés pour le stagiaire----------------------------------------------------------------------------------------------*/
 

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 
@@ -30,6 +30,25 @@ export default function Addoffre() {
         e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
         setOffre({ ...OffreInput, [e.target.name]: e.target.value }); //Stocker les valeurs saisies des champs de l'offre dans les variables d'état
     }
+    //Varibles d'état pour obtenir l'utilisateur authentifié
+    const [user, setUser] = useState([]);
+
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
+    useEffect(() => {
+        //l'API de l'utilisateur authentifié actuel
+        axios.get('/api/currentuser').then(res => {
+            if (res.data.status === 200) {//si l'utilisateur est trouvé
+
+                //stockage de l'utilisateur authentifié actuel dans les variables d'état
+                setUser(res.data.currentuser);
+                //si l'utilisateur non trouvé 
+            } else if (res.data.status === 404) {
+                //afficher un message d'erreur
+                swal("", res.data.message, "error");
+            }
+        });
+    }, []);
+
 
     //fonction pour créer offre
     const submitOffre = (e) => {
@@ -52,7 +71,13 @@ export default function Addoffre() {
                 swal("", res.data.message, "success");//afficher un message de succès
                 //puisqu'il n'y a pas des erreurs des données saisies, stocker donc une liste vide pour les erreurs dans les variables d'état
                 setError([]);
-                history.push('/encadrant/Offres');
+                if (user.role_id === "Encadrant") {
+                    history.push('/encadrant/Offres');
+                }
+                else {
+                    history.push('/chefdepartement/Offres');
+                }
+
 
             } else { //En cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
                 setError(res.data.errors);
@@ -98,9 +123,8 @@ export default function Addoffre() {
                                 <label className="form-label">Domaine de stage</label>
                                 <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select">
                                     <option  >Domaine de stage</option>
-                                    <option>DSI</option>
-                                    <option>Mécanique</option>
-                                    <option>Système embarqué</option>
+                                    <option>{user.departement}</option>
+
                                 </select>
                                 <small className="text-danger">{errorlist.domaine}</small>
 

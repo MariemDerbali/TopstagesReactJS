@@ -66,13 +66,34 @@ export default function Editoffre(props) {
 
             } else if (res.data.status === 404) {//si l'offre est non trouvée
                 swal("", res.data.message, "error");//afficher un message d'erreur
-                history.push('/encadrant/Offres');//rediriger l'encadrant vers la page de la liste des offres
+                history.goBack();
             }
             //arrêter le chargement de la page
             setLoading(false);
         });
 
     }, [props.match.params._id, history]);
+
+
+    //Varibles d'état pour obtenir l'utilisateur authentifié
+    const [user, setUser] = useState([]);
+    //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
+    useEffect(() => {
+        //l'API de l'utilisateur authentifié actuel
+        axios.get('/api/currentuser').then(res => {
+            if (res.data.status === 200) {//si l'utilisateur est trouvé
+
+                //stockage de l'utilisateur authentifié actuel dans les variables d'état
+                setUser(res.data.currentuser);
+                //si l'utilisateur non trouvé 
+            } else if (res.data.status === 404) {
+                //afficher un message d'erreur
+                swal("", res.data.message, "error");
+            }
+        });
+    }, []);
+
+
 
     //fonction pour modifier un utlisateur
     const updateOffre = (e) => {
@@ -97,14 +118,14 @@ export default function Editoffre(props) {
 
             if (res.data.status === 200) {//si l'offre est modifiée
                 swal("", res.data.message, "success");//afficher un message de succès
-                history.push('/encadrant/Offres');//rediriger l'encadrant vers la page consultation des offres
+                history.goBack();//rediriger l'encadrant vers la page consultation des offres
                 setError([]);//puisqu'il n'y a pas des erreurs des données saisies, stocker donc une liste vide pour les erreurs dans les variables d'état
             } else if (res.data.status === 422) {//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
                 setError(res.data.errors);
             }
             else if (res.data.status === 404) {//si l'offre non trouvée
                 swal("", res.data.message, "error");//afficher un message d'erreur
-                history.push('/encadrant/Offres');//rediriger l'encadrant vers la page de consultation des offres
+                history.goBack();//rediriger l'encadrant vers la page de consultation des offres
             }
         });
     }
@@ -150,11 +171,10 @@ export default function Editoffre(props) {
 
                             <div className="col-md-6">
                                 <label className="form-label">Domaine de stage</label>
-                                <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select">
+                                <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select" disabled>
                                     <option  >Domaine de stage</option>
-                                    <option>DSI</option>
-                                    <option>Mécanique</option>
-                                    <option>Système embarqué</option>
+                                    <option>{user.departement}</option>
+
                                 </select>
                                 <small className="text-danger">{errorlist.domaine}</small>
 

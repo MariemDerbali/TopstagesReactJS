@@ -21,7 +21,7 @@ export default function Offresdestage() {
     useEffect(() => {
 
         //l'API pour obtenir la liste des offres
-        axios.get('/api/getoffres').then(res => {
+        axios.get('/api/homepage-getoffres').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
                 //stockage des offres dans les variables détat
 
@@ -73,7 +73,7 @@ export default function Offresdestage() {
     useEffect(() => {
 
         //l'API pour obtenir la liste des départements
-        axios.get('/api/departements').then(res => {
+        axios.get('/api/homepage-departements').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
                 //stockage des départements dans les variables détat
                 setDepslist(res.data.deps);
