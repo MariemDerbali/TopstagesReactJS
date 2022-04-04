@@ -2277,19 +2277,47 @@ h6 {
   width: 50%;
 }
 
-.options {
+.toast-invalid {
+  position: absolute !important;
+  right: 26px !important;
+  margin-top: 40px !important;
+  height: 40px !important;
+  width: 150px !important;
+  background-color: #F44336 !important;
+  border-radius: 5px !important;
+  color: #f8f8f8 !important;
+
+}
+
+.toast-valid {
+  position: absolute !important;
+  right: 26px !important;
+  margin-top: 40px !important;
+  height: 40px !important;
+  width: 150px !important;
+
+  background-color: #4caf50 !important;
+  border-radius: 5px !important;
+  color: #f8f8f8 !important
+}
+
+.option {
   background-color: #1da1f2;
   border-radius: 30px;
   color: #f8f8f8;
   cursor: pointer;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 1rem;
   transition: 0.3s linear all;
   text-align: center;
-  width: 90%;
+  height: 110px;
+  margin-left: 30px;
+
+
 }
 
-.options:hover {
+
+.option:hover {
   background-color: #066fc4;
 }
 
