@@ -2,6 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import "./css/Homestyle.css"
 import M from 'materialize-css';
+import correctNotification from './audio/correct-answer.mp3';
+import wrongNotification from './audio/wrong-answer.mp3';
+import buttonSound from './audio/button-sound.mp3';
 
 export default class TestPsychotechnique extends React.Component {
     constructor(props) {
@@ -20,13 +23,14 @@ export default class TestPsychotechnique extends React.Component {
             repcorrecte: {},
 
             numberOfQuestions: 0,
-            numberOfAnsweredQuestion: 0,
+            numberOfAnsweredQuestions: 0,
             currentQuestionIndex: 0,
             score: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
             time: {}
         };
+        this.interval = null
     }
 
     async componentDidMount() {
@@ -38,6 +42,7 @@ export default class TestPsychotechnique extends React.Component {
                     this.setState(this.state.questionsreponses = questionrep);
 
                     if (this.state.questionsreponses.length != 0) {
+
                         this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
                         this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
                         // this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
@@ -48,27 +53,115 @@ export default class TestPsychotechnique extends React.Component {
                         this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
                         this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
                         // this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                        this.setState({ numberOfQuestions: this.state.questionsreponses.length });
 
                     }
 
+                    this.startTimer();
+                    //  this.handleDisableButton();
 
                 }
             });
 
 
     }
-
-
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
     handleOptionClick = (e) => {
 
         if (e.target.id === 'Oui') {
+            setTimeout(() => {
+                document.getElementById('correct-sound').play();
+
+            }, 500);
             this.correctAnswer();
 
-        } else {
+        } else if (e.target.id === 'Non') {
+            setTimeout(() => {
+                document.getElementById('wrong-sound').play();
+
+            }, 500);
             this.wrongAnswer();
         }
 
     }
+
+
+    handleNextButtonClick = () => {
+        this.playButtonSound();
+        if (this.state.nextQuestion !== undefined) {
+            this.setState(prevState => ({
+                currentQuestionIndex: prevState.currentQuestionIndex + 1
+            }), () => {
+                this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
+                // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
+                this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
+
+
+                this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
+
+                this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
+                //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
+                this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                this.setState({ numberOfQuestions: this.state.questionsreponses.length });
+            });
+
+        }
+    };
+
+
+    handlePreviousButtonClick = () => {
+        this.playButtonSound();
+        if (this.state.previousQuestion !== undefined) {
+            this.setState(prevState => ({
+                currentQuestionIndex: prevState.currentQuestionIndex - 1
+            }), () => {
+                this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
+                this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
+                //this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
+
+
+                this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
+
+                this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
+                this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
+                //this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                this.setState({ numberOfQuestions: this.state.questionsreponses.length });
+            });
+
+
+        }
+    };
+
+    handleQuitButtonClick = () => {
+        this.playButtonSound();
+        if (window.confirm('Are you sure you want to quit?')) {
+            this.props.history.push('/');
+        }
+    };
+
+    handleButtonClick = (e) => {
+        switch (e.target.id) {
+            case 'next-button':
+                this.handleNextButtonClick();
+                break;
+            case 'previous-button':
+                this.handlePreviousButtonClick();
+                break;
+            case 'quit-button':
+                this.handleQuitButtonClick();
+            default:
+                break;
+
+        }
+    }
+    playButtonSound = () => {
+
+        document.getElementById('button-sound').play();
+    };
+
+
 
     correctAnswer = () => {
         M.toast({
@@ -80,8 +173,27 @@ export default class TestPsychotechnique extends React.Component {
             score: prevState.score + 1,
             correctAnswers: prevState.correctAnswers + 1,
             currentQuestionIndex: prevState.currentQuestionIndex + 1,
-            numberOfAnsweredQuestion: prevState.numberOfAnsweredQuestion + 1
-        }));
+            numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
+        }), () => {
+            if (this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions + 1) {
+                this.endTest();
+            } else {
+                if (this.state.questionsreponses.length != 0) {
+                    this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
+                    // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
+                    this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
+
+
+                    this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
+
+                    this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
+                    //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
+                    this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                    this.setState({ numberOfQuestions: this.state.questionsreponses.length });
+                }
+            }
+
+        });
     }
 
     wrongAnswer = () => {
@@ -94,31 +206,116 @@ export default class TestPsychotechnique extends React.Component {
         this.setState(prevState => ({
             wrongAnswers: prevState.wrongAnswers + 1,
             currentQuestionIndex: prevState.currentQuestionIndex + 1,
-            numberOfAnsweredQuestion: prevState.numberOfAnsweredQuestion + 1
+            numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
 
-        }));
+        }),
+            () => {
+                if (this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions + 1) {
+                    this.endTest();
+                } else {
+                    if (this.state.questionsreponses.length != 0) {
+                        this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
+                        // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
+                        this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
+
+
+                        this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
+
+                        this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
+                        //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
+                        this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                        this.setState({ numberOfQuestions: this.state.questionsreponses.length });
+                    }
+                }
+            });
+    }
+
+
+    startTimer = () => {
+        const countDownTime = Date.now() + 180000;
+        this.interval = setInterval(() => {
+            const now = new Date();
+            const distance = countDownTime - now;
+
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(this.interval);
+                this.setState({
+                    time: {
+                        minutes: 0,
+                        seconds: 0
+                    }
+                }, () => {
+                    this.endTest();
+                });
+            } else {
+                this.setState({
+                    time: {
+                        minutes, seconds
+                    }
+                })
+            }
+
+
+        }, 1000)
+    }
+    /*  handleDisableButton = () => {
+          if (this.state.currentQuestionIndex === 0) {
+              this.setState(this.state.previousButtonDisabled = true);
+  
+          } else if (this.state.currentQuestionIndex !== 0) {
+              this.setState(this.state.previousButtonDisabled = false);
+  
+          }
+  
+          if (this.state.nextQuestion === undefined || this.state.currentQuestionIndex + 1 === this.numberOfQuestions) {
+              this.setState({
+                  nextButtonDisabled: true
+              });
+  
+          } else {
+              this.setState({
+                  nextButtonDisabled: false
+              });
+          }
+  
+      }*/
+
+    endTest = () => {
+        alert('Test has ended');
+        const stagiaireStats = {
+            score: this.state.score,
+            numberOfQuestions: this.state.numberOfQuestions,
+            numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
+            correctAnswers: this.state.correctAnswers,
+            wrongAnswers: this.state.correctAnswers,
+        }
+        console.log(stagiaireStats);
+        setTimeout(() => {
+            this.props.history.push('/');
+        }, 1000);
     }
 
 
 
     render() {
         return (
+
             <div>
+
                 <div className='questions mb-5'>
                     <h2 className='H2'>Test psychotechnique</h2>
-                    <div className='lifeline-container'>
-                        <p>
-                            <span className='far fa-segmented-nav'></span><span className='lifeline'>2</span>
-                        </p>
-                        <p>
-                            <span className='far fa-lightbulb'></span><span className='lifeline'>5</span>
-                        </p>
-                    </div>
+                    <audio id="correct-sound" src={correctNotification}></audio>
+                    <audio id="wrong-sound" src={wrongNotification}></audio>
+                    <audio id="button-sound" src={buttonSound}></audio>
+
 
                     <div>
                         <p>
-                            <span className='left' style={{ float: 'left' }}>1 of 15</span>
-                            <span className='right' style={{ float: 'right' }} > 2:15 <span className="far fa-clock"></span></span>
+                            <span className='left' style={{ float: 'left' }}>{this.state.currentQuestionIndex + 1} of {this.state.numberOfQuestions}</span>
+                            <span className='right' style={{ float: 'right' }} > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
 
                         </p>
 
@@ -139,12 +336,12 @@ export default class TestPsychotechnique extends React.Component {
                         {
                             this.state.currentReponses.map((reponse, index) => {
                                 return (
-                                    <div className='row'>
+                                    <div className='row' key={index}>
 
                                         {
                                             reponse.reponseText && reponse.reponseImage ?
 
-                                                <div className='col-md-12' key={index}>
+                                                <div className='col-md-12' >
                                                     <div className='options-container'  >
                                                         {reponse.reponseCorrecte === "Oui" ?
                                                             <p onClick={this.handleOptionClick} className='option' id="Oui">
@@ -163,7 +360,7 @@ export default class TestPsychotechnique extends React.Component {
 
                                                 :
                                                 reponse.reponseText ?
-                                                    <div className='col-md-12' key={index} >
+                                                    <div className='col-md-12'  >
                                                         <div className='options-container'  >
                                                             {reponse.reponseCorrecte === "Oui" ?
                                                                 <p onClick={this.handleOptionClick} className='option' id="Oui">{reponse.reponseText}
@@ -174,7 +371,7 @@ export default class TestPsychotechnique extends React.Component {
                                                         </div>
                                                     </div>
                                                     :
-                                                    <div className='col-md-12' key={index}>
+                                                    <div className='col-md-12' >
                                                         <div className='options-container ' >
                                                             {reponse.reponseCorrecte === "Oui" ?
                                                                 <p onClick={this.handleOptionClick} className='option' id="Oui">
@@ -193,9 +390,29 @@ export default class TestPsychotechnique extends React.Component {
                         }
 
                         <div className='button-container'>
-                            <button>Previous</button>
-                            <button>Next</button>
-                            <button>Quit</button>
+                            {this.state.currentQuestionIndex === 0 ?
+                                <button type="button" id="previous-button" onClick={this.handleButtonClick} disabled style={{
+                                    backgroundColor: '#ccc',
+                                    boxShadow: 'none',
+                                    opacity: '0.9',
+                                    pointerEvents: 'none'
+                                }}>Previous</button>
+                                :
+                                <button type="button" id="previous-button" onClick={this.handleButtonClick} >Previous</button>
+                            }
+
+                            {this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions ?
+                                <button id="next-button" onClick={this.handleButtonClick} disabled style={{
+                                    backgroundColor: '#ccc',
+                                    boxShadow: 'none',
+                                    opacity: '0.9',
+                                    pointerEvents: 'none'
+                                }}>Next</button>
+                                :
+                                <button id="next-button" onClick={this.handleButtonClick}>Next</button>
+                            }
+
+                            <button id="quit-button" onClick={this.handleButtonClick}>Quit</button>
 
                         </div>
 
