@@ -10,6 +10,7 @@ export default class TestPsychotechnique extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            stagiaire: [],
             questionsreponses: [],
 
             currentQuestion: {},
@@ -31,15 +32,21 @@ export default class TestPsychotechnique extends React.Component {
             time: {}
         };
         this.interval = null
+        this.correctSound = React.createRef();
+        this.wrongSound = React.createRef();
+        this.buttonSound = React.createRef();
     }
 
-    async componentDidMount() {
+    componentDidMount() {
 
-        await axios.get('/api/getquestionsreponses')
+        axios.get('/api/getquestionsreponses')
             .then(res => {
                 if (res.data.status === 200) {
                     const questionrep = res.data.questionsreponses;
+                    const currentStagiaire = res.data.stagiaire;
                     this.setState(this.state.questionsreponses = questionrep);
+                    this.setState(this.state.stagiaire = currentStagiaire);
+
 
                     if (this.state.questionsreponses.length != 0) {
 
@@ -58,7 +65,6 @@ export default class TestPsychotechnique extends React.Component {
                     }
 
                     this.startTimer();
-                    //  this.handleDisableButton();
 
                 }
             });
@@ -68,18 +74,19 @@ export default class TestPsychotechnique extends React.Component {
     componentWillUnmount() {
         clearInterval(this.interval);
     }
+
     handleOptionClick = (e) => {
 
         if (e.target.id === 'Oui') {
             setTimeout(() => {
-                document.getElementById('correct-sound').play();
+                this.correctSound.current.play();
 
             }, 500);
             this.correctAnswer();
 
         } else if (e.target.id === 'Non') {
             setTimeout(() => {
-                document.getElementById('wrong-sound').play();
+                this.wrongSound.current.play();
 
             }, 500);
             this.wrongAnswer();
@@ -158,7 +165,7 @@ export default class TestPsychotechnique extends React.Component {
     }
     playButtonSound = () => {
 
-        document.getElementById('button-sound').play();
+        this.buttonSound.current.play();
     };
 
 
@@ -261,27 +268,7 @@ export default class TestPsychotechnique extends React.Component {
 
         }, 1000)
     }
-    /*  handleDisableButton = () => {
-          if (this.state.currentQuestionIndex === 0) {
-              this.setState(this.state.previousButtonDisabled = true);
-  
-          } else if (this.state.currentQuestionIndex !== 0) {
-              this.setState(this.state.previousButtonDisabled = false);
-  
-          }
-  
-          if (this.state.nextQuestion === undefined || this.state.currentQuestionIndex + 1 === this.numberOfQuestions) {
-              this.setState({
-                  nextButtonDisabled: true
-              });
-  
-          } else {
-              this.setState({
-                  nextButtonDisabled: false
-              });
-          }
-  
-      }*/
+
 
     endTest = () => {
         alert('Test has ended');
@@ -290,11 +277,10 @@ export default class TestPsychotechnique extends React.Component {
             numberOfQuestions: this.state.numberOfQuestions,
             numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
             correctAnswers: this.state.correctAnswers,
-            wrongAnswers: this.state.correctAnswers,
+            wrongAnswers: this.state.wrongAnswers,
         }
-        console.log(stagiaireStats);
         setTimeout(() => {
-            this.props.history.push('/');
+            this.props.history.push(`/test-psychotechnique/summary/${this.state.stagiaire._id}`, stagiaireStats);
         }, 1000);
     }
 
@@ -307,15 +293,15 @@ export default class TestPsychotechnique extends React.Component {
 
                 <div className='questions mb-5'>
                     <h2 className='H2'>Test psychotechnique</h2>
-                    <audio id="correct-sound" src={correctNotification}></audio>
-                    <audio id="wrong-sound" src={wrongNotification}></audio>
-                    <audio id="button-sound" src={buttonSound}></audio>
+                    <audio ref={this.correctSound} src={correctNotification}></audio>
+                    <audio ref={this.wrongSound} src={wrongNotification}></audio>
+                    <audio ref={this.buttonSound} src={buttonSound}></audio>
 
 
                     <div>
                         <p>
-                            <span className='left' style={{ float: 'left' }}>{this.state.currentQuestionIndex + 1} of {this.state.numberOfQuestions}</span>
-                            <span className='right' style={{ float: 'right' }} > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
+                            <span className='left' >{this.state.currentQuestionIndex + 1} of {this.state.numberOfQuestions}</span>
+                            <span className='right' > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
 
                         </p>
 

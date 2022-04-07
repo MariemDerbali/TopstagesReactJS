@@ -2376,3 +2376,11 @@ h6 {
 .button-container button:last-child:hover {
   background-color: #bb2a38;
 }
+
+.right {
+  float: right !important;
+}
+
+.left {
+  float: left !important;
+}
