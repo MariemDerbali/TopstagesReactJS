@@ -311,13 +311,19 @@ export default class TestPsychotechnique extends React.Component {
 
                         {this.state.currentQuestion.questionText && this.state.currentQuestion.questionImage ?
 
-                            <div className='H5'><h5 className='H5'>{this.state.currentQuestion.questionText}</h5>
+                            <div className='H5'>
+
+                                <h5 className='H5'><span className="textDanger">Q.</span>{this.state.currentQuestion.questionText}</h5>
                                 <img src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} style={{ maxHeight: '10rem' }} /> </div>
                             :
                             this.state.currentQuestion.questionText ?
-                                <h5 >{this.state.currentQuestion.questionText}</h5> :
-                                <img src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
 
+                                <h5 ><span className="textDanger">Q.</span>{this.state.currentQuestion.questionText}</h5>
+                                :
+                                <div>
+                                    <span className="textDanger">Q.</span>
+                                    <img src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
+                                </div>
                         }
                         {
                             this.state.currentReponses.map((reponse, index) => {

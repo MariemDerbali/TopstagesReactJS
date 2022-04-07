@@ -2384,3 +2384,8 @@ h6 {
 .left {
   float: left !important;
 }
+
+.textDanger {
+  color: #dc3545 !important;
+  font-size: 30px !important;
+}
