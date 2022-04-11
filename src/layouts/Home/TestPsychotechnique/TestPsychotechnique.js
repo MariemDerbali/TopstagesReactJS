@@ -1,15 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-import "./css/Homestyle.css"
+import "../css/Homestyle.css"
 import M from 'materialize-css';
-import correctNotification from './audio/correct-answer.mp3';
-import wrongNotification from './audio/wrong-answer.mp3';
-import buttonSound from './audio/button-sound.mp3';
+import correctNotification from '../audio/correct-answer.mp3';
+import wrongNotification from '../audio/wrong-answer.mp3';
+import buttonSound from '../audio/button-sound.mp3';
+import bg from '../img/quiz.jpg';
+import Loading from '../../Topnet/Loading';
 
 export default class TestPsychotechnique extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             stagiaire: [],
             questionsreponses: [],
 
@@ -47,24 +50,20 @@ export default class TestPsychotechnique extends React.Component {
                     this.setState(this.state.questionsreponses = questionrep);
                     this.setState(this.state.stagiaire = currentStagiaire);
 
-
                     if (this.state.questionsreponses.length != 0) {
 
                         this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
                         this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
-                        // this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
-
-
                         this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-
                         this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
                         this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
-                        // this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                         this.setState({ numberOfQuestions: this.state.questionsreponses.length });
 
                     }
 
-                    this.startTimer();
+                    const dureequestions = res.data.duree
+                    this.startTimer(dureequestions);
+                    this.setState(this.state.loading = false);
 
                 }
             });
@@ -102,14 +101,9 @@ export default class TestPsychotechnique extends React.Component {
                 currentQuestionIndex: prevState.currentQuestionIndex + 1
             }), () => {
                 this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
                 this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
-
-
                 this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-
                 this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
                 this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                 this.setState({ numberOfQuestions: this.state.questionsreponses.length });
             });
@@ -126,14 +120,9 @@ export default class TestPsychotechnique extends React.Component {
             }), () => {
                 this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
                 this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
-                //this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
-
-
                 this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-
                 this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
                 this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
-                //this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                 this.setState({ numberOfQuestions: this.state.questionsreponses.length });
             });
 
@@ -143,7 +132,7 @@ export default class TestPsychotechnique extends React.Component {
 
     handleQuitButtonClick = () => {
         this.playButtonSound();
-        if (window.confirm('Are you sure you want to quit?')) {
+        if (window.confirm('Êtes-vous sûr de vouloir quitter?')) {
             this.props.history.push('/');
         }
     };
@@ -172,7 +161,7 @@ export default class TestPsychotechnique extends React.Component {
 
     correctAnswer = () => {
         M.toast({
-            html: '   Correct Answer!',
+            html: 'Bonne réponse!',
             classes: 'toast-valid',
             displayLength: 1500
         });
@@ -187,14 +176,9 @@ export default class TestPsychotechnique extends React.Component {
             } else {
                 if (this.state.questionsreponses.length != 0) {
                     this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                    // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
                     this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
-
-
                     this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-
                     this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                    //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
                     this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                     this.setState({ numberOfQuestions: this.state.questionsreponses.length });
                 }
@@ -206,7 +190,7 @@ export default class TestPsychotechnique extends React.Component {
     wrongAnswer = () => {
         navigator.vibrate(1000);
         M.toast({
-            html: '  Wrong Answer!',
+            html: 'Mauvaise réponse!',
             classes: 'toast-invalid',
             displayLength: 1500
         });
@@ -222,14 +206,9 @@ export default class TestPsychotechnique extends React.Component {
                 } else {
                     if (this.state.questionsreponses.length != 0) {
                         this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                        // this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
                         this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
-
-
                         this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-
                         this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                        //this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
                         this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                         this.setState({ numberOfQuestions: this.state.questionsreponses.length });
                     }
@@ -238,8 +217,8 @@ export default class TestPsychotechnique extends React.Component {
     }
 
 
-    startTimer = () => {
-        const countDownTime = Date.now() + 180000;
+    startTimer = (duree) => {
+        const countDownTime = Date.now() + (duree * 1000);
         this.interval = setInterval(() => {
             const now = new Date();
             const distance = countDownTime - now;
@@ -271,7 +250,7 @@ export default class TestPsychotechnique extends React.Component {
 
 
     endTest = () => {
-        alert('Test has ended');
+        alert('Le test est terminé');
         const stagiaireStats = {
             score: this.state.score,
             numberOfQuestions: this.state.numberOfQuestions,
@@ -289,130 +268,144 @@ export default class TestPsychotechnique extends React.Component {
     render() {
         return (
 
-            <div>
+            <div className='mainTest' style={{ backgroundImage: `url(${bg})` }}>
 
-                <div className='questions mb-5'>
+                <div className='questions mb-5' >
                     <h2 className='H2'>Test psychotechnique</h2>
                     <audio ref={this.correctSound} src={correctNotification}></audio>
                     <audio ref={this.wrongSound} src={wrongNotification}></audio>
                     <audio ref={this.buttonSound} src={buttonSound}></audio>
 
+                    {this.state.loading ? <Loading /> :
+                        <div >
+                            <p>
+                                <span className='left' style={{ color: '#fff' }} >{this.state.currentQuestionIndex + 1} sur {this.state.numberOfQuestions}</span>
+                                <span className='right' style={{ color: '#fff' }} > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
 
-                    <div>
-                        <p>
-                            <span className='left' >{this.state.currentQuestionIndex + 1} of {this.state.numberOfQuestions}</span>
-                            <span className='right' > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
+                            </p>
 
-                        </p>
 
-                    </div>
 
-                    <div className='H5'>
+                            <div >
 
-                        {this.state.currentQuestion.questionText && this.state.currentQuestion.questionImage ?
 
-                            <div className='H5'>
+                                {this.state.currentQuestion.questionText && this.state.currentQuestion.questionImage ?
 
-                                <h5 className='H5'><span className="textDanger">Q.</span>{this.state.currentQuestion.questionText}</h5>
-                                <img src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} style={{ maxHeight: '10rem' }} /> </div>
-                            :
-                            this.state.currentQuestion.questionText ?
+                                    <div className='container-ques' data-aos="zoom-in-left" style={{ margin: 'auto' }} >
+                                        <div className='options-container' >
 
-                                <h5 ><span className="textDanger">Q.</span>{this.state.currentQuestion.questionText}</h5>
-                                :
-                                <div>
-                                    <span className="textDanger">Q.</span>
-                                    <img src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
-                                </div>
-                        }
-                        {
-                            this.state.currentReponses.map((reponse, index) => {
-                                return (
-                                    <div className='row' key={index}>
 
-                                        {
-                                            reponse.reponseText && reponse.reponseImage ?
-
-                                                <div className='col-md-12' >
-                                                    <div className='options-container'  >
-                                                        {reponse.reponseCorrecte === "Oui" ?
-                                                            <p onClick={this.handleOptionClick} className='option' id="Oui">
-                                                                {reponse.reponseText}<br></br>
-                                                                <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" style={{ maxHeight: '4rem' }} />
-
-                                                            </p> :
-
-                                                            <p onClick={this.handleOptionClick} className='option' id="Non">
-                                                                {reponse.reponseText}<br></br>
-                                                                <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" style={{ maxHeight: '4rem' }} />
-
-                                                            </p>}
-                                                    </div>
-                                                </div>
-
-                                                :
-                                                reponse.reponseText ?
-                                                    <div className='col-md-12'  >
-                                                        <div className='options-container'  >
-                                                            {reponse.reponseCorrecte === "Oui" ?
-                                                                <p onClick={this.handleOptionClick} className='option' id="Oui">{reponse.reponseText}
-                                                                </p> :
-                                                                <p onClick={this.handleOptionClick} className='option' id="Non">{reponse.reponseText}
-                                                                </p>}
-
-                                                        </div>
-                                                    </div>
-                                                    :
-                                                    <div className='col-md-12' >
-                                                        <div className='options-container ' >
-                                                            {reponse.reponseCorrecte === "Oui" ?
-                                                                <p onClick={this.handleOptionClick} className='option' id="Oui">
-                                                                    <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} style={{ maxHeight: '4rem' }} className="img-fluid" />
-                                                                </p> :
-                                                                <p onClick={this.handleOptionClick} className='option' id="Non">
-                                                                    <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} style={{ maxHeight: '4rem' }} className="img-fluid" />
-                                                                </p>}
-                                                        </div>
-                                                    </div>
-                                        }
+                                            <h5 ><span className="textDanger">Q.</span><span style={{ color: '#fff' }}>{this.state.currentQuestion.questionText}</span></h5>
+                                            <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} />
+                                        </div>
                                     </div>
+                                    :
+                                    this.state.currentQuestion.questionText ?
+                                        <div className='container-ques' data-aos="zoom-in-left" style={{ margin: 'auto' }}>
+                                            <div className='options-container'  >
 
-                                )
-                            })
-                        }
+                                                <h5 ><span className="textDanger">Q.</span><span style={{ color: '#fff' }}>{this.state.currentQuestion.questionText}</span></h5>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className='container-ques' data-aos="zoom-in-left">
+                                            <div className='options-container'  >
+                                                <span className="textDanger">Q.</span>
+                                                <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
+                                            </div>
+                                        </div>
 
-                        <div className='button-container'>
-                            {this.state.currentQuestionIndex === 0 ?
-                                <button type="button" id="previous-button" onClick={this.handleButtonClick} disabled style={{
-                                    backgroundColor: '#ccc',
-                                    boxShadow: 'none',
-                                    opacity: '0.9',
-                                    pointerEvents: 'none'
-                                }}>Previous</button>
-                                :
-                                <button type="button" id="previous-button" onClick={this.handleButtonClick} >Previous</button>
-                            }
 
-                            {this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions ?
-                                <button id="next-button" onClick={this.handleButtonClick} disabled style={{
-                                    backgroundColor: '#ccc',
-                                    boxShadow: 'none',
-                                    opacity: '0.9',
-                                    pointerEvents: 'none'
-                                }}>Next</button>
-                                :
-                                <button id="next-button" onClick={this.handleButtonClick}>Next</button>
-                            }
+                                }
+                                {
+                                    this.state.currentReponses.map((reponse, index) => {
+                                        return (
+                                            <div key={index} style={{ display: 'inline-block' }}  >
 
-                            <button id="quit-button" onClick={this.handleButtonClick}>Quit</button>
+                                                {
+                                                    reponse.reponseText && reponse.reponseImage ?
 
+                                                        <div className='options-container'   >
+                                                            {reponse.reponseCorrecte === "Oui" ?
+
+                                                                <p onClick={this.handleOptionClick} className='option' id="Oui">
+                                                                    {reponse.reponseText}<br></br>
+                                                                    <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" />
+
+                                                                </p> :
+
+                                                                <p onClick={this.handleOptionClick} className='option' id="Non">
+                                                                    {reponse.reponseText}<br></br>
+                                                                    <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" />
+
+                                                                </p>}
+                                                        </div>
+
+                                                        :
+                                                        reponse.reponseText ?
+                                                            <div className='options-container'  >
+                                                                {reponse.reponseCorrecte === "Oui" ?
+                                                                    <p onClick={this.handleOptionClick} className='option' id="Oui">{reponse.reponseText}
+                                                                    </p> :
+                                                                    <p onClick={this.handleOptionClick} className='option' id="Non">{reponse.reponseText}
+                                                                    </p>}
+
+                                                            </div>
+                                                            :
+                                                            <div className='options-container ' >
+                                                                {reponse.reponseCorrecte === "Oui" ?
+                                                                    <p onClick={this.handleOptionClick} className='option' id="Oui">
+                                                                        <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" />
+                                                                    </p> :
+                                                                    <p onClick={this.handleOptionClick} className='option' id="Non">
+                                                                        <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="img-fluid" />
+                                                                    </p>}
+                                                            </div>
+                                                }
+                                            </div>
+
+                                        )
+                                    })
+                                }
+                            </div>
+
+
+
+
+
+                            <div style={{ marginRight: '60%' }}>
+                                {this.state.currentQuestionIndex === 0 ?
+                                    <button className='button-71' type="button" id="previous-button" onClick={this.handleButtonClick} disabled style={{
+                                        backgroundColor: '#ccc',
+                                        boxShadow: 'none',
+                                        opacity: '0.9',
+                                        pointerEvents: 'none'
+                                    }}>Précédent </button>
+                                    :
+                                    <button type="button" className='button-71' id="previous-button" onClick={this.handleButtonClick} >Précédent</button>
+                                }
+
+                                {this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions ?
+                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick} disabled style={{
+                                        backgroundColor: '#ccc',
+                                        boxShadow: 'none',
+                                        opacity: '0.9',
+                                        pointerEvents: 'none'
+                                    }}>Suivant</button>
+                                    :
+                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick}>Suivant</button>
+                                }
+
+                                <button id="quit-button" className='button-73' onClick={this.handleButtonClick}>Quitter</button>
+
+                            </div>
                         </div>
 
-                    </div>
-                </div >
+                    }
+
+                </div>
             </div >
         )
     }
 }
-
 

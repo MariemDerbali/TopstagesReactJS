@@ -17,8 +17,8 @@ import EncadrantPrivateRoute from './routes/EncadrantPrivateRoute';
 import ChefDepartementPrivateRoute from './routes/ChefDepartementPrivateRoute';
 
 import Offresdestage from './layouts/Home/Offresdestage';
-import TestPsychotechnique from './layouts/Home/TestPsychotechnique';
-import TestSummary from './layouts/Home/TestSummary';
+import TestPsychotechnique from './layouts/Home/TestPsychotechnique/TestPsychotechnique';
+import TestSummary from './layouts/Home/TestPsychotechnique/TestSummary';
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';

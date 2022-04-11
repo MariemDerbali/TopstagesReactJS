@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
 import "./css/Homestyle.css"
+import swal from 'sweetalert';
 
 export default function Offresdestage() {
 
@@ -17,7 +18,6 @@ export default function Offresdestage() {
 
     ]);
     //varibale d'état pour les erreurs
-    const [errorlist, setError] = useState([]);
 
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
@@ -117,10 +117,9 @@ export default function Offresdestage() {
             if (res.data.status === 200) {
 
                 history.push(`/test-psychotechnique/${stagiaire._id}`);
-                setError([]);//puisqu'il n'y a pas des erreurs des données saisies, stocker donc une liste vide pour les erreurs dans les variables d'état
 
             } else if (res.data.status === 422) {//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
-                setError(res.data.errors);
+                swal("", res.data.message, "warning");
             }
         })
     }
@@ -132,14 +131,14 @@ export default function Offresdestage() {
         <div>
             <form className="row" onSubmit={submitOffreDemandee} >
 
-                <div className="container d-flex align-items-center mb-3">
+                <div className="container d-flex align-items-center mb-3 mt-3" style={{ marginLeft: "20px" }}>
 
                     <h1 className="logo me-auto"><Link to="/">
                         <img src="../assets/img/logos/logo-topstages.png" className="navbarHome-brand-img h-100" style={{ maxHeight: '90px' }} alt="main_logo" />
                     </Link></h1>
 
                 </div>
-                <div className="container">
+                <div className="container" style={{ width: '70%' }}>
                     <div className="row shadow-lg p-3 mb-5 bg-body rounded justify-content-center">
                         <div className='col-md-3'>
                             <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
@@ -157,7 +156,6 @@ export default function Offresdestage() {
 
 
                             </select>
-                            <small className="text-danger">{errorlist.domaine}</small>
                         </div>
                         <div className="col-md-3 ">
                             <select className="form-control w-100 mt-2" name="type" value={type} onChange={handleSelectType}>
@@ -169,7 +167,6 @@ export default function Offresdestage() {
 
 
                             </select>
-                            <small className="text-danger">{errorlist.type}</small>
 
 
 
@@ -179,7 +176,7 @@ export default function Offresdestage() {
                 </div >
 
 
-                <div className='container h-100"'>
+                <div className="container h-100" style={{ width: '80%' }}>
                     <div className="row justify-content-center h-100">
                         {/**s'il n'y a pas de sujet  pour le type de stage initiaton & perfectionnement*/}
                         {(type === 'Stage initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?

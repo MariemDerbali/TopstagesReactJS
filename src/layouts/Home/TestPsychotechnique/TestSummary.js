@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import "./css/testSummary.css"
+import "../css/testSummary.css"
 
 export default class TestSummary extends Component {
     constructor(props) {
@@ -46,7 +46,7 @@ export default class TestSummary extends Component {
                     <div ><h1 className='H1 mt-3 '>Le test est terminé</h1>
                         <div className='stats mt-5'>
                             <h4>{remark}</h4>
-                            <h2 className='H2'>Votre score:{this.state.score.toFixed(0)}&#37;</h2>
+                            <h2 className='score'>Votre score: {this.state.score.toFixed(0)}&#37;</h2>
                             <span className='stat left'>Nombre total de questions :</span>
                             <span className='right'>
                                 {this.state.numberOfQuestions}
@@ -67,7 +67,7 @@ export default class TestSummary extends Component {
                         </div>
                         <section className='section'>
                             <ul>
-                                <li><Link to='/'>Back to home</Link></li>
+                                <li><Link to='/'>Retour à la page d'accueil</Link></li>
 
                             </ul>
                         </section>

@@ -16,12 +16,12 @@
 }
 
 .H1 {
-    color: #57b846;
+    color: #ef8e1f;
     text-align: center;
     font-size: 3rem;
 }
 
-.H2 {
+.score {
     color: #1da1f2;
 }
 
@@ -74,16 +74,16 @@ h4 {
 }
 
 .section ul li:last-child {
-    border: 1px solid #57b846;
+    border: 1px solid #ef8e1f;
     transition: 0.3s linear all;
 }
 
 .section ul li:last-child:hover {
-    background-color: #57b846;
+    background-color: #ef8e1f;
 }
 
 .section ul li:last-child a {
-    color: #57b846;
+    color: #ef8e1f;
 }
 
 .section ul li:last-child a:hover {
