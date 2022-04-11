@@ -18,11 +18,11 @@ export default class TestPsychotechnique extends React.Component {
 
             currentQuestion: {},
             nextQuestion: {},
-            previousQuestion: {},
+            // previousQuestion: {},
 
             currentReponses: [],
             nextReponses: [],
-            previousReponses: [],
+            //previousReponses: [],
 
             repcorrecte: {},
 
@@ -63,7 +63,7 @@ export default class TestPsychotechnique extends React.Component {
 
                     const dureequestions = res.data.duree
                     this.startTimer(dureequestions);
-                    this.setState(this.state.loading = false);
+                    this.setState({ loading: false });
 
                 }
             });
@@ -101,10 +101,10 @@ export default class TestPsychotechnique extends React.Component {
                 currentQuestionIndex: prevState.currentQuestionIndex + 1
             }), () => {
                 this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
+                // this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
                 this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
                 this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
+                //this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                 this.setState({ numberOfQuestions: this.state.questionsreponses.length });
             });
 
@@ -112,24 +112,24 @@ export default class TestPsychotechnique extends React.Component {
     };
 
 
-    handlePreviousButtonClick = () => {
-        this.playButtonSound();
-        if (this.state.previousQuestion !== undefined) {
-            this.setState(prevState => ({
-                currentQuestionIndex: prevState.currentQuestionIndex - 1
-            }), () => {
-                this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
-                this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-                this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
-                this.setState({ numberOfQuestions: this.state.questionsreponses.length });
-            });
-
-
-        }
-    };
-
+    /*  handlePreviousButtonClick = () => {
+          this.playButtonSound();
+          if (this.state.previousQuestion !== undefined) {
+              this.setState(prevState => ({
+                  currentQuestionIndex: prevState.currentQuestionIndex - 1
+              }), () => {
+                  this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
+                  this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
+                  this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
+                  this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
+                  this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
+                  this.setState({ numberOfQuestions: this.state.questionsreponses.length });
+              });
+  
+  
+          }
+      };
+  */
     handleQuitButtonClick = () => {
         this.playButtonSound();
         if (window.confirm('Êtes-vous sûr de vouloir quitter?')) {
@@ -142,9 +142,9 @@ export default class TestPsychotechnique extends React.Component {
             case 'next-button':
                 this.handleNextButtonClick();
                 break;
-            case 'previous-button':
-                this.handlePreviousButtonClick();
-                break;
+            //  case 'previous-button':
+            //    this.handlePreviousButtonClick();
+            //   break;
             case 'quit-button':
                 this.handleQuitButtonClick();
             default:
@@ -374,7 +374,8 @@ export default class TestPsychotechnique extends React.Component {
 
 
                             <div style={{ marginRight: '60%' }}>
-                                {this.state.currentQuestionIndex === 0 ?
+
+                                {/* {this.state.currentQuestionIndex === 0 ?
                                     <button className='button-71' type="button" id="previous-button" onClick={this.handleButtonClick} disabled style={{
                                         backgroundColor: '#ccc',
                                         boxShadow: 'none',
@@ -383,20 +384,21 @@ export default class TestPsychotechnique extends React.Component {
                                     }}>Précédent </button>
                                     :
                                     <button type="button" className='button-71' id="previous-button" onClick={this.handleButtonClick} >Précédent</button>
-                                }
+                                }*/}
 
                                 {this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions ?
-                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick} disabled style={{
+                                    <button id="next-button" className='button-72' onClick={this.endTest}
+                                     /* disabled style={{
                                         backgroundColor: '#ccc',
                                         boxShadow: 'none',
                                         opacity: '0.9',
                                         pointerEvents: 'none'
-                                    }}>Suivant</button>
+                                    }}*/>Terminer</button>
                                     :
-                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick}>Suivant</button>
+                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick}>Question suivante&nbsp;&nbsp;<i className="fas fa-arrow-alt-circle-right"></i></button>
                                 }
 
-                                <button id="quit-button" className='button-73' onClick={this.handleButtonClick}>Quitter</button>
+                                <button id="quit-button" className='button-73' onClick={this.handleButtonClick}>Arrêter le test</button>
 
                             </div>
                         </div>

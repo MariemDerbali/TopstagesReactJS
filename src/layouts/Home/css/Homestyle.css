@@ -2370,7 +2370,7 @@ h6 {
 
 .button-72 {
   margin-right: 8px;
-  background-color: #00d068;
+  background-color: #0078d0;
   border: 0;
   border-radius: 56px;
   color: #fff;
@@ -2392,10 +2392,11 @@ h6 {
 
 
 .button-73 {
-  background-color: #d02d00;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.829);
   border: 0;
   border-radius: 56px;
-  color: #fff;
+  color: #7D7D8A;
   cursor: pointer;
   display: inline-block;
   font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
