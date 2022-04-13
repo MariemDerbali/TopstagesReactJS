@@ -19,6 +19,7 @@ export default function Adddeparment() {
     //variables d'état pour obtenir les valeurs saisies des champs
     const [DepInput, setDepartment] = useState({
         nomdep: '',
+        nomdirection: '',
         chefdep: '',
     });
 
@@ -38,6 +39,7 @@ export default function Adddeparment() {
         // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
         formData.append('nomdep', DepInput.nomdep);
+        formData.append('nomdirection', DepInput.nomdirection);
         formData.append('chefdep', DepInput.chefdep);
 
 
@@ -70,10 +72,16 @@ export default function Adddeparment() {
 
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Nom département</label>
-                                    <input onChange={handleInput} value={DepInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom département' />
+                                    <label className="form-label">Nom</label>
+                                    <input onChange={handleInput} value={DepInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' />
                                     <small className="text-danger">{errorlist.nomdep}</small>
                                 </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">Direction</label>
+                                    <input onChange={handleInput} value={DepInput.nomdirection} type="text" name="nomdirection" className="form-control" placeholder='Direction' />
+                                    <small className="text-danger">{errorlist.nomdirection}</small>
+                                </div>
+
 
 
                                 <div className="col-md-6">

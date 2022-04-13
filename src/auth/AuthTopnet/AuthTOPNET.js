@@ -22,7 +22,7 @@ export default function Auth() {
         setLogin({ ...loginInput, [e.target.name]: e.target.value });
     }
 
-    const loginConcat = "TOPNET/";
+    const loginConcat = "TOPNET\\";
 
     const loginSubmit = (e) => {
         e.preventDefault();
@@ -69,7 +69,7 @@ export default function Auth() {
 
                 } else if (res.data.status === 401) {
 
-                    swal("Warning", res.data.message, "warning");
+                    swal("Attention", res.data.message, "warning");
 
                 } else if (res.data.status === 429) {
                     swal("Oops", res.data.message, "error");
@@ -123,7 +123,7 @@ export default function Auth() {
                                         <label>Login</label>
                                         <div className="mb-3">
                                             <div className="input-group mb-3">
-                                                <span className="input-group-text" id="topnet">TOPNET/</span>
+                                                <span className="input-group-text" id="topnet">TOPNET\</span>
                                                 <input onChange={handleInputLogin} value={loginInput.loginTOPNET} name="loginTOPNET" type="text" className="form-control" placeholder="Login" a-label="Email" aria-describedby="topnet" />
                                                 <span className="text-danger">{loginInput.error_list.loginTOPNET}</span>
                                             </div>

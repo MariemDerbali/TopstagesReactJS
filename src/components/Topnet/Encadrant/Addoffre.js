@@ -92,22 +92,22 @@ export default function Addoffre() {
             <div className="col-12">
                 <div className="card mb-4">
                     <div className="card-header pb-0">
-                        <h6>Créer offre de stage</h6>
+                        <h6>Créer offre</h6>
                     </div>
                     <div className="card-body ">
 
                         <form className="row" onSubmit={submitOffre} >
 
                             <div className="col-md-6">
-                                <label className="form-label">Sujet de stage</label>
-                                <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet de stage' />
+                                <label className="form-label">Sujet</label>
+                                <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet' />
                                 <small className="text-danger">{errorlist.sujet}</small>
 
                             </div>
 
                             <div className="col-md-6">
-                                <label className="form-label">Période de stage (En mois)</label>
-                                <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période de stage' />
+                                <label className="form-label">Période (En mois)</label>
+                                <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période (En mois)' />
                                 <small className="text-danger">{errorlist.periode}</small>
 
                             </div>
@@ -120,9 +120,9 @@ export default function Addoffre() {
                             </div>
 
                             <div className="col-md-6">
-                                <label className="form-label">Domaine de stage</label>
+                                <label className="form-label">Domaine</label>
                                 <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select">
-                                    <option  >Domaine de stage</option>
+                                    <option  >Domaine</option>
                                     <option>{user.departement}</option>
 
                                 </select>
@@ -131,9 +131,9 @@ export default function Addoffre() {
                             </div>
 
                             <div className="col-md-6">
-                                <label className="form-label">Type de stage</label>
+                                <label className="form-label">Type</label>
                                 <select name="type" onChange={handleInput} value={OffreInput.type} className="form-select">
-                                    <option >Type de stage</option>
+                                    <option >Type</option>
                                     <option>Stage PFE</option>
                                     <option>Stage Perfectionnement</option>
                                     <option>Stage Initiation</option>
@@ -142,13 +142,13 @@ export default function Addoffre() {
                             </div>
 
                             <div className="col-md-6">
-                                <label className="form-label">Déscription de stage</label>
-                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription de stage' rows="3"></textarea>
+                                <label className="form-label">Déscription</label>
+                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
                                 <small className="text-danger">{errorlist.description}</small>
                             </div>
 
                             <div className="col-md-6">
-                                <button type="submit" className="btn btn-primary">Créer offre</button>
+                                <button type="submit" className="btn btn-primary">Créer</button>
 
                             </div>
 

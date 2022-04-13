@@ -56,6 +56,7 @@ export default function Editdepartment(props) {
     //variables d'état pour obtenir les valeurs saisies des champs
     const [DepInput, setDepartment] = useState({
         nomdep: '',
+        nomdirection: '',
         chefdep: '',
 
     });
@@ -79,6 +80,7 @@ export default function Editdepartment(props) {
         // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
         formData.append('nomdep', DepInput.nomdep);
+        formData.append('nomdirection', DepInput.nomdirection);
         formData.append('chefdep', DepInput.chefdep);
         formData.append('etat', checkbox.etat ? 'inactive' : 'active');//pour désactiver ou activer un département
 
@@ -121,15 +123,20 @@ export default function Editdepartment(props) {
 
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Nom département</label>
-                                    <input type="text" name="nomdep" onChange={handleInput} value={DepInput.nomdep} className="form-control" placeholder='Nom département' disabled />
+                                    <label className="form-label">Nom</label>
+                                    <input type="text" name="nomdep" onChange={handleInput} value={DepInput.nomdep} className="form-control" placeholder='Nom' disabled />
                                     <small className="text-danger">{errorlist.nomdep}</small>
                                 </div>
 
+                                <div className="col-md-6">
+                                    <label className="form-label">Direction</label>
+                                    <input type="text" name="nomdirection" onChange={handleInput} value={DepInput.nomdirection} className="form-control" placeholder='Direction' disabled />
+                                    <small className="text-danger">{errorlist.nomdirection}</small>
+                                </div>
 
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Chef département</label>
+                                    <label className="form-label">Chef</label>
                                     <input type="text" name="chefdep" onChange={handleInput} value={DepInput.chefdep} className="form-control" placeholder="Chef département" />
                                     <small className="text-danger">{errorlist.chefdep}</small>
                                 </div>

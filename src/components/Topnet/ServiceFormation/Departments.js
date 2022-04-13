@@ -40,7 +40,7 @@ export default function Departments() {
 
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom département</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</h1>//Cellule d'en-tête <th>
                                 , render: (deps) => {
                                     return (
                                         //Cellule de données <td>
@@ -52,9 +52,19 @@ export default function Departments() {
 
 
                             },
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Direction</h1>//Cellule d'en-tête <th>
+                                , render: (deps) => {
+                                    return (
+                                        //Cellule de données <td>
+                                        <p className="text-xs font-weight-bold mb-0">{deps.nomdirection}</p>)
+                                }
+
+
+                            },
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef département</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef</h1>//Cellule d'en-tête <th>
                                 , render: deps => {
                                     return (
                                         //Cellule de données <td>
@@ -67,7 +77,7 @@ export default function Departments() {
 
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7">Etat</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-6">Etat</h1>//Cellule d'en-tête <th>
                                 , render: deps => {
                                     return (
                                         //Cellule de données <td>

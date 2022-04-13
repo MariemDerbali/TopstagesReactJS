@@ -33,7 +33,10 @@ export default function Home() {
                             <li><Link to="" onClick={() => window.location.replace("/#services")}>Services</Link></li>
 
                             <li><Link to="" onClick={() => window.location.replace("/#contact")}>Contact</Link></li>
-                            <li><Link to="" onClick={() => window.location.replace("/offresdestage")}>Offres de stage</Link></li>
+
+                            {localStorage.getItem('auth_token') ?
+                                <li><Link to="" onClick={() => window.location.replace("/offresdestage")}>Offres de stage</Link></li> :
+                                <Link to="/auth" >Offres de stage</Link>}
 
                             {localStorage.getItem('auth_token') ?
                                 <li><Link to="" onClick={() => window.location.replace("/stagiaire/monespace")}>Mon espace</Link></li> :

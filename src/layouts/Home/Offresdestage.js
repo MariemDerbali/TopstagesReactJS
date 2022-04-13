@@ -210,10 +210,9 @@ export default function Offresdestage() {
 
                                                         </p>
                                                         <hr className="my-4" />
-                                                        {localStorage.getItem('auth_token') ?
-                                                            <button type="submit" className="btn btn-info ">Postuler!</button> :
-                                                            <Link to="/auth" ><button type="button" className="btn btn-info ">Postuler!</button></Link>
-                                                        }
+
+                                                        <button type="submit" className="btn btn-info ">Postuler!</button>
+
                                                     </div>
                                                 </div>
                                             </div>

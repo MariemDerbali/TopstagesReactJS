@@ -48,7 +48,7 @@ export default function Profil() {
         tel: '',
         role_id: '',
         departement: '',
-        description: '',
+        // description: '',
 
     });
 
@@ -102,7 +102,7 @@ export default function Profil() {
         formData.append('image', ProfilPicture.image);
         formData.append('role_id', user.role_id);
         formData.append('departement', ProfileUserInput.departement);
-        formData.append('description', ProfileUserInput.description);
+        //formData.append('description', ProfileUserInput.description);
         formData.append('nom', ProfileUserInput.nom);
         formData.append('prenom', ProfileUserInput.prenom);
         formData.append('tel', ProfileUserInput.tel);
@@ -243,40 +243,37 @@ export default function Profil() {
                                     <div className="modal-body">
 
                                         <div className='row'>
-                                            <div className="col-md-6 ">
-                                                <label className="form-label">Déscription</label>
-                                                <input required onChange={handleProfileInput} value={ProfileUserInput.description} type="text" name="description" className="form-control" placeholder='Déscription' />
-                                                <small className="text-danger">{errorlist.description}</small>
 
-                                            </div>
 
                                             <div className="col-md-6 ">
                                                 <label className="form-label">Nom</label>
                                                 <input required onChange={handleProfileInput} value={ProfileUserInput.nom} type="text" name="nom" className="form-control" placeholder='Nom' />
                                                 <small className="text-danger">{errorlist.nom}</small>
                                             </div>
-                                        </div>
-
-                                        <div className='row'>
                                             <div className="col-md-6">
                                                 <label className="form-label">Prénom</label>
                                                 <input required onChange={handleProfileInput} value={ProfileUserInput.prenom} type="text" name="prenom" className="form-control" placeholder='Prénom' />
                                                 <small className="text-danger">{errorlist.prenom}</small>
                                             </div>
+                                        </div>
+
+                                        <div className='row'>
+
 
                                             <div className="col-md-6">
                                                 <label className="form-label">Email</label>
                                                 <input required onChange={handleProfileInput} value={ProfileUserInput.email} type="email" name="email" className="form-control" placeholder='Email' />
                                                 <small className="text-danger">{errorlist.email}</small>
                                             </div>
-
-                                        </div>
-                                        <div className='row'>
                                             <div className="col-md-6">
                                                 <label className="form-label">Adresse</label>
                                                 <input required onChange={handleProfileInput} value={ProfileUserInput.adresse} type="text" name="adresse" className="form-control" placeholder="Adresse" />
                                                 <small className="text-danger">{errorlist.adresse}</small>
                                             </div>
+
+                                        </div>
+                                        <div className='row'>
+
 
 
 
@@ -285,13 +282,14 @@ export default function Profil() {
                                                 <input required onChange={handleProfileInput} value={ProfileUserInput.tel} type="text" name="tel" className="form-control" placeholder="Tél" />
                                                 <small className="text-danger">{errorlist.tel}</small>
                                             </div>
-                                        </div>
-                                        <div className='row'>
                                             <div className="col-md-6">
                                                 <label className="form-label">Département</label>
                                                 <input required type="text" name="departement" onChange={handleProfileInput} value={ProfileUserInput.departement} className="form-control" placeholder='Département' disabled />
                                                 <small className="text-danger">{errorlist.departement}</small>
                                             </div>
+                                        </div>
+                                        <div className='row'>
+
 
 
                                             <div className="col-md-6 mb-3">
@@ -312,8 +310,6 @@ export default function Profil() {
                 </div>
 
 
-
-
                 <div className="col-12 ">
                     <div className="card h-100">
                         <div className="card-header pb-0 p-3">
@@ -329,10 +325,7 @@ export default function Profil() {
                             </div>
                         </div>
                         <div className="card-body p-3">
-                            <p className="text-sm">
-                                {user.description}
-                            </p>
-                            <hr className="horizontal gray-light my-4" />
+
                             <ul className="list-group">
                                 <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Nom et prénom:</strong> &nbsp;{`${user.nom} ${user.prenom}`}</li>
                                 <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Département:</strong> &nbsp; {user.departement}</li>

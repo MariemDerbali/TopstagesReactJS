@@ -383,8 +383,8 @@ export default function Editquestion(props) {
                                 }
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Durée de la question (s)</label>
-                                    <input onChange={handleInput} value={QuestionInput.duree} type="text" name="duree" className="form-control" placeholder='Durée question (s)' />
+                                    <label className="form-label">Durée de la question (En secondes)</label>
+                                    <input onChange={handleInput} value={QuestionInput.duree} type="number" name="duree" className="form-control" placeholder='Durée question (En secondes)' />
                                     <small className="text-danger">{errorlist.duree}</small>
 
                                 </div>

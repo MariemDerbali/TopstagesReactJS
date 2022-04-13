@@ -141,7 +141,7 @@ export default function Offres() {
 
                         }
                         data={offres}
-                        title={<h6>Liste offres de stage</h6>}
+                        title={<h6>Liste offres</h6>}
                         icons={tableIcons}
 
                     />

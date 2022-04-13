@@ -42,7 +42,7 @@ export default function Adduser() {
     }, []);
 
 
-    const loginConcat = "TOPNET/";
+    const loginConcat = "TOPNET\\";
 
     //variables d'état pour obtenir les valeurs saisies des champs
     const [UserInput, setUser] = useState({
@@ -160,7 +160,7 @@ export default function Adduser() {
 
                                 <div className="col-md-6" style={{ marginTop: '30px' }}>
                                     <div className="input-group mb-3">
-                                        <span className="input-group-text" id="topnet">TOPNET/</span>
+                                        <span className="input-group-text" id="topnet">TOPNET\</span>
                                         <input onChange={handleInput} value={UserInput.loginTOPNET} name="loginTOPNET" type="text" className="form-control" placeholder="Login" a-label="Email" aria-describedby="topnet" />
                                         <span className="text-danger">{errorlist.loginTOPNET}</span>
                                     </div>
