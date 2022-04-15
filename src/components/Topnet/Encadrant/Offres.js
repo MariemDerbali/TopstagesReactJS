@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import MaterialTable from 'material-table';
 import tableIcons from "../Coordinateur/MaterialTableIcons";
 import Loading from '../../../layouts/Topnet/Loading';
@@ -20,6 +21,44 @@ export default function Offres() {
 
         });
     }, []);
+
+
+    {/* Activer ou Désactiver offre*/ }
+
+    const desactiverOffre = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/desactiver-offre/${oid}`).then(res => {
+
+            if (res.data.status = 200) {
+                swal("", res.data.message, "success");
+                window.location.reload();
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+
+            }
+        });
+
+    }
+
+
+    {/* publier offre*/ }
+
+    const publierOffre = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/publier-offre/${oid}`).then(res => {
+
+            if (res.data.status = 200) {
+                swal("", res.data.message, "success");
+                window.location.reload();
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+
+            }
+        });
+
+    }
     if (loading) {
         return <Loading />
     }
@@ -104,21 +143,28 @@ export default function Offres() {
 
 
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Etat offre</h1>, render: offres => {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 " style={{ marginLeft: '30px' }}>Etat offre</h1>, render: offres => {
                                     return (
                                         <div className="text-xs text-secondary mb-0">
 
-                                            {(offres.etatoffre === 'inactive') ? <span className="badge badge-sm bg-gradient-danger">Désactivé</span> : <span className="badge badge-sm bg-gradient-success">Activé</span>}
-                                        </div>
+                                            <Link to='#' onClick={(e) => desactiverOffre(e, offres._id.$oid)}>
+                                                {offres.etatoffre == 'inactive' ?
+                                                    <button className="btn btn-danger">Désactivé</button> :
+                                                    <button className="btn btn-success">Activé</button>}
+                                            </Link>                                        </div>
                                     );
                                 }
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Etat partage</h1>, render: offres => {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 " style={{ marginLeft: '30px' }}>Etat partage</h1>, render: offres => {
                                     return (
                                         <div className="text-xs text-secondary mb-0">
-
-                                            {(offres.etatpartage === 'published') ? <span className="badge badge-sm bg-gradient-success">publiée</span> : <span className="badge badge-sm bg-gradient-primary">non publiée</span>}
+                                            <Link to='#' onClick={(e) => publierOffre(e, offres._id.$oid)}>
+                                                {offres.etatpartage == 'unpublished' ?
+                                                    <button className="btn btn-primary">Non publiée</button>
+                                                    :
+                                                    <button className="btn btn-success">Publiée</button>}
+                                            </Link>
                                         </div>
                                     );
                                 }

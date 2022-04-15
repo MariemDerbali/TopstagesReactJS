@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import MaterialTable from 'material-table';
 import tableIcons from "./MaterialTableIcons";
 import Loading from '../../../layouts/Topnet/Loading'
@@ -27,6 +28,25 @@ export default function Users() {
 
         });
     }, []);
+
+    {/* Activer ou Désactiver utilisateur*/ }
+
+    const desactiverUser = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/desactiver-user/${oid}`).then(res => {
+
+            if (res.data.status = 200) {
+                swal("", res.data.message, "success");
+                window.location.reload();
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+
+            }
+        });
+
+    }
+
 
     //si la page est en cours de chargement, donc afficher un spinner
     if (loading) {
@@ -133,17 +153,17 @@ export default function Users() {
 
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Etat</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style={{ marginLeft: '30px' }}>Etat</h1>//Cellule d'en-tête <th>
                                 , render: users => {
                                     return (
                                         //Cellule de données <td>
                                         <div className="align-middle text-center text-sm">
-                                            {/*si l'état de compte d'utilisateur est désactivé */}
-                                            {(users.etat === 'inactive') ?
-                                                //donc afficher désactivé
-                                                <span className="badge badge-sm bg-gradient-danger">Désactivé</span>
-                                                /*sinon si l'état de compte d'utilisateur est activé donc afficher activé */
-                                                : <span className="badge badge-sm bg-gradient-success">Activé</span>}
+
+                                            <Link to='#' onClick={(e) => desactiverUser(e, users._id)}>
+                                                {users.etat == 'inactive' ?
+                                                    <button className="btn btn-danger">Désactivé</button> :
+                                                    <button className="btn btn-success">Activé</button>}
+                                            </Link>
                                         </div>
                                     );
                                 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "../Coordinateur/MaterialTableIcons";
@@ -24,6 +25,26 @@ export default function Questions() {
 
         });
     }, []);
+
+
+    {/* Activer ou Désactiver question*/ }
+
+    const desactiverQuestion = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/desactiver-question/${oid}`).then(res => {
+
+            if (res.data.status = 200) {
+                swal("", res.data.message, "success");
+                window.location.reload();
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+
+            }
+        });
+
+    }
+
 
 
     if (loading) {
@@ -94,9 +115,13 @@ export default function Questions() {
                             {
                                 title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Etat</h1>, render: questions => {
                                     return (
-                                        <div className="text-xs text-secondary mb-0">
+                                        <div >
 
-                                            {(questions.etat === 'inactive') ? <span className="badge badge-sm bg-gradient-danger">Désactivé</span> : <span className="badge badge-sm bg-gradient-success">Activé</span>}
+                                            <Link to='#' onClick={(e) => desactiverQuestion(e, questions._id)}>
+                                                {questions.etat == 'inactive' ?
+                                                    <button className="btn btn-danger">Désactivé</button> :
+                                                    <button className="btn btn-success">Activé</button>}
+                                            </Link>
                                         </div>
                                     );
                                 }

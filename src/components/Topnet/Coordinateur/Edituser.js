@@ -32,17 +32,6 @@ export default function Edituser(props) {
     ]);
 
 
-    //Puisque la valeur du champ est en permanence pilotée par l’état React.
-    //Pour mettre à jour l'état local React
-    //variable d'état pour la case à cocher
-    const [checkbox, setCheckbox] = useState([]);
-    const handleCheckbox = (e) => {
-        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
-
-        //Stocker le valeur de la case à cocher dans les variables d'état
-        setCheckbox({ ...checkbox, [e.target.name]: e.target.checked });
-    }
-
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
         //l'API pour obtenir la liste des rôles
@@ -130,7 +119,6 @@ export default function Edituser(props) {
         formData.append('adresse', UserInput.adresse);
         formData.append('email', UserInput.email);
         formData.append('password', UserInput.password);
-        formData.append('etat', checkbox.etat ? 'inactive' : 'active');//pour désactiver ou activer un utilisateur
 
 
         //l'API pour modifier un utilisateur
@@ -258,14 +246,6 @@ export default function Edituser(props) {
                                     <label className="form-label">Image</label>
                                     <input name="image" onChange={handleImage} className="form-control" type="file" id="formFile" />
                                     <small className="text-danger">{errorlist.image}</small>
-                                </div>
-                                <div className="col-md-6 mt-4">
-                                    <div className='form-check'>
-                                        <input name="etat" onChange={handleCheckbox} defaultChecked={checkbox.etat === 'inactive' ? true : false} className="form-check-input" id="flexCheckChecked" type="checkbox" />
-                                        <label className="form-check-label" >
-                                            Cochez pour désactiver l'utilisateur
-                                        </label>
-                                    </div>
                                 </div>
 
                                 <div className="col-md-6">

@@ -196,25 +196,8 @@ export default function Editoffre(props) {
                                 <textarea class="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
                                 <small className="text-danger">{errorlist.description}</small>
                             </div>
-                            <div className="col-md-6 mt-4">
 
-                                <div className='form-check'>
-                                    <input name="etatoffre" onChange={handleCheckbox} defaultChecked={checkbox.etatoffre === 'inactive' ? true : false} className="form-check-input" type="checkbox" />
-                                    <label className="form-check-label" >
-                                        Cochez pour désactiver l'offre
-                                    </label>
-                                </div>
 
-                            </div>
-
-                            <div className="col-md-6 mt-4">
-                                <div className='form-check'>
-                                    <input name="etatpartage" onChange={handleCheckbox2} defaultChecked={checkbox2.etatpartage === 'published' ? true : false} className="form-check-input" type="checkbox" />
-                                    <label className="form-check-label" >
-                                        Cochez pour publier l'offre
-                                    </label>
-                                </div>
-                            </div>
                             <div className="col-md-6 mt-3">
                                 <button type="submit" className="btn btn-primary">Modifier</button>
 

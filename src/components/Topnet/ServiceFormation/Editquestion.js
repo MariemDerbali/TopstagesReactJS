@@ -20,18 +20,6 @@ export default function Editquestion(props) {
     // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
-
-
-    //Puisque la valeur du champ est en permanence pilotée par l’état React.
-    //Pour mettre à jour l'état local React
-    //variable d'état pour la case à cocher
-    const [checkbox, setCheckbox] = useState([]);
-    const handleCheckbox = (e) => {
-        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
-        //Stocker le valeur de la case à cocher dans les variables d'état
-        setCheckbox({ ...checkbox, [e.target.name]: e.target.checked });
-    }
-
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
 
@@ -87,19 +75,16 @@ export default function Editquestion(props) {
             formData.append('questionImage', picture.questionImage);
             formData.append('niveau', QuestionInput.niveau);
             formData.append('duree', QuestionInput.duree);
-            formData.append('etat', checkbox.etat ? 'inactive' : 'active');
         } else if (QuestionInput.questionText && QuestionInput.questionImage) {
             formData.append('questionText', QuestionInput.questionText);
             formData.append('questionImage', picture.questionImage);
             formData.append('niveau', QuestionInput.niveau);
             formData.append('duree', QuestionInput.duree);
-            formData.append('etat', checkbox.etat ? 'inactive' : 'active');
         }
         else {
             formData.append('questionText', QuestionInput.questionText);
             formData.append('niveau', QuestionInput.niveau);
             formData.append('duree', QuestionInput.duree);
-            formData.append('etat', checkbox.etat ? 'inactive' : 'active');
         }
 
 
@@ -143,24 +128,27 @@ export default function Editquestion(props) {
 
 
 
-    {/* Deleting a response*/ }
-    const deleteReponse = (e, oid) => {
-        e.preventDefault();
-        const thisClicked = e.currentTarget;
 
-        axios.delete(`/api/delete-reponse/${oid}`).then(res => {
+    {/* Activer ou Désactiver response*/ }
+
+
+
+    const desactiverReponse = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/desactiver-reponse/${oid}`).then(res => {
 
             if (res.data.status = 200) {
                 swal("", res.data.message, "success");
-                thisClicked.closest("tr").remove();
-
-            } else if (res.data.status === 404) {
+                window.location.reload();
+            } else if (res.data.status === 401) {
                 swal("", res.data.message, "warning");
 
             }
         });
 
     }
+
 
 
 
@@ -402,14 +390,7 @@ export default function Editquestion(props) {
                                 </div>
 
 
-                                <div className="col-md-6 mt-3">
-                                    <div className='form-check'>
-                                        <input name="etat" onChange={handleCheckbox} defaultChecked={checkbox.etat === 'inactive' ? true : false} className="form-check-input" id="flexCheckChecked" type="checkbox" />
-                                        <label className="form-check-label" >
-                                            Cochez pour désactiver la question
-                                        </label>
-                                    </div>
-                                </div>
+
 
                                 <div className="col-md-6 mt-4">
                                     <button type="submit" className="btn btn-primary">Modifier question</button>
@@ -422,7 +403,7 @@ export default function Editquestion(props) {
 
                             <form onSubmit={submitReponseAdd} >
 
-                                <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
                                         <div className="modal-content">
                                             <div className="modal-header">
@@ -511,7 +492,7 @@ export default function Editquestion(props) {
 
                                         <form onSubmit={updateReponse}>
 
-                                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div className="modal-dialog">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
@@ -616,17 +597,16 @@ export default function Editquestion(props) {
 
                                                 },
 
-
                                                 {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></h1>, render: reponse => {
+                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style={{ marginLeft: '30px' }}>Etat</h1>, render: reponse => {
                                                         return (
                                                             <div>
-                                                                <Link onClick={(e) => deleteReponse(e, reponse._id.$oid)}>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                                                    </svg>
-                                                                </Link>                                                                &nbsp;  &nbsp;  &nbsp; &nbsp;
-                                                                <Link onClick={(e) => showFormUpdateReponse(e, reponse._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                <Link to='#' onClick={(e) => desactiverReponse(e, reponse._id.$oid)}>
+                                                                    {reponse.etat == 'inactive' ?
+                                                                        <button className="btn btn-danger">Désactivé</button> :
+                                                                        <button className="btn btn-success">Activé</button>}
+                                                                </Link>                                                              &nbsp;  &nbsp;  &nbsp; &nbsp;
+                                                                <Link to="#" onClick={(e) => showFormUpdateReponse(e, reponse._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-tools" viewBox="0 0 16 16">
                                                                         <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
                                                                     </svg>
