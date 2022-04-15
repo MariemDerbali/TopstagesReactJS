@@ -147,7 +147,7 @@ export default function Offresdestage() {
                                 {//obtenir la liste des départements
                                     depslist.map((dep, index) => {
                                         return (
-                                            <option value={dep.id} key={index}>{dep.nomdep}</option>
+                                            <option value={dep.id} key={index}>{dep.nomdirection}</option>
 
 
                                         )
@@ -161,9 +161,11 @@ export default function Offresdestage() {
                             <select className="form-control w-100 mt-2" name="type" value={type} onChange={handleSelectType}>
 
                                 <option value="">Type de stage</option>
-                                <option value="Stage PFE">Stage PFE</option>
-                                <option value="Stage Perfectionnement">Stage perfectionnement</option>
-                                <option value="Stage initiation">Stage d'initiation</option>
+                                <option>Stage PFE ingénieur</option>
+                                <option>Stage PFE licence</option>
+                                <option>Stage PFE master</option>
+                                <option>Stage Perfectionnement</option>
+                                <option>Stage Initiation</option>
 
 
                             </select>
@@ -188,7 +190,7 @@ export default function Offresdestage() {
                             </div> :
                             /**s'il n'y a pas de sujet  pour le type de stage PFE*/
 
-                            type === 'Stage PFE' && filteredOffres.length == 0 ?
+                            type === 'Stage PFE licence' || type === 'Stage PFE master' || type === 'Stage PFE ingénieur' && filteredOffres.length == 0 ?
                                 <div className="alert alert-danger" data-aos="zoom-in-right" role="alert" style={{ color: 'white' }}>
                                     Il n'y a pas de sujet pour le moment...veuillez vérifier à nouveau ultérieurement.
                                 </div> :
