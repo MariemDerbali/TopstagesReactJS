@@ -79,6 +79,7 @@ export default function Edituser(props) {
         tel: '',
         role_id: '',
         departement: '',
+        direction: '',
 
 
     });
@@ -111,6 +112,7 @@ export default function Edituser(props) {
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
         formData.append('departement', UserInput.departement);
+        formData.append('direction', UserInput.direction);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -222,6 +224,23 @@ export default function Edituser(props) {
 
                                     </select>
                                     <small className="text-danger">{errorlist.departement}</small>
+                                </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">Direction</label>
+                                    <select name="direction" onChange={handleInput} value={UserInput.direction} className="form-select">
+                                        <option>Direction</option>
+                                        {//obtenir la liste des départements
+                                            depslist.map((dep, index) => {
+                                                return (
+                                                    <option value={dep.id} key={index}>{dep.nomdirection}</option>
+
+
+                                                )
+                                            })
+                                        }
+
+                                    </select>
+                                    <small className="text-danger">{errorlist.direction}</small>
                                 </div>
 
                                 <div className="col-md-6">

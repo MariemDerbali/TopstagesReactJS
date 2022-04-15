@@ -101,7 +101,19 @@ export default function Users() {
                                 }
                                 ,
                                 //pour personnaliser le filtrage et la recherche
-                                customFilterAndSearch: (users) => (users.departement)//filtrer et rechercher par département
+                                customFilterAndSearch: (term, users) => ((users.departement).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par département
+
+
+                            },
+
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Direction</h1>//Cellule d'en-tête <th>
+                                , render: (users) => {
+                                    return (
+                                        <p className="text-xs font-weight-bold mb-0 ">{users.direction}</p>)//Cellule de données <td>
+                                },
+                                customFilterAndSearch: (term, users) => ((users.direction).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par direction
+
 
 
                             },

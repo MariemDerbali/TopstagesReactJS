@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
+import swal from 'sweetalert';
 import tableIcons from "../Coordinateur/MaterialTableIcons";
 
 import Loading from '../../../layouts/Topnet/Loading';
@@ -25,6 +26,25 @@ export default function Departments() {
 
         });
     }, []);
+
+    {/* Activer ou Désactiver département*/ }
+
+    const desactiverDepartement = (e, oid) => {
+        e.preventDefault();
+
+        axios.put(`/api/desactiver-departement/${oid}`).then(res => {
+
+            if (res.data.status = 200) {
+                swal("", res.data.message, "success");
+                window.location.reload();
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+
+            }
+        });
+
+    }
+
 
     //si la page est en cours de chargement, donc afficher un spinner
     if (loading) {
@@ -77,17 +97,16 @@ export default function Departments() {
 
                             },
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-6">Etat</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-6" >Etat</h1>//Cellule d'en-tête <th>
                                 , render: deps => {
                                     return (
                                         //Cellule de données <td>
                                         <div className="align-middle text-center text-sm">
-                                            {/*si l'état de département est désactivé */}
-                                            {(deps.etat === 'inactive') ?
-                                                //donc afficher désactivé
-                                                <span className="badge badge-sm bg-gradient-danger">Désactivé</span>
-                                                /*sinon si l'état de département est activé donc afficher activé */
-                                                : <span className="badge badge-sm bg-gradient-success">Activé</span>}
+                                            <Link to='#' onClick={(e) => desactiverDepartement(e, deps._id)}>
+                                                {deps.etat == 'inactive' ?
+                                                    <button className="btn btn-danger">Désactivé</button> :
+                                                    <button className="btn btn-success">Activé</button>}
+                                            </Link>
                                         </div>
                                     );
                                 }

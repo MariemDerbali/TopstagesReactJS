@@ -56,6 +56,7 @@ export default function Adduser() {
         tel: '',
         role_id: '',
         departement: '',
+        direction: '',
 
     });
 
@@ -88,6 +89,7 @@ export default function Adduser() {
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
         formData.append('departement', UserInput.departement);
+        formData.append('direction', UserInput.direction);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -181,9 +183,9 @@ export default function Adduser() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Départements</label>
+                                    <label className="form-label">Département</label>
                                     <select name="departement" onChange={handleInput} value={UserInput.departement} className="form-select">
-                                        <option>Départements</option>
+                                        <option>Département</option>
                                         {//obtenir la liste des départements
                                             depslist.map((dep, index) => {
                                                 return (
@@ -196,6 +198,24 @@ export default function Adduser() {
 
                                     </select>
                                     <small className="text-danger">{errorlist.departement}</small>
+                                </div>
+
+                                <div className="col-md-6">
+                                    <label className="form-label">Direction</label>
+                                    <select name="direction" onChange={handleInput} value={UserInput.direction} className="form-select">
+                                        <option>Direction</option>
+                                        {//obtenir la liste des départements
+                                            depslist.map((dep, index) => {
+                                                return (
+                                                    <option value={dep.id} key={index}>{dep.nomdirection}</option>
+
+
+                                                )
+                                            })
+                                        }
+
+                                    </select>
+                                    <small className="text-danger">{errorlist.direction}</small>
                                 </div>
                                 <div className="col-md-6">
                                     <label className="form-label">Rôle</label>

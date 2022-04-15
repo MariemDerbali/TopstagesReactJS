@@ -173,7 +173,7 @@ export default function Editoffre(props) {
                                 <label className="form-label">Domaine</label>
                                 <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select" disabled>
                                     <option  >Domaine</option>
-                                    <option>{user.departement}</option>
+                                    <option>{user.direction}</option>
 
                                 </select>
                                 <small className="text-danger">{errorlist.domaine}</small>
@@ -184,7 +184,9 @@ export default function Editoffre(props) {
                                 <label className="form-label">Type</label>
                                 <select name="type" onChange={handleInput} value={OffreInput.type} className="form-select">
                                     <option >Type</option>
-                                    <option>Stage PFE</option>
+                                    <option>Stage PFE ingénieur</option>
+                                    <option>Stage PFE licence</option>
+                                    <option>Stage PFE master</option>
                                     <option>Stage Perfectionnement</option>
                                     <option>Stage Initiation</option>
                                 </select>

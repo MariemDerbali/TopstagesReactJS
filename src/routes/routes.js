@@ -12,6 +12,10 @@ import Editdepartment from '../components/Topnet/ServiceFormation/Editdepartment
 import Questions from '../components/Topnet/ServiceFormation/Questions';
 import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
 import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
+import Addcritere from '../components/Topnet/ServiceFormation/Addcritere';
+import Editcritere from '../components/Topnet/ServiceFormation/Editcritere';
+import Criteres from '../components/Topnet/ServiceFormation/Criteres';
+
 
 import DashboardEncadrant from '../components/Topnet/Encadrant/DashboardEncadrant';
 import Addoffre from '../components/Topnet/Encadrant/Addoffre';
@@ -49,18 +53,34 @@ const routes = [
     { path: '/serviceformation/dashboard', exact: true, name: 'DashboardServiceFormation', component: DashboardServiceFormation },
     //Route pour le profil
     { path: '/serviceformation/profil', exact: true, name: 'Profil', component: Profil },
+
+    /*----------DEPARTEMENT---------- */
+
     //Route pour consulter la liste des départements
     { path: '/serviceformation/departments', exact: true, name: 'Departments', component: Departments },
     //Route pour créer un département
     { path: '/serviceformation/Adddepartment', exact: true, name: 'Adddepartment', component: Adddepartment },
     //Route pour modifier un département
     { path: '/serviceformation/edit-department/:_id', exact: true, name: 'Editdepartment', component: Editdepartment },
+
+    /*----------QUESTION ET REPONSES---------- */
+
     //Route pour consulter la liste des questions
     { path: '/serviceformation/questions', exact: true, name: 'Questions', component: Questions },
     //Route pour créer une question et des réponses
     { path: '/serviceformation/Addquestion', exact: true, name: 'Addquestion', component: Addquestion },
     //Route pour modifier une question et des réponses
     { path: '/serviceformation/edit-question/:_id', exact: true, name: 'Editquestion', component: Editquestion },
+
+    /*----------CRITERES---------- */
+
+    //Route pour créer un critère
+    { path: '/serviceformation/Addcritere', exact: true, name: 'Addcritere', component: Addcritere },
+    //Route pour modifier un critère
+    { path: '/serviceformation/edit-critere/:_id', exact: true, name: 'Editcritere', component: Editcritere },
+    //Route pour consulter la liste des critères
+    { path: '/serviceformation/criteres', exact: true, name: 'Criteres', component: Criteres },
+
 
     /*----------------------------------------Routes privés pour l'encadrant----------------------------------------------------------------------------------------------*/
 
@@ -70,8 +90,6 @@ const routes = [
     { path: '/encadrant/Addoffre', exact: true, name: 'Addoffre', component: Addoffre },
     { path: '/encadrant/offres', exact: true, name: 'Offres', component: Offres },
     { path: '/encadrant/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
-
-
 
 
     /*----------------------------------------Routes privés pour le chéf département----------------------------------------------------------------------------------------------*/

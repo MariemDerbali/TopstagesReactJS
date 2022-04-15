@@ -20,19 +20,6 @@ export default function Editdepartment(props) {
     // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
-
-
-    //Puisque la valeur du champ est en permanence pilotée par l’état React.
-    //Pour mettre à jour l'état local React
-    //variable d'état pour la case à cocher
-    const [checkbox, setCheckbox] = useState([]);
-    const handleCheckbox = (e) => {
-        e.persist();//cela devrait être appelé pour supprimer l'événement en cours du pool.
-
-        //Stocker le valeur de la case à cocher dans les variables d'état
-        setCheckbox({ ...checkbox, [e.target.name]: e.target.checked });
-    }
-
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
 
@@ -82,7 +69,6 @@ export default function Editdepartment(props) {
         formData.append('nomdep', DepInput.nomdep);
         formData.append('nomdirection', DepInput.nomdirection);
         formData.append('chefdep', DepInput.chefdep);
-        formData.append('etat', checkbox.etat ? 'inactive' : 'active');//pour désactiver ou activer un département
 
 
 
@@ -139,17 +125,6 @@ export default function Editdepartment(props) {
                                     <label className="form-label">Chef</label>
                                     <input type="text" name="chefdep" onChange={handleInput} value={DepInput.chefdep} className="form-control" placeholder="Chef département" />
                                     <small className="text-danger">{errorlist.chefdep}</small>
-                                </div>
-
-
-
-                                <div className="col-md-6 mt-3">
-                                    <div className='form-check'>
-                                        <input name="etat" onChange={handleCheckbox} defaultChecked={checkbox.etat === 'inactive' ? true : false} className="form-check-input" id="flexCheckChecked" type="checkbox" />
-                                        <label className="form-check-label" >
-                                            Cochez pour désactiver le département
-                                        </label>
-                                    </div>
                                 </div>
 
                                 <div className="col-md-6 mt-3">
