@@ -85,7 +85,7 @@ export default function Offres() {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs  font-weight-bolder opacity-7" >Déscription</h1>
                                 , render: (offres) => {
                                     return (
-                                        <p className="text-xs font-weight-bold " style={{ width: "200px" }} >{offres.description}</p>)
+                                        <p className="text-xs font-weight-bold" style={{ width: "200px" }} >{offres.description}</p>)
                                 }
 
 
