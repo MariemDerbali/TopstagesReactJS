@@ -35,7 +35,7 @@ export default function Encadrants() {
                     <MaterialTable
                         columns={[
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Utilisateur</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encadrants</h1>//Cellule d'en-tête <th>
                                 , render: encadrants => {
                                     return (
                                         //Cellule de données <td>
@@ -54,29 +54,37 @@ export default function Encadrants() {
                                 customFilterAndSearch: (term, encadrants) => ((encadrants.nom + ' ' + encadrants.prenom).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par nom et prénom
 
                             },
-
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rôle</h1>//Cellule d'en-tête <th>
-                                , render: (encadrants) => {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</h1>//Cellule d'en-tête <th>
+                                , render: encadrants => {
                                     return (
-                                        <p className="text-xs font-weight-bold mb-0">{encadrants.role_id}</p>)//Cellule de données <td>
+                                        //Cellule de données <td>
+                                        <span className="text-secondary text-xs font-weight-bold">{encadrants.matricule}</span>
+
+                                    )
                                 }
-                                ,
-
-                                //pour personnaliser le filtrage et la recherche
-                                customFilterAndSearch: (term, encadrants) => ((encadrants.role_id).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par rôle
-
-
                             },
+
                             {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Département</h1>//Cellule d'en-tête <th>
                                 , render: (encadrants) => {
                                     return (
                                         <p className="text-xs font-weight-bold mb-0 ">{encadrants.departement}</p>)//Cellule de données <td>
                                 }
+
+
+                            },
+
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Direction</h1>//Cellule d'en-tête <th>
+                                , render: (encadrants) => {
+                                    return (
+                                        <p className="text-xs font-weight-bold mb-0">{encadrants.direction}</p>)//Cellule de données <td>
+                                }
                                 ,
+
                                 //pour personnaliser le filtrage et la recherche
-                                customFilterAndSearch: (encadrants) => (encadrants.departement)//filtrer et rechercher par département
+                                customFilterAndSearch: (term, encadrants) => ((encadrants.direction).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par rôle
 
 
                             },
@@ -92,18 +100,7 @@ export default function Encadrants() {
                                 }
 
                             },
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Login</h1>//Cellule d'en-tête <th>
 
-                                , render: encadrants => {
-                                    return (
-                                        //Cellule de données <td>
-                                        <span className="text-xs text-secondary mb-0">{encadrants.loginTOPNET}</span>
-                                    )
-                                }
-
-
-                            },
                             {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresse</h1>//Cellule d'en-tête <th>
                                 , render: encadrants => {
@@ -113,20 +110,7 @@ export default function Encadrants() {
                                 },
 
                             },
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</h1>//Cellule d'en-tête <th>
-                                , render: encadrants => {
-                                    return (
-                                        //Cellule de données <td>
-                                        <span className="text-secondary text-xs font-weight-bold">{encadrants.matricule}</span>
 
-                                    )
-                                },
-
-                                //pour personnaliser le filtre et la recherche
-                                customFilterAndSearch: (encadrants) => (encadrants.matricule)//filtrer et rechercher par matricule
-
-                            }
 
 
 

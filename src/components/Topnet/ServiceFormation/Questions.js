@@ -103,9 +103,6 @@ export default function Questions() {
                                     )
                                 }
 
-                                ,
-
-                                customFilterAndSearch: (term, questions) => ((questions.duree).toLowerCase()).indexOf(term.toLowerCase()) != -1
 
 
                             },
@@ -113,7 +110,7 @@ export default function Questions() {
 
 
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Etat</h1>, render: questions => {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 " style={{ marginLeft: '30px' }}>Etat</h1>, render: questions => {
                                     return (
                                         <div >
 
