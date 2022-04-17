@@ -16,7 +16,8 @@ export default class TestSummary extends Component {
     componentDidMount() {
         const { state } = this.props.location;
         this.setState({
-            score: (state.score / state.numberOfQuestions) * 100,
+            score: state.score,
+            notetotale: state.notetotale,
             numberOfQuestions: state.numberOfQuestions,
             numberOfAnsweredQuestions: state.correctAnswers + state.wrongAnswers,
             correctAnswers: state.correctAnswers,
@@ -26,9 +27,13 @@ export default class TestSummary extends Component {
     render() {
         const { state } = this.props.location;
         let stats, remark;
-        const userScore = this.state.score;
+        const userScore = (this.state.score / this.state.notetotale) * 100;
+        const testnote = this.state.notetotale;
+        const nbrquestions = this.state.numberOfQuestions;
+
+
         if (userScore <= 30) {
-            remark = 'Vous avez besoin de plus de pratique !';
+            remark = 'Vous avez besoin de plus de pratique !';
         } else if (userScore > 30 && userScore <= 50) {
             remark = 'Plus de chance la prochaine fois';
         } else if (userScore <= 70 && userScore > 50) {
@@ -46,7 +51,7 @@ export default class TestSummary extends Component {
                     <div ><h1 className='H1 mt-3 '>Le test est terminé</h1>
                         <div className='stats mt-5'>
                             <h4>{remark}</h4>
-                            <h2 className='score'>Votre score: {this.state.score.toFixed(0)}&#37;</h2>
+                            <h2 className='score'>Votre note: {this.state.score.toFixed(0)}/{this.state.notetotale}</h2>
                             <span className='stat left'>Nombre total de questions :</span>
                             <span className='right'>
                                 {this.state.numberOfQuestions}

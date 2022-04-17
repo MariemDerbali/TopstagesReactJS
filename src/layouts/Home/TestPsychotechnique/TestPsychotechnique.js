@@ -30,6 +30,7 @@ export default class TestPsychotechnique extends React.Component {
             numberOfAnsweredQuestions: 0,
             currentQuestionIndex: 0,
             score: 0,
+            notetotale: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
             time: {}
@@ -47,8 +48,11 @@ export default class TestPsychotechnique extends React.Component {
                 if (res.data.status === 200) {
                     const questionrep = res.data.questionsreponses;
                     const currentStagiaire = res.data.stagiaire;
+                    const noteTesttotale = res.data.notetotale;
                     this.setState(this.state.questionsreponses = questionrep);
                     this.setState(this.state.stagiaire = currentStagiaire);
+
+                    this.setState({ notetotale: noteTesttotale });
 
                     if (this.state.questionsreponses.length != 0) {
 
@@ -64,7 +68,6 @@ export default class TestPsychotechnique extends React.Component {
                     const dureequestions = res.data.duree
                     this.startTimer(dureequestions);
                     this.setState({ loading: false });
-
                 }
             });
 
@@ -166,7 +169,7 @@ export default class TestPsychotechnique extends React.Component {
             displayLength: 1500
         });
         this.setState(prevState => ({
-            score: prevState.score + 1,
+            score: prevState.score + (this.state.notetotale / this.state.numberOfQuestions),
             correctAnswers: prevState.correctAnswers + 1,
             currentQuestionIndex: prevState.currentQuestionIndex + 1,
             numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
@@ -253,6 +256,7 @@ export default class TestPsychotechnique extends React.Component {
         alert('Le test est terminé');
         const stagiaireStats = {
             score: this.state.score,
+            notetotale: this.state.notetotale,
             numberOfQuestions: this.state.numberOfQuestions,
             numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
             correctAnswers: this.state.correctAnswers,
