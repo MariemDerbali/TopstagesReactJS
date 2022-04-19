@@ -11,6 +11,7 @@ export default class TestSummary extends Component {
             numberOfAnsweredQuestions: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
+
         };
     }
     componentDidMount() {
@@ -22,14 +23,18 @@ export default class TestSummary extends Component {
             numberOfAnsweredQuestions: state.correctAnswers + state.wrongAnswers,
             correctAnswers: state.correctAnswers,
             wrongAnswers: state.wrongAnswers,
+            postID: state.postID,
+            type: state.type,
+            domaine: state.domaine,
+
         });
     }
+
+
     render() {
         const { state } = this.props.location;
         let stats, remark;
         const userScore = (this.state.score / this.state.notetotale) * 100;
-        const testnote = this.state.notetotale;
-        const nbrquestions = this.state.numberOfQuestions;
 
 
         if (userScore <= 30) {
@@ -72,7 +77,9 @@ export default class TestSummary extends Component {
                         </div>
                         <section className='section'>
                             <ul>
-                                <li><Link to='/'>Retour à la page d'accueil</Link></li>
+                                {remark === 'Vous avez été excellent' || remark === 'Vous êtes un génie absolu!' ?
+                                    <li><Link to={`/postuler/${this.state.postID}`}>Cliquer pour postuler</Link></li> : <li><Link to='/'>Retour à la page d'accueil</Link></li>}
+
 
                             </ul>
                         </section>

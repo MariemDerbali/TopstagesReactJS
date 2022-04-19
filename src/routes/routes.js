@@ -15,6 +15,7 @@ import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
 import Addcritere from '../components/Topnet/ServiceFormation/Addcritere';
 import Editcritere from '../components/Topnet/ServiceFormation/Editcritere';
 import Criteres from '../components/Topnet/ServiceFormation/Criteres';
+import DemandesStage from '../components/Topnet/ServiceFormation/DemandesStage';
 
 
 import DashboardEncadrant from '../components/Topnet/Encadrant/DashboardEncadrant';
@@ -80,6 +81,9 @@ const routes = [
     { path: '/serviceformation/edit-critere/:_id', exact: true, name: 'Editcritere', component: Editcritere },
     //Route pour consulter la liste des critères
     { path: '/serviceformation/criteres', exact: true, name: 'Criteres', component: Criteres },
+
+    /*----------Demandes de stage---------- */
+    { path: '/serviceformation/demandesdestage', exact: true, name: 'DemandesStage', component: DemandesStage },
 
 
     /*----------------------------------------Routes privés pour l'encadrant----------------------------------------------------------------------------------------------*/

@@ -19,6 +19,7 @@ import ChefDepartementPrivateRoute from './routes/ChefDepartementPrivateRoute';
 import Offresdestage from './layouts/Home/Offresdestage';
 import TestPsychotechnique from './layouts/Home/TestPsychotechnique/TestPsychotechnique';
 import TestSummary from './layouts/Home/TestPsychotechnique/TestSummary';
+import Postuler from './layouts/Home/Postuler';
 
 axios.defaults.baseURL = 'http://localhost:8000/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -42,11 +43,17 @@ function App() {
         <Router>
           <Switch>
 
-            {/*All users Routes*/}
             <Route exact path="/403" component={Page403} />
             <Route exact path="/404" component={Page404} />
             <Route exact path="/" component={Home} />
-            <Route exact path='/offresdestage' component={Offresdestage} />
+
+            <Route path='/offresdestage' >
+              {localStorage.getItem('auth_token') ? <Offresdestage /> : <Auth />}
+            </Route>
+
+            <Route path='/postuler/:post_id' >
+              {localStorage.getItem('auth_token') ? <Postuler /> : <Auth />}
+            </Route>
 
             <Route exact path='/test-psychotechnique/:stagiaire_id' component={TestPsychotechnique} />
             <Route exact path='/test-psychotechnique/summary/:stagiaire_id' component={TestSummary} />
@@ -54,37 +61,29 @@ function App() {
 
 
 
-            {/*Auth Routes*/}
+            {/*-----------Auth Routes-----------------*/}
             <Route exact path="/resetfirstloginpassword/:user_id" component={Resetfirstloginpassword} />
 
 
-
             {/*Stagiaire*/}
-
             <Route path='/auth' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Auth />}
             </Route>
-
             <Route path='/forgotpassword'>
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Forgotpassword />}
             </Route>
-
             <Route path='/resetforgottenpassword/:id' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Resetforgottenpassword />}
             </Route>
 
 
             {/*TOPNET*/}
-
             <Route path='/auth-TOPNET' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <AuthTOPNET />}
             </Route>
-
             <Route path='/topnet-forgotpassword'>
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <TopnetForgotpassword />}
             </Route>
-
-
             <Route path='/topnet-resetforgottenpassword/:id' >
               {localStorage.getItem('auth_token') ? <Redirect to='/' /> : < TopnetResetForgottenpassword />}
             </Route>

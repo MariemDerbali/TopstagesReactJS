@@ -15,6 +15,7 @@ export default class TestPsychotechnique extends React.Component {
             loading: true,
             stagiaire: [],
             questionsreponses: [],
+            postID: {},
 
             currentQuestion: {},
             nextQuestion: {},
@@ -49,8 +50,14 @@ export default class TestPsychotechnique extends React.Component {
                     const questionrep = res.data.questionsreponses;
                     const currentStagiaire = res.data.stagiaire;
                     const noteTesttotale = res.data.notetotale;
+                    const postID = res.data.postid;
+                    const type = res.data.type;
+                    const domaine = res.data.domaine;
                     this.setState(this.state.questionsreponses = questionrep);
                     this.setState(this.state.stagiaire = currentStagiaire);
+                    this.setState({ postID: postID });
+                    this.setState({ postID: postID });
+
 
                     this.setState({ notetotale: noteTesttotale });
 
@@ -261,6 +268,7 @@ export default class TestPsychotechnique extends React.Component {
             numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
             correctAnswers: this.state.correctAnswers,
             wrongAnswers: this.state.wrongAnswers,
+            postID: this.state.postID,
         }
         setTimeout(() => {
             this.props.history.push(`/test-psychotechnique/summary/${this.state.stagiaire._id}`, stagiaireStats);
