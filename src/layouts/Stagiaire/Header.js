@@ -94,6 +94,12 @@ export default function Header() {
                                         <span>Mon profil</span>
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link className="dropdown-item d-flex align-items-center" to="/stagiaire/dossier">
+                                        <i className="bi bi-person"></i>
+                                        <span>Suivre dossier</span>
+                                    </Link>
+                                </li>
 
                                 <li>
                                     <hr className="dropdown-divider" />

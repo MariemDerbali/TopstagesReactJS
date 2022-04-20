@@ -79,8 +79,8 @@ export default function DemandesStage() {
 
                                             <div className="d-flex flex-column justify-content-center">
 
-                                                <h6 className="mb-0 text-sm">{demandesStage.nom} {demandesStage.prenom}</h6>
-                                                <p className="text-xs text-secondary mb-0">{demandesStage.email}</p>
+                                                <h6 className="mb-0 text-sm">{demandesStage.stagiaire[0].nom} {demandesStage.stagiaire[0].prenom}</h6>
+                                                <p className="text-xs text-secondary mb-0">{demandesStage.stagiaire[0].email}</p>
 
                                             </div>
                                         </div>)

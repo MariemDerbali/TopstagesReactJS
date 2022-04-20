@@ -27,6 +27,7 @@ import DashboardChefDepartement from '../components/Topnet/ChefDepartement/Dashb
 import Encadrants from '../components/Topnet/ChefDepartement/Encadrants';
 
 import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
+import Dossier from '../components/Stagiaire/Dossier';
 import Monespace from '../components/Stagiaire/Monespace';
 
 
@@ -111,6 +112,7 @@ const routes = [
 
     { path: '/stagiaire', exact: true, name: 'Stagiaire' },
     { path: '/stagiaire/profil', exact: true, name: 'MonProfil', component: StagiaireProfil },
+    { path: '/stagiaire/dossier', exact: true, name: 'MonDossier', component: Dossier },
     { path: '/stagiaire/monespace', exact: true, name: 'Monespace', component: Monespace },
 
 ]

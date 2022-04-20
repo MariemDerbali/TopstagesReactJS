@@ -94,7 +94,8 @@ export default function Postuler() {
                                         </p>
                                         <hr className="my-4" />
 
-                                        <button type="submit" className="btn btn-info ">Postuler!</button>
+                                        <button type="submit" className="btn btn-info ">Postuler!</button>&nbsp;&nbsp;
+                                        <Link to='/' ><button type="submit" className="btn btn-light ">Annuler</button></Link>
 
                                     </div>
                                 </div>
