@@ -1,34 +1,37 @@
-import Dashboard from '../components/Topnet/Coordinateur/Dashboard';
-import Adduser from '../components/Topnet/Coordinateur/Adduser';
-import Edituser from '../components/Topnet/Coordinateur/Edituser';
-import Users from '../components/Topnet/Coordinateur/Users';
+import Dashboard from '../components/Topnet/Coordinateur/Dashboard/Dashboard';
+import Adduser from '../components/Topnet/Coordinateur/Users/Adduser';
+import Edituser from '../components/Topnet/Coordinateur/Users/Edituser';
+import Users from '../components/Topnet/Coordinateur/Users/Users';
 
 import Profil from '../components/Topnet/Profil';
 
-import DashboardServiceFormation from '../components/Topnet/ServiceFormation/DashboardServiceFormation';
-import Departments from '../components/Topnet/ServiceFormation/Departments';
-import Adddepartment from '../components/Topnet/ServiceFormation/Adddeparment';
-import Editdepartment from '../components/Topnet/ServiceFormation/Editdepartment';
-import Questions from '../components/Topnet/ServiceFormation/Questions';
-import Addquestion from '../components/Topnet/ServiceFormation/Addquestion';
-import Editquestion from '../components/Topnet/ServiceFormation/Editquestion';
-import Addcritere from '../components/Topnet/ServiceFormation/Addcritere';
-import Editcritere from '../components/Topnet/ServiceFormation/Editcritere';
-import Criteres from '../components/Topnet/ServiceFormation/Criteres';
-import DemandesStage from '../components/Topnet/ServiceFormation/DemandesStage';
+import DashboardServiceFormation from '../components/Topnet/ServiceFormation/Dashboard/DashboardServiceFormation';
+
+import Questions from '../components/Topnet/ServiceFormation/Questions/Questions';
+import Addquestion from '../components/Topnet/ServiceFormation/Questions/Addquestion';
+import Editquestion from '../components/Topnet/ServiceFormation/Questions/Editquestion';
+
+import Adddirection from '../components/Topnet/ServiceFormation/Directions/Adddirection';
+import Editdirection from '../components/Topnet/ServiceFormation/Directions/Editdirection';
+import Directions from '../components/Topnet/ServiceFormation/Directions/Directions';
+
+import Addcritere from '../components/Topnet/ServiceFormation/Criteres/Addcritere';
+import Editcritere from '../components/Topnet/ServiceFormation/Criteres/Editcritere';
+import Criteres from '../components/Topnet/ServiceFormation/Criteres/Criteres';
+import DemandesStage from '../components/Topnet/ServiceFormation/DemandeStage/DemandesStage';
 
 
-import DashboardEncadrant from '../components/Topnet/Encadrant/DashboardEncadrant';
-import Addoffre from '../components/Topnet/Encadrant/Addoffre';
-import Offres from '../components/Topnet/Encadrant/Offres';
-import Editoffre from '../components/Topnet/Encadrant/Editoffre';
+import DashboardEncadrant from '../components/Topnet/Encadrant/Dashboard/DashboardEncadrant';
+import Addoffre from '../components/Topnet/Encadrant/Offres/Addoffre';
+import Offres from '../components/Topnet/Encadrant/Offres/Offres';
+import Editoffre from '../components/Topnet/Encadrant/Offres/Editoffre';
 
-import DashboardChefDepartement from '../components/Topnet/ChefDepartement/DashboardChefDepartement';
-import Encadrants from '../components/Topnet/ChefDepartement/Encadrants';
+import DashboardChefDepartement from '../components/Topnet/ChefDepartement/Dashboard/DashboardChefDepartement';
+import Encadrants from '../components/Topnet/ChefDepartement/ListEncadrants/Encadrants';
 
-import StagiaireProfil from '../components/Stagiaire/StagiaireProfil';
-import Dossier from '../components/Stagiaire/Dossier';
-import Monespace from '../components/Stagiaire/Monespace';
+import StagiaireProfil from '../components/Stagiaire/MonProfil/StagiaireProfil';
+import Dossier from '../components/Stagiaire/MonDossier/Dossier';
+import Monespace from '../components/Stagiaire/MonEspace/Monespace';
 
 
 const routes = [
@@ -56,14 +59,15 @@ const routes = [
     //Route pour le profil
     { path: '/serviceformation/profil', exact: true, name: 'Profil', component: Profil },
 
-    /*----------DEPARTEMENT---------- */
+    /*----------DIRECTION ET DEPARTEMENTS---------- */
 
-    //Route pour consulter la liste des départements
-    { path: '/serviceformation/departments', exact: true, name: 'Departments', component: Departments },
-    //Route pour créer un département
-    { path: '/serviceformation/Adddepartment', exact: true, name: 'Adddepartment', component: Adddepartment },
-    //Route pour modifier un département
-    { path: '/serviceformation/edit-department/:_id', exact: true, name: 'Editdepartment', component: Editdepartment },
+    //Route pour consulter la liste des directions
+    { path: '/serviceformation/directions', exact: true, name: 'Departments', component: Directions },
+    //Route pour créer un direction
+    { path: '/serviceformation/Adddirection', exact: true, name: 'Adddirection', component: Adddirection },
+    //Route pour modifier un direction
+    { path: '/serviceformation/edit-direction/:_id', exact: true, name: 'Editdirection', component: Editdirection },
+
 
     /*----------QUESTION ET REPONSES---------- */
 

@@ -110,14 +110,15 @@ export default function Sidebar() {
                                         </g>
                                     </svg>
                                 </div>
-                                <span className="nav-link-text ms-1" style={{ color: "#344767", margin: "0" }}>Gestion départements</span>
+                                <span className="nav-link-text ms-0" style={{ color: "#344767", margin: "0" }}>Gestion directions</span>
                             </Link>
                             <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                 <li style={{ listStyleType: "none" }}>
-                                    <Link className='nav-link ' to="/serviceformation/Adddepartment" >
+
+                                    <Link className='nav-link ' to="/serviceformation/Adddirection" >
                                         <i className="bi bi-circle"></i><span>Créer</span>
                                     </Link>
-                                    <Link className='nav-link ' style={{ margin: "0" }} to="/serviceformation/Departments">
+                                    <Link className='nav-link ' to="/serviceformation/Directions" >
                                         <i className="bi bi-circle"></i><span>Consulter</span>
                                     </Link>
                                 </li>

@@ -48,7 +48,7 @@ export default function Profil() {
         tel: '',
         role_id: '',
         departement: '',
-        // description: '',
+        direction: '',
 
     });
 
@@ -102,7 +102,7 @@ export default function Profil() {
         formData.append('image', ProfilPicture.image);
         formData.append('role_id', user.role_id);
         formData.append('departement', ProfileUserInput.departement);
-        //formData.append('description', ProfileUserInput.description);
+        formData.append('direction', ProfileUserInput.direction);
         formData.append('nom', ProfileUserInput.nom);
         formData.append('prenom', ProfileUserInput.prenom);
         formData.append('tel', ProfileUserInput.tel);
@@ -290,7 +290,11 @@ export default function Profil() {
                                         </div>
                                         <div className='row'>
 
-
+                                            <div className="col-md-6">
+                                                <label className="form-label">Direction</label>
+                                                <input required type="text" name="direction" onChange={handleProfileInput} value={ProfileUserInput.direction} className="form-control" placeholder='Direction' disabled />
+                                                <small className="text-danger">{errorlist.direction}</small>
+                                            </div>
 
                                             <div className="col-md-6 mb-3">
                                                 <label className="form-label">Image</label>
@@ -329,6 +333,7 @@ export default function Profil() {
                             <ul className="list-group">
                                 <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Nom et prénom:</strong> &nbsp;{`${user.nom} ${user.prenom}`}</li>
                                 <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Département:</strong> &nbsp; {user.departement}</li>
+                                <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Direction:</strong> &nbsp; {user.direction}</li>
 
                                 <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Téléphone:</strong> &nbsp;{user.tel}</li>
                                 <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">E-mail:</strong> &nbsp; {user.email}</li>

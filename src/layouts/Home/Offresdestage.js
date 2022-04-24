@@ -66,16 +66,15 @@ export default function Offresdestage() {
 
 
     //Variables d'état pour obtenir la liste des départements
-    const [depslist, setDepslist] = useState([
+    const [directionlist, setDirectionlist] = useState([
 
     ]);
     useEffect(() => {
 
-        //l'API pour obtenir la liste des départements
-        axios.get('/api/homepage-departements').then(res => {
-            if (res.data.status === 200) {//si nous avons obtenu la liste
-                //stockage des départements dans les variables détat
-                setDepslist(res.data.deps);
+        //l'API pour obtenir la liste des directions
+        axios.get('/api/homepage-directions').then(res => {
+            if (res.data.status === 200) {
+                setDirectionlist(res.data.directions);
             }
         });
 
@@ -144,10 +143,10 @@ export default function Offresdestage() {
                             <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
 
                                 <option value="">Domaine de stage</option>
-                                {//obtenir la liste des départements
-                                    depslist.map((dep, index) => {
+                                {//obtenir la liste des directions
+                                    directionlist.map((direction, index) => {
                                         return (
-                                            <option value={dep.id} key={index}>{dep.nomdirection}</option>
+                                            <option value={direction.id} key={index}>{direction.nomdirection}</option>
 
 
                                         )

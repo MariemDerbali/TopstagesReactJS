@@ -3,13 +3,11 @@ import React, { useState } from 'react'
 import swal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import tableIcons from "../Coordinateur/MaterialTableIcons";
+import tableIcons from "../../Coordinateur/MaterialTableIcons";
 
 //pour créer une question
 export default function Addquestion() {
 
-    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
-    const history = useHistory();
 
     //pour afficher les champs de question
     function textimageCheck() {
@@ -489,7 +487,7 @@ export default function Addquestion() {
                             ]
 
                             }
-                            data={reponse}//la liste des utilisateurs
+                            data={reponse}//la liste des réponses
                             title={<h6>Liste réponses</h6>}//titre de tableau
                             icons={tableIcons}//icônes de tableau
 

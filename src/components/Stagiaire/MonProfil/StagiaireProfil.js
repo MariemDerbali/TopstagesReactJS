@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import swal from 'sweetalert';
-import Loading from '../../layouts/Topnet/Loading';
+import Loading from '../../../layouts/Topnet/Loading';
 import { Link } from 'react-router-dom';
 
 //Profil pour tous les utilisateurs

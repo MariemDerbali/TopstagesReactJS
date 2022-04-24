@@ -33,7 +33,7 @@ export default function Addcritere() {
     useEffect(() => {
         axios.get('/api/directions').then(res => {
             if (res.data.status === 200) {
-                setDirections(res.data.deps);
+                setDirections(res.data.directions);
             }
         });
     }, []);

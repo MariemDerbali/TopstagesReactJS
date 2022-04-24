@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Loading from '../../layouts/Topnet/Loading';
+import Loading from '../../../layouts/Topnet/Loading';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import tableIcons from "../Topnet/Coordinateur/MaterialTableIcons";
+import tableIcons from "../../Topnet/Coordinateur/MaterialTableIcons";
 
 export default function Dossier() {
     const [loading, setLoading] = useState(true);

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
-import Loading from '../../../layouts/Topnet/Loading';
+import Loading from '../../../../layouts/Topnet/Loading';
 
 export default function Editcritere(props) {
 
@@ -87,7 +87,7 @@ export default function Editcritere(props) {
     useEffect(() => {
         axios.get('/api/directions').then(res => {
             if (res.data.status === 200) {
-                setDirections(res.data.deps);
+                setDirections(res.data.directions);
             }
         });
     }, []);

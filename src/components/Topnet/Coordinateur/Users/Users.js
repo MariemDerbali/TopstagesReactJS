@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import MaterialTable from 'material-table';
-import tableIcons from "./MaterialTableIcons";
-import Loading from '../../../layouts/Topnet/Loading'
-import '../ServiceFormation/myStyle.css';
+import tableIcons from "../MaterialTableIcons";
+import Loading from '../../../../layouts/Topnet/Loading';
+import '../../ServiceFormation/myStyle.css';
 
 //pour consulter la liste des utilisateurs
 export default function Users() {

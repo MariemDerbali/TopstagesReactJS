@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import tableIcons from "../Coordinateur/MaterialTableIcons";
-import Loading from '../../../layouts/Topnet/Loading';
+import tableIcons from "../../Coordinateur/MaterialTableIcons";
+import Loading from '../../../../layouts/Topnet/Loading';
 
 export default function DemandesStage() {
 

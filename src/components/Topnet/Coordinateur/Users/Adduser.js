@@ -21,6 +21,10 @@ export default function Adduser() {
 
     ]);
 
+    //Variables d'état pour obtenir la liste des directions
+    const [directionlist, setDirectionlist] = useState([
+
+    ]);
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
     useEffect(() => {
         //l'API pour obtenir la liste des rôles
@@ -35,6 +39,14 @@ export default function Adduser() {
             if (res.data.status === 200) {//si nous avons obtenu la liste
                 //stockage des départements dans les variables détat
                 setDepslist(res.data.deps);
+            }
+        });
+
+        //l'API pour obtenir la liste des directions
+        axios.get('/api/user-directions').then(res => {
+            if (res.data.status === 200) {//si nous avons obtenu la liste
+                //stockage des directions dans les variables détat
+                setDirectionlist(res.data.directions);
             }
         });
 
@@ -204,10 +216,10 @@ export default function Adduser() {
                                     <label className="form-label">Direction</label>
                                     <select name="direction" onChange={handleInput} value={UserInput.direction} className="form-select">
                                         <option>Direction</option>
-                                        {//obtenir la liste des départements
-                                            depslist.map((dep, index) => {
+                                        {//obtenir la liste des directions
+                                            directionlist.map((direction, index) => {
                                                 return (
-                                                    <option value={dep.id} key={index}>{dep.nomdirection}</option>
+                                                    <option value={direction.id} key={index}>{direction.nomdirection}</option>
 
 
                                                 )
