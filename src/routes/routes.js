@@ -25,6 +25,9 @@ import DashboardEncadrant from '../components/Topnet/Encadrant/Dashboard/Dashboa
 import Addoffre from '../components/Topnet/Encadrant/Offres/Addoffre';
 import Offres from '../components/Topnet/Encadrant/Offres/Offres';
 import Editoffre from '../components/Topnet/Encadrant/Offres/Editoffre';
+import Demandes from '../components/Topnet/Encadrant/PriseEnCharge/Demandes';
+import Reunions from '../components/Topnet/Encadrant/Reunions/Reunions';
+
 
 import DashboardChefDepartement from '../components/Topnet/ChefDepartement/Dashboard/DashboardChefDepartement';
 import Encadrants from '../components/Topnet/ChefDepartement/ListEncadrants/Encadrants';
@@ -99,6 +102,8 @@ const routes = [
     { path: '/encadrant/Addoffre', exact: true, name: 'Addoffre', component: Addoffre },
     { path: '/encadrant/offres', exact: true, name: 'Offres', component: Offres },
     { path: '/encadrant/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
+    { path: '/encadrant/demandes', exact: true, name: 'Demandes', component: Demandes },
+    { path: '/encadrant/reunions', exact: true, name: 'Reunions', component: Reunions },
 
 
     /*----------------------------------------Routes privés pour le chéf département----------------------------------------------------------------------------------------------*/
