@@ -1,15 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
-import swal from 'sweetalert';
 import dayGridPlugin from '@fullcalendar/daygrid'
 import frLocale from '@fullcalendar/core/locales/fr';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import axios from 'axios';
 import moment from 'moment';
+import swal from 'sweetalert';
 
 export default function Reunions() {
-
     const [errorlist, setError] = useState([]);
 
     const [title, setTitle] = useState('');
@@ -22,30 +21,32 @@ export default function Reunions() {
     const onEventAdded = event => {
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
-            start: moment(event.start).toDate(),
-            end: moment(event.end).toDate(),
+            start: event.start,
+            end: event.end,
             title: event.title,
             url: event.url
         });
     }
+
     const onSubmit = (event) => {
         event.preventDefault();
 
         onEventAdded({
+            start,
+            end,
             title,
             url,
-            start,
-            end
+
         })
     }
 
     async function submitreunions() {
 
         const formData = new FormData();
-        formData.append('titre', title);
+        formData.append('title', title);
         formData.append('url', url);
-        formData.append('debut', start);
-        formData.append('fin', end);
+        formData.append('start', start);
+        formData.append('end', end);
 
         await axios.post('/api/reunions', formData).then(res => {
             if (res.data.status === 200) {
@@ -58,15 +59,19 @@ export default function Reunions() {
         })
     }
 
-    async function handleDateSet() {
-        await axios.get('/api/reunions').then(res => {
+    useEffect(() => {
+
+        axios.get('/api/reunions').then(res => {
             if (res.data.status === 200) {
                 setEvents(res.data.reunions);
 
+
             }
 
+
+
         });
-    }
+    }, []);
 
 
     return (
@@ -85,9 +90,9 @@ export default function Reunions() {
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label className="form-label">Titre</label>
-                                        <input type="text" value={title} onChange={e => setTitle(e.target.value)} name="titre" className="form-control" placeholder='Titre' />
-                                        <small className="text-danger">{errorlist.titre}</small>
+                                        <label className="form-label">titre</label>
+                                        <input type="text" value={title} onChange={e => setTitle(e.target.value)} name="title" className="form-control" placeholder='title' />
+                                        <small className="text-danger">{errorlist.title}</small>
 
                                     </div>
 
@@ -105,16 +110,16 @@ export default function Reunions() {
                                     <div className="col-md-6">
                                         <label className="form-label">Début</label>
 
-                                        <Datetime value={start} onChange={date => setStart(date)} name="debut" />
-                                        <small className="text-danger">{errorlist.debut}</small>
+                                        <Datetime value={start} onChange={date => setStart(date)} name="start" />
+                                        <small className="text-danger">{errorlist.start}</small>
 
                                     </div>
 
                                     <div className="col-md-6">
                                         <label className="form-label">Fin</label>
 
-                                        <Datetime value={end} onChange={date => setEnd(date)} name="fin" />
-                                        <small className="text-danger">{errorlist.fin}</small>
+                                        <Datetime value={end} onChange={date => setEnd(date)} name="end" />
+                                        <small className="text-danger">{errorlist.end}</small>
 
                                     </div>
                                 </div>
@@ -134,12 +139,35 @@ export default function Reunions() {
             <FullCalendar
                 ref={calendarRef}
                 locale={frLocale}
-                events={events}
                 plugins={[dayGridPlugin]} initialView="dayGridMonth"
+
+                events={events}
+
                 eventAdd={submitreunions}
-                dateSet={handleDateSet}
+                eventClick={
+                    function (arg) {
+                        var dateObj = arg.event.start;
+                        var month = dateObj.getUTCMonth() + 1; //months from 1-12
+                        var day = dateObj.getUTCDate();
+                        var year = dateObj.getUTCFullYear();
+                        var hours = dateObj.getHours();
+                        var minutes = dateObj.getMinutes();
+                        var dateObjend = arg.event.end;
+                        var hoursend = dateObjend.getHours();
+                        var minutesend = dateObjend.getMinutes();
+
+
+                        arg.jsEvent.preventDefault();
+                        swal({
+                            title: arg.event.title,
+                            text: 'Date et heure : le ' + year + "/" + month + "/" + day + ' ' + hours + ':' + minutes + '-' + hoursend + ':' + minutesend + '\n' + 'URL: ' + arg.event.url
+                        })
+
+                    }}
+
             />
 
         </div >
     )
+
 }
