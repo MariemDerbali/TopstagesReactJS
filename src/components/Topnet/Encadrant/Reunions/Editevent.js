@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import Loading from '../../../../layouts/Topnet/Loading';
 import Datetime from 'react-datetime';
-
+import moment from 'moment';
 
 export default function Editevent(props) {
 
@@ -18,12 +18,12 @@ export default function Editevent(props) {
 
     const [EventInput, setEvent] = useState({
         title: '',
-        start: new Date(),
-        end: new Date(),
         url: '',
 
     });
 
+    const [start, setStart] = useState(new Date());
+    const [end, setEnd] = useState(new Date());
 
 
     const handleInput = (e) => {
@@ -37,6 +37,8 @@ export default function Editevent(props) {
         axios.get(`/api/edit-reunion/${event_id}`).then(res => {
             if (res.data.status === 200) {
                 setEvent(res.data.reunion);
+                setStart(moment(res.data.reunion.start).toDate());
+                setEnd(moment(res.data.reunion.end).toDate());
             } else if (res.data.status === 404) {
                 swal("", res.data.message, "error");
                 history.goBack();
@@ -56,8 +58,8 @@ export default function Editevent(props) {
         const formData = new FormData();
         formData.append('title', EventInput.title);
         formData.append('url', EventInput.url);
-        formData.append('start', EventInput.start);
-        formData.append('end', EventInput.end);
+        formData.append('start', start);
+        formData.append('end', end);
 
         axios.post(`/api/reunions/${event_id}`, formData).then(res => {
 
@@ -74,7 +76,20 @@ export default function Editevent(props) {
             }
         });
     }
+    const handleStart = (date) => {
+        setStart(moment(date).toDate());
+    }
+    const handleEnd = (date) => {
+        setEnd(moment(date).toDate());
+    }
 
+
+
+    // disable past dates
+    const yesterday = moment().subtract(1, 'day');
+    const disablePastDt = current => {
+        return current.isAfter(yesterday);
+    };
 
 
     if (loading) {
@@ -104,7 +119,7 @@ export default function Editevent(props) {
                             <div className="col-md-6">
                                 <label className="form-label">Début</label>
 
-                                <Datetime onChange={handleInput} value={EventInput.start} name="start" />
+                                <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleStart} value={start} name="start" />
                                 <small className="text-danger">{errorlist.start}</small>
 
                             </div>
@@ -112,7 +127,7 @@ export default function Editevent(props) {
                             <div className="col-md-6">
                                 <label className="form-label">Fin</label>
 
-                                <Datetime onChange={handleInput} value={EventInput.end} name="end" />
+                                <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleEnd} value={end} name="end" />
                                 <small className="text-danger">{errorlist.end}</small>
 
                             </div>

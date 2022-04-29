@@ -8,6 +8,8 @@ import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import axios from 'axios';
 import swal from 'sweetalert';
+import 'moment/locale/fr';
+import moment from 'moment'
 
 export default function Calendar() {
     const [errorlist, setError] = useState([]);
@@ -52,6 +54,7 @@ export default function Calendar() {
         await axios.post('/api/reunions', formData).then(res => {
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
+                console.log(moment(start).toDate());
                 setError([]);
             } else if (res.data.status === 422) {
                 setError(res.data.errors);
@@ -75,6 +78,28 @@ export default function Calendar() {
     }, []);
 
 
+    const handleStart = (date) => {
+        setStart(moment(date).toDate());
+    }
+    const handleEnd = (date) => {
+        setEnd(moment(date).toDate());
+    }
+    const handleTitle = (e) => {
+        e.persist();
+        setTitle(e.target.value);
+    }
+    const handleUrl = (e) => {
+        e.persist();
+        setUrl(e.target.value);
+    }
+
+    // disable past dates
+    const yesterday = moment().subtract(1, 'day');
+    const disablePastDt = current => {
+        return current.isAfter(yesterday);
+    };
+
+
     return (
         <div>
 
@@ -95,14 +120,14 @@ export default function Calendar() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label className="form-label">titre</label>
-                                        <input type="text" value={title} onChange={e => setTitle(e.target.value)} name="title" className="form-control" placeholder='title' />
+                                        <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='title' />
                                         <small className="text-danger">{errorlist.title}</small>
 
                                     </div>
 
                                     <div className="col-md-6">
                                         <label className="form-label">Url</label>
-                                        <input type="text" value={url} onChange={e => setUrl(e.target.value)} name="url" className="form-control" placeholder='URL' />
+                                        <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='URL' />
                                         <small className="text-danger">{errorlist.url}</small>
 
                                     </div>
@@ -114,7 +139,8 @@ export default function Calendar() {
                                     <div className="col-md-6">
                                         <label className="form-label">Début</label>
 
-                                        <Datetime value={start} onChange={date => setStart(date)} name="start" />
+                                        <Datetime isValidDate={disablePastDt}
+                                            locale="fr-ca" value={start} onChange={handleStart} name="start" />
                                         <small className="text-danger">{errorlist.start}</small>
 
                                     </div>
@@ -122,7 +148,8 @@ export default function Calendar() {
                                     <div className="col-md-6">
                                         <label className="form-label">Fin</label>
 
-                                        <Datetime value={end} onChange={date => setEnd(date)} name="end" />
+                                        <Datetime isValidDate={disablePastDt}
+                                            locale="fr-ca" value={end} onChange={handleEnd} name="end" />
                                         <small className="text-danger">{errorlist.end}</small>
 
                                     </div>
