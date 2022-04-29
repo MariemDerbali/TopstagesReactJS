@@ -35,6 +35,8 @@ import Encadrants from '../components/Topnet/ChefDepartement/ListEncadrants/Enca
 import StagiaireProfil from '../components/Stagiaire/MonProfil/StagiaireProfil';
 import Dossier from '../components/Stagiaire/MonDossier/Dossier';
 import Monespace from '../components/Stagiaire/MonEspace/Monespace';
+import Calendar from '../components/Topnet/Encadrant/Reunions/Calendar';
+import Editevent from '../components/Topnet/Encadrant/Reunions/Editevent';
 
 
 const routes = [
@@ -104,6 +106,10 @@ const routes = [
     { path: '/encadrant/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
     { path: '/encadrant/demandes', exact: true, name: 'Demandes', component: Demandes },
     { path: '/encadrant/reunions', exact: true, name: 'Reunions', component: Reunions },
+    { path: '/encadrant/calendrier', exact: true, name: 'Calendrier', component: Calendar },
+    { path: '/encadrant/edit-event/:_id', exact: true, name: 'Editevent', component: Editevent },
+
+
 
 
     /*----------------------------------------Routes privés pour le chéf département----------------------------------------------------------------------------------------------*/

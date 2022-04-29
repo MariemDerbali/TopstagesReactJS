@@ -95,7 +95,7 @@ export default function Editoffre(props) {
 
 
 
-    //fonction pour modifier un utlisateur
+    //fonction pour modifier une offre
     const updateOffre = (e) => {
         e.preventDefault();//C'est une méthode présente dans l'interface événementielle. Cette méthode empêche le navigateur d'exécuter le comportement par défaut de l'élément sélectionné. Cette méthode ne peut annuler l'événement que si l'événement est annulable.
 
