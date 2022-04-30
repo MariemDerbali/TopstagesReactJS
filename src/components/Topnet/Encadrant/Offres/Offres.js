@@ -2,9 +2,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import Loading from '../../../../layouts/Topnet/Loading';
 import MaterialTable from 'material-table';
 import tableIcons from "../../Coordinateur/MaterialTableIcons";
-import Loading from '../../../../layouts/Topnet/Loading';
 
 export default function Offres() {
     const [loading, setLoading] = useState(true);

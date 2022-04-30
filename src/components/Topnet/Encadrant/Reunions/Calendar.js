@@ -119,15 +119,15 @@ export default function Calendar() {
                             <div className="modal-body">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <label className="form-label">titre</label>
-                                        <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='title' />
+                                        <label className="form-label">Titre</label>
+                                        <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='Titre' />
                                         <small className="text-danger">{errorlist.title}</small>
 
                                     </div>
 
                                     <div className="col-md-6">
-                                        <label className="form-label">Url</label>
-                                        <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='URL' />
+                                        <label className="form-label">Lien</label>
+                                        <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='Lien' />
                                         <small className="text-danger">{errorlist.url}</small>
 
                                     </div>
