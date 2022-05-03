@@ -99,73 +99,88 @@ export default function Calendar() {
         return current.isAfter(yesterday);
     };
 
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/currentuser').then(res => {
+            if (res.data.status === 200) {
+                setUser(res.data.currentuser);
+            }
+        });
+    }, []);
 
     return (
         <div>
 
 
+            {user.role_id === "Encadrant" ?
+                <div> <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Ajouter une réunion</button>
 
-            <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Ajouter une réunion</button>
-            <form onSubmit={onSubmit} >
 
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Créer réunion</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label className="form-label">Titre</label>
-                                        <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='Titre' />
-                                        <small className="text-danger">{errorlist.title}</small>
+                    <form onSubmit={onSubmit} >
+
+                        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel">Créer réunion</h5>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <label className="form-label">Titre</label>
+                                                <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='Titre' />
+                                                <small className="text-danger">{errorlist.title}</small>
+
+                                            </div>
+
+                                            <div className="col-md-6">
+                                                <label className="form-label">Lien</label>
+                                                <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='Lien' />
+                                                <small className="text-danger">{errorlist.url}</small>
+
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+
+
+                                            <div className="col-md-6">
+                                                <label className="form-label">Début</label>
+
+                                                <Datetime isValidDate={disablePastDt}
+                                                    locale="fr-ca" value={start} onChange={handleStart} name="start" />
+                                                <small className="text-danger">{errorlist.start}</small>
+
+                                            </div>
+
+                                            <div className="col-md-6">
+                                                <label className="form-label">Fin</label>
+
+                                                <Datetime isValidDate={disablePastDt}
+                                                    locale="fr-ca" value={end} onChange={handleEnd} name="end" />
+                                                <small className="text-danger">{errorlist.end}</small>
+
+                                            </div>
+                                        </div>
+
 
                                     </div>
 
-                                    <div className="col-md-6">
-                                        <label className="form-label">Lien</label>
-                                        <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='Lien' />
-                                        <small className="text-danger">{errorlist.url}</small>
-
+                                    <div className="modal-footer">
+                                        <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        <button type="submit" className="btn btn-primary">Créer</button>
                                     </div>
                                 </div>
-
-                                <div className="row">
-
-
-                                    <div className="col-md-6">
-                                        <label className="form-label">Début</label>
-
-                                        <Datetime isValidDate={disablePastDt}
-                                            locale="fr-ca" value={start} onChange={handleStart} name="start" />
-                                        <small className="text-danger">{errorlist.start}</small>
-
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label className="form-label">Fin</label>
-
-                                        <Datetime isValidDate={disablePastDt}
-                                            locale="fr-ca" value={end} onChange={handleEnd} name="end" />
-                                        <small className="text-danger">{errorlist.end}</small>
-
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                            <div className="modal-footer">
-                                <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                <button type="submit" className="btn btn-primary">Créer</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </form >
+                    </form ></div> :
+                null
+            }
+
+
 
             <FullCalendar
                 ref={calendarRef}

@@ -4,12 +4,18 @@ import Loading from '../../../layouts/Topnet/Loading';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "../../Topnet/Coordinateur/MaterialTableIcons";
+import swal from 'sweetalert';
 
 export default function Dossier() {
+    const [errorlist, setError] = useState([]);
+
     const [loading, setLoading] = useState(true);
+
+    const [notifExist, setNotifExist] = useState(false);
 
     const [demandesStage, setDemandeStage] = useState([]);
 
+    const [notif, setNotif] = useState([]);
 
     const VoirImageFiche = (e, ficherep) => {
         e.preventDefault();
@@ -36,7 +42,57 @@ export default function Dossier() {
             }
 
         });
+
+        axios.get('/api/notif').then(res => {
+            if (res.data.status === 200) {
+
+                setNotif(res.data.notif);
+                setNotifExist(true);
+                setLoading(false);
+
+            }
+
+        });
+
     }, []);
+
+    const setPostID = (e, id) => {
+        e.preventDefault();
+        localStorage.setItem('id_post', id);
+    }
+
+    const [file1, setCvFile] = useState([]);
+    const handle1 = (e) => {
+        setCvFile({ cv: e.target.files[0] });
+    }
+    const [file2, setFicherepFile] = useState([]);
+    const handle2 = (e) => {
+        setFicherepFile({ ficherep: e.target.files[0] });
+    }
+
+    const updateDocuments = (e) => {
+        e.preventDefault();
+
+        const postID = localStorage.getItem('id_post');
+
+        const formData = new FormData();
+        formData.append('cv', file1.cv);
+        formData.append('ficherep', file2.ficherep);
+
+
+        axios.post(`/api/documents/${postID}`, formData).then(res => {
+
+            if (res.data.status === 200) {
+                swal("", res.data.message, "success");
+                setError([]);
+                window.location.reload();
+            }
+            else if (res.data.status === 404) {
+                swal("", res.data.message, "error");
+            }
+        });
+    }
+
 
     if (loading) {
         return <Loading />
@@ -47,7 +103,49 @@ export default function Dossier() {
         return (
             <div>
 
+                {
+                    notifExist ?
+                        <div className="alert alert-danger" role="alert" style={{ color: '#fff' }}>
+                            {notif.message}
+                        </div> :
+                        null
+                }
 
+                <form onSubmit={updateDocuments} >
+
+                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title" id="exampleModalLabel">Modifier documents</h5>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div className="modal-body">
+                                    <div className="row">
+                                        <div className="col-md-6 ">
+                                            <label className="form-label">CV</label>
+                                            <input name="cv" onChange={handle1} className="form-control" type="file" id="formFile" />
+                                            <small className="text-danger">{errorlist.cv}</small>
+                                        </div>
+
+                                        <div className="col-md-6 ">
+                                            <label className="form-label">Fiche de réponse</label>
+                                            <input name="ficherep" onChange={handle2} className="form-control" type="file" id="formFile" />
+                                            <small className="text-danger">{errorlist.ficherep}</small>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div className="modal-footer">
+                                    <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    <button type="submit" className="btn btn-primary">Modifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form >
 
                 <div className="row">
                     <div className="col-12">
@@ -108,9 +206,17 @@ export default function Dossier() {
                                             <div className="align-middle text-center text-sm">
 
                                                 {demandesStage.etatdemande === 'Nouvellement créé' ?
-                                                    <span className="badge rounded-pill bg-light text-dark">
-                                                        Votre dossier vient d'être envoyé!
-                                                    </span>
+                                                    <div>
+                                                        <span className="badge rounded-pill bg-light text-dark">
+                                                            Votre dossier vient d'être envoyé!
+                                                        </span>&nbsp;<Link to="#"
+                                                            onClick={(e) => setPostID(e, demandesStage._id)} className="btn btn-light"
+                                                            data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-tools" viewBox="0 0 16 16">
+                                                                <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
+                                                            </svg>
+                                                        </Link>
+                                                    </div>
                                                     : demandesStage.etatdemande === 'En cours de traitement' ?
                                                         <span className="badge rounded-pill bg-info text-dark">
                                                             Votre dossier est en cours de traitement.</span>
