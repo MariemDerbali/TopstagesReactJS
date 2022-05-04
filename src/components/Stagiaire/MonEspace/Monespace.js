@@ -1,11 +1,38 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import Loading from '../../../layouts/Topnet/Loading';
+import { Link } from 'react-router-dom';
+import MaterialTable from 'material-table';
+import tableIcons from "../../Topnet/Coordinateur/MaterialTableIcons";
+import swal from 'sweetalert';
 import Calendar from '../../Topnet/Encadrant/Reunions/Calendar';
 export default function Monespace() {
+
+
+    const [demandesStage, setDemandeStage] = useState([]);
+
+
+    useEffect(() => {
+
+        axios.get('/api/mademande').then(res => {
+            if (res.data.status === 200) {
+
+                setDemandeStage(res.data.demande);
+
+            }
+
+        });
+
+    }, []);
+
     return (
         <div className='row'>
             <div className='col-md-6'>
-                <h5 style={{ color: 'blue' }}>Mon calendrier des réunions</h5>
-                <Calendar />
+                {demandesStage.etatprise === "vrai" ?
+                    <div> <h5 style={{ color: 'blue' }}>Mon calendrier des réunions</h5>
+
+                        <Calendar /></div> :
+                    null}
             </div>
 
             <div className='col-md-6'>
