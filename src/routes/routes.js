@@ -121,6 +121,13 @@ const routes = [
     { path: '/chefdepartement/Addoffre', exact: true, name: 'Addoffre', component: Addoffre },
     { path: '/chefdepartement/offres', exact: true, name: 'Offres', component: Offres },
     { path: '/chefdepartement/edit-offre/:_id', exact: true, name: 'Editoffre', component: Editoffre },
+    { path: '/chefdepartement/demandes', exact: true, name: 'Demandes', component: Demandes },
+    { path: '/chefdepartement/reunions', exact: true, name: 'Reunions', component: Reunions },
+    { path: '/chefdepartement/calendrier', exact: true, name: 'Calendrier', component: Calendar },
+    { path: '/chefdepartement/edit-event/:_id', exact: true, name: 'Editevent', component: Editevent },
+
+
+
 
     /*----------------------------------------Routes privés pour le stagiaire----------------------------------------------------------------------------------------------*/
 
