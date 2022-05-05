@@ -227,6 +227,7 @@ export default function DemandesStage() {
                                                 </Link> : <Link to='#' onClick={(e) => validerDemande(e, demandesStage._id)}>
                                                     <button className="btn btn-success" >Traitée</button>
                                                 </Link>}
+                                                &nbsp;&nbsp;
 
                                                 <button onClick={(e) => setStagiaireID(e, demandesStage.stagiaire[0].stagiaireId)} className="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" >Informer</button>
 

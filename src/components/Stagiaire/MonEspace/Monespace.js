@@ -1,15 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Loading from '../../../layouts/Topnet/Loading';
-import { Link } from 'react-router-dom';
-import MaterialTable from 'material-table';
-import tableIcons from "../../Topnet/Coordinateur/MaterialTableIcons";
-import swal from 'sweetalert';
 import Calendar from '../../Topnet/Encadrant/Reunions/Calendar';
+
 export default function Monespace() {
 
 
     const [demandesStage, setDemandeStage] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -18,6 +16,7 @@ export default function Monespace() {
             if (res.data.status === 200) {
 
                 setDemandeStage(res.data.demande);
+                setLoading(false);
 
             }
 
@@ -25,20 +24,27 @@ export default function Monespace() {
 
     }, []);
 
-    return (
-        <div className='row'>
-            <div className='col-md-6'>
-                {demandesStage.etatprise === "vrai" ?
-                    <div> <h5 style={{ color: 'blue' }}>Mon calendrier des réunions</h5>
+    if (loading) {
+        return <Loading />
+    }
 
-                        <Calendar /></div> :
-                    null}
+    else {
+
+        return (
+            <div className='row'>
+                <div className='col-md-6'>
+                    {demandesStage.etatprise === "vrai" ?
+                        <div> <h5 style={{ color: 'blue' }}>Mon calendrier des réunions</h5>
+
+                            <Calendar /></div> :
+                        null}
+                </div>
+
+                <div className='col-md-6'>
+
+                </div>
+
             </div>
-
-            <div className='col-md-6'>
-
-            </div>
-
-        </div>
-    )
+        )
+    }
 }
