@@ -124,6 +124,7 @@ const routes = [
     { path: '/chefdepartement/demandes', exact: true, name: 'Demandes', component: Demandes },
     { path: '/chefdepartement/reunions', exact: true, name: 'Reunions', component: Reunions },
     { path: '/chefdepartement/calendrier', exact: true, name: 'Calendrier', component: Calendar },
+
     { path: '/chefdepartement/edit-event/:_id', exact: true, name: 'Editevent', component: Editevent },
 
 
