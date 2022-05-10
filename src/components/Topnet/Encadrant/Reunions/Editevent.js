@@ -142,7 +142,7 @@ export default function Editevent(props) {
 
 
                             <div className="col-md-6 mt-3">
-                                <button type="submit" className="btn btn-primary">Modifier</button>
+                                <button type="submit" className="btn btn-info">Modifier</button>
 
                             </div>
 

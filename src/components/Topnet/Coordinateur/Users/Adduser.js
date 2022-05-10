@@ -254,8 +254,8 @@ export default function Adduser() {
                                     <small className="text-danger">{errorlist.image}</small>
                                 </div>
 
-                                <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn btn-primary">Créer</button>
+                                <div className="col-md-6 ">
+                                    <button type="submit" className="btn btn-info">Créer</button>
                                 </div>
                             </form>
                         </div>

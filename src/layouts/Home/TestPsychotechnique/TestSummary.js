@@ -44,7 +44,7 @@ export default class TestSummary extends Component {
         } else if (userScore <= 70 && userScore > 50) {
             remark = 'Vous pouvez faire mieux';
         } else if (userScore >= 71 && userScore <= 84) {
-            remark = 'Vous avez été excellent';
+            remark = 'Excellent!';
         } else {
             remark = 'Vous êtes un génie absolu!';
         }

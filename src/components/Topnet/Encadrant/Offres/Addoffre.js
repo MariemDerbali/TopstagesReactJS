@@ -150,7 +150,7 @@ export default function Addoffre() {
                             </div>
 
                             <div className="col-md-6">
-                                <button type="submit" className="btn btn-primary">Créer</button>
+                                <button type="submit" className="btn btn-info">Créer</button>
 
                             </div>
 

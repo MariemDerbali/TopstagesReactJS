@@ -393,9 +393,9 @@ export default function Editquestion(props) {
 
 
                                 <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn btn-primary">Modifier question</button>
+                                    <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Modifier</button>
                                     &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                        Ajouter réponses
+                                        Créer réponses
                                     </button>
                                 </div>
 
@@ -476,7 +476,7 @@ export default function Editquestion(props) {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                <button type="submit" className="btn btn-primary">Créer</button>
+                                                <button type="submit" className="btn btn-info">Créer</button>
                                             </div>
                                         </div>
                                     </div>
@@ -547,7 +547,7 @@ export default function Editquestion(props) {
 
                                                         <div className="modal-footer">
                                                             <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                            <button type="submit" className="btn btn-primary">Modifier</button>
+                                                            <button type="submit" className="btn btn-info">Modifier</button>
                                                         </div>
                                                     </div>
                                                 </div>

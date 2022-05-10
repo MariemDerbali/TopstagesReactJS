@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import tableIcons from "../../Coordinateur/MaterialTableIcons";
 import Loading from '../../../../layouts/Topnet/Loading';
@@ -119,7 +118,7 @@ export default function Encadrants() {
 
                         }
                         data={encadrants}
-                        title={<h6>Liste Encadrants</h6>}
+                        title={<h6>Liste encadrants</h6>}
                         icons={tableIcons}
 
                     />

@@ -113,9 +113,9 @@ export default function Calendar() {
         <div>
 
 
-            {user.role_id === "Encadrant" ?
+            {user.role_id === "Encadrant" || user.role_id === "ChefDepartement" ?
                 <div> <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Ajouter une réunion</button>
+                    Créer réunions</button>
 
 
                     <form onSubmit={onSubmit} >
@@ -171,7 +171,7 @@ export default function Calendar() {
 
                                     <div className="modal-footer">
                                         <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                        <button type="submit" className="btn btn-primary">Créer</button>
+                                        <button type="submit" className="btn btn-info">Créer</button>
                                     </div>
                                 </div>
                             </div>

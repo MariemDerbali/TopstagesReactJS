@@ -102,13 +102,14 @@ export default function Adddirection() {
                                             placeholder='Nom' />
                                         <small className="text-danger">{errorlist.nomdirection}</small>
                                     </div>
-                                </div>
 
-                                <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn btn-primary">Créer direction</button>
-                                    &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Créer départements
-                                    </button>
+
+                                    <div className="col-md-6 mt-4">
+                                        <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Créer</button>
+                                        &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Créer départements
+                                        </button>
+                                    </div>
                                 </div>
 
 
@@ -146,7 +147,7 @@ export default function Adddirection() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                <button type="submit" className="btn btn-primary">Créer</button>
+                                                <button type="submit" className="btn btn-info">Créer</button>
                                             </div>
                                         </div>
                                     </div>

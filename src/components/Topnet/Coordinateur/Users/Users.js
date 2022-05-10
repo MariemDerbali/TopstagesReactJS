@@ -118,38 +118,9 @@ export default function Users() {
 
                             },
 
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Téléphone</h1>//Cellule d'en-tête <th>
-                                ,
-                                render: users => {
-                                    return (//Cellule de données <td>
-                                        <span className="text-xs text-secondary mb-0">{users.tel}</span>
-
-                                    )
-                                }
-
-                            },
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Login</h1>//Cellule d'en-tête <th>
-
-                                , render: users => {
-                                    return (
-                                        //Cellule de données <td>
-                                        <span className="text-xs text-secondary mb-0">{users.loginTOPNET}</span>
-                                    )
-                                }
 
 
-                            },
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresse</h1>//Cellule d'en-tête <th>
-                                , render: users => {
-                                    return (
-                                        <span className="text-secondary text-xs font-weight-bold">{users.adresse}</span>//Cellule de données <td>
-                                    )
-                                },
 
-                            },
                             {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Matricule</h1>//Cellule d'en-tête <th>
                                 , render: users => {

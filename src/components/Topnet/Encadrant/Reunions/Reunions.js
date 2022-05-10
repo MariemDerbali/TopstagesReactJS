@@ -134,7 +134,7 @@ export default function Reunions() {
 
                     }
                     data={events}
-                    title={<h6>Gestion réunion</h6>}
+                    title={<h6>Liste réunions</h6>}
                     icons={tableIcons}
 
                 />

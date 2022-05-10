@@ -232,23 +232,24 @@ export default function Editdirection(props) {
 
                             <form className="row" onSubmit={updateDirection}  >
 
+                                <div className="row">
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Nom</label>
-                                    <input onChange={handleInput} value={DirectionInput.nomdirection} type="text" name="nomdirection" className="form-control" placeholder='Nom' />
-                                    <small className="text-danger">{errorlist.nomdirection}</small>
+                                    <div className="col-md-6">
+                                        <label className="form-label">Nom</label>
+                                        <input onChange={handleInput} value={DirectionInput.nomdirection} type="text" name="nomdirection" className="form-control" placeholder='Nom' />
+                                        <small className="text-danger">{errorlist.nomdirection}</small>
 
+                                    </div>
+
+
+
+                                    <div className="col-md-6 mt-4">
+                                        <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Modifier</button>
+                                        &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            Créer départements
+                                        </button>
+                                    </div>
                                 </div>
-
-
-
-                                <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn btn-primary">Modifier direction</button>
-                                    &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                        Ajouter réponses
-                                    </button>
-                                </div>
-
                             </form>
 
                             <form onSubmit={submitDepAdd} >
@@ -269,9 +270,7 @@ export default function Editdirection(props) {
                                                         <small className="text-danger">{errorlist.nomdep}</small>
 
                                                     </div>
-                                                </div>
 
-                                                <div className="row">
                                                     <div className="col-md-6">
                                                         <label className="form-label">Chef</label>
                                                         <input id='inputReptext' onChange={handleInputDepAdd} value={DepInputAdd.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
@@ -283,7 +282,7 @@ export default function Editdirection(props) {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                <button type="submit" className="btn btn-primary">Créer</button>
+                                                <button type="submit" className="btn btn-info">Créer</button>
                                             </div>
                                         </div>
                                     </div>
@@ -308,24 +307,26 @@ export default function Editdirection(props) {
                                                         </div>
                                                         <div className="modal-body">
 
-                                                            <div className="col-md-6">
-                                                                <label className="form-label">Nom</label>
-                                                                <input onChange={handleDepUpdateInput} value={DepUpdateInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' disabled />
-                                                                <small className="text-danger">{errorlist.nomdep}</small>
+                                                            <div className='row'>
+                                                                <div className="col-md-6">
+                                                                    <label className="form-label">Nom</label>
+                                                                    <input onChange={handleDepUpdateInput} value={DepUpdateInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' disabled />
+                                                                    <small className="text-danger">{errorlist.nomdep}</small>
 
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <label className="form-label">Chef</label>
-                                                                <input onChange={handleDepUpdateInput} value={DepUpdateInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
-                                                                <small className="text-danger">{errorlist.chefdep}</small>
+                                                                </div>
+                                                                <div className="col-md-6">
+                                                                    <label className="form-label">Chef</label>
+                                                                    <input onChange={handleDepUpdateInput} value={DepUpdateInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
+                                                                    <small className="text-danger">{errorlist.chefdep}</small>
 
+                                                                </div>
                                                             </div>
                                                         </div>
 
 
                                                         <div className="modal-footer">
                                                             <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                            <button type="submit" className="btn btn-primary">Modifier</button>
+                                                            <button type="submit" className="btn btn-info" >Modifier</button>
                                                         </div>
                                                     </div>
                                                 </div>

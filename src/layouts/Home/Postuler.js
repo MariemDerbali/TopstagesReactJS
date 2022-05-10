@@ -78,7 +78,7 @@ export default function Postuler() {
                             <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
                                 <div className="card h-100">
                                     <div className="card-body">
-                                        <h6 className="card-title">Je postule à cette offre:</h6>
+                                        <h6 className="card-title">Je postule à cette offre</h6>
                                         <h4 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }} >{offre.type} en {offre.domaine}</h4>
 
 

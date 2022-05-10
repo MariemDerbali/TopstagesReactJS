@@ -282,7 +282,7 @@ export default function Edituser(props) {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <button type="submit" className="btn btn-primary">Modifier</button>
+                                    <button type="submit" className="btn btn-info">Modifier</button>
                                 </div>
 
                             </form>

@@ -45,7 +45,7 @@ export default function Sidebar() {
                 <ul className="navbar-nav ">
                     <li className="nav-item">
                         <Link className="nav-link active " to="/stagiaire/monespace">
-                            <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C' }}>
                                 <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <title>spaceship</title>
                                     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

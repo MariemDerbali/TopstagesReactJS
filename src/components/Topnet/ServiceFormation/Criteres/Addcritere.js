@@ -155,8 +155,8 @@ export default function Addcritere() {
 
 
 
-                            <div className="col-md-6 mt-4">
-                                <button type="submit" className="btn btn-primary">Créer</button>
+                            <div className="col-md-6 mt-3">
+                                <button type="submit" className="btn btn-info">Créer</button>
 
                             </div>
 

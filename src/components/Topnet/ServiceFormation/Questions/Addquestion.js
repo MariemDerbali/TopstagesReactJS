@@ -319,7 +319,7 @@ export default function Addquestion() {
                                     <small className="text-danger">{errorlist.niveau}</small>
                                 </div>
                                 <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn btn-primary">Créer question</button>
+                                    <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Créer</button>
                                     &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Créer réponses
                                     </button>
@@ -404,7 +404,7 @@ export default function Addquestion() {
                                             </div>
                                             <div className="modal-footer">
                                                 <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                <button type="submit" className="btn btn-primary">Créer</button>
+                                                <button type="submit" className="btn btn-info">Créer</button>
                                             </div>
                                         </div>
                                     </div>
