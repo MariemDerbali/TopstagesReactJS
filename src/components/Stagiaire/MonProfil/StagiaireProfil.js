@@ -157,7 +157,7 @@ export default function Profil() {
                                             {`${user.nom} ${user.prenom}`}
                                         </h5>
                                         <p className="mb-0 font-weight-bold text-sm">
-                                            {user.role_id}
+                                            Stagiaire
                                         </p>
                                     </div>
                                 </div>
