@@ -8,7 +8,7 @@ import tableIcons from "../../Coordinateur/MaterialTableIcons";
 import Loading from '../../../../layouts/Topnet/Loading';
 
 
-export default function Editdirection(props) {
+export default function Editdepartement(props) {
 
 
     const [errorlist, setError] = useState([]);
@@ -20,15 +20,15 @@ export default function Editdirection(props) {
     useEffect(() => {
 
 
-        const direction = props.match.params._id
+        const departement = props.match.params._id
 
-        axios.get(`/api/edit-direction/${direction}`).then(res => {
+        axios.get(`/api/edit-departement/${departement}`).then(res => {
             if (res.data.status === 200) {
-                setDirection(res.data.direction);
+                setDepartement(res.data.departement);
 
             } else if (res.data.status === 404) {
                 swal("", res.data.message, "error");
-                history.push('/serviceformation/Directions');
+                history.push('/serviceformation/Departements');
             }
             setLoading(false);
         });
@@ -36,48 +36,50 @@ export default function Editdirection(props) {
     }, [props.match.params._id, history]);
 
 
-    const [DirectionInput, setDirection] = useState({
-        nomdirection: '',
+    const [DepInput, setDepartement] = useState({
+        nomdep: '',
+        chefdep: ''
     });
 
 
     const handleInput = (e) => {
         e.persist();
-        setDirection({ ...DirectionInput, [e.target.name]: e.target.value });
+        setDepartement({ ...DepInput, [e.target.name]: e.target.value });
     }
 
-    const updateDirection = (e) => {
+    const updateDepartement = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('nomdirection', DirectionInput.nomdirection);
+        formData.append('nomdep', DepInput.nomdep);
+        formData.append('chefdep', DepInput.chefdep);
 
-        axios.post(`/api/direction/${direction}`, formData).then(res => {
+        axios.post(`/api/departement/${departement}`, formData).then(res => {
 
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
-                history.push('/serviceformation/Directions');
+                history.push('/serviceformation/Departements');
                 setError([]);
             } else if (res.data.status === 422) {
                 setError(res.data.errors);
             }
             else if (res.data.status === 404) {
                 swal("", res.data.message, "error");
-                history.push('/serviceformation/Directions')
+                history.push('/serviceformation/Departements')
             }
         });
 
 
     }
-    const [departement, setDepList] = useState([
+    const [service, setServiceList] = useState([
 
     ]);
-    const direction = props.match.params._id
+    const departement = props.match.params._id
     useEffect(() => {
 
-        axios.get(`/api/departements/${direction}`).then(res => {
+        axios.get(`/api/services/${departement}`).then(res => {
             if (res.data.status === 200) {
-                setDepList(res.data.departements);
+                setServiceList(res.data.services);
             }
         });
 
@@ -87,14 +89,14 @@ export default function Editdirection(props) {
 
 
 
-    {/* Activer ou Désactiver département*/ }
+    {/* Activer ou Désactiver service*/ }
 
 
 
-    const desactiverDep = (e, oid) => {
+    const desactiverService = (e, oid) => {
         e.preventDefault();
 
-        axios.put(`/api/desactiver-departement/${oid}`).then(res => {
+        axios.put(`/api/desactiver-service/${oid}`).then(res => {
 
             if (res.data.status = 200) {
                 swal("", res.data.message, "success");
@@ -110,33 +112,33 @@ export default function Editdirection(props) {
 
 
 
-    {/* modifier un département*/ }
+    {/* modifier un service*/ }
 
 
-    const [DepUpdateInput, setUpdateDep] = useState({
-        nomdep: '',
-        chefdep: '',
+    const [ServiceUpdateInput, setUpdateService] = useState({
+        nomService: '',
+
 
     });
 
 
-    const handleDepUpdateInput = (e) => {
+    const handleServiceUpdateInput = (e) => {
         e.persist();
-        setUpdateDep({ ...DepUpdateInput, [e.target.name]: e.target.value });
+        setUpdateService({ ...ServiceUpdateInput, [e.target.name]: e.target.value });
     }
 
 
 
-    const [dep_id, setDepID] = useState([]);
+    const [service_id, setServiceID] = useState([]);
 
-    const showFormUpdateDep = (e, oid) => {
+    const showFormUpdateService = (e, oid) => {
         e.preventDefault();
-        setDepID(oid);
+        setServiceID(oid);
 
 
-        axios.get(`/api/edit-departement/${oid}`).then(res => {
+        axios.get(`/api/edit-service/${oid}`).then(res => {
             if (res.data.status === 200) {
-                setUpdateDep(res.data.dep);
+                setUpdateService(res.data.service);
             } else if (res.data.status === 404) {
                 swal("", res.data.message, "error");
                 history.push('/serviceformation/Departements');
@@ -146,16 +148,15 @@ export default function Editdirection(props) {
 
     }
 
-    const updateDep = (e) => {
+    const updateService = (e) => {
         e.preventDefault();
 
 
         const formData = new FormData();
-        formData.append('nomdep', DepUpdateInput.nomdep);
-        formData.append('chefdep', DepUpdateInput.chefdep);
+        formData.append('nomService', ServiceUpdateInput.nomService);
 
 
-        axios.post(`/api/departement/${dep_id}`, formData).then(res => {
+        axios.post(`/api/service/${service_id}`, formData).then(res => {
 
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
@@ -170,35 +171,33 @@ export default function Editdirection(props) {
         });
     }
 
-    {/* ajouter un département*/ }
+    {/* ajouter un service*/ }
 
 
-    const [DepInputAdd, setDepAdd] = useState({
-        nomdep: '',
-        chefdep: '',
+    const [ServiceInputAdd, setServiceAdd] = useState({
+        nomService: '',
 
     });
 
 
-    const handleInputDepAdd = (e) => {
+    const handleInputServiceAdd = (e) => {
         e.persist();
-        setDepAdd({ ...DepInputAdd, [e.target.name]: e.target.value });
+        setServiceAdd({ ...ServiceInputAdd, [e.target.name]: e.target.value });
     }
 
 
-    const submitDepAdd = (e) => {
+    const submitServiceAdd = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('nomdep', DepInputAdd.nomdep);
-        formData.append('chefdep', DepInputAdd.chefdep);
+        formData.append('nomService', ServiceInputAdd.nomService);
 
-        formData.append('direction', direction);
+        formData.append('departement', departement);
 
-        axios.post('/api/departements', formData).then(res => {
+        axios.post('/api/services', formData).then(res => {
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
-                setDepList(departement => [...departement, res.data.Department]);
+                setServiceList(service => [...service, res.data.Service]);
                 window.location.reload();
                 setError([]);
 
@@ -226,33 +225,38 @@ export default function Editdirection(props) {
                 <div className="col-12">
                     <div className="card mb-4">
                         <div className="card-header pb-0">
-                            <h6>Modifier direction</h6>
+                            <h6>Modifier département</h6>
                         </div>
                         <div className="card-body ">
 
-                            <form className="row" onSubmit={updateDirection}  >
+                            <form className="row" onSubmit={updateDepartement}  >
 
                                 <div className="row">
 
                                     <div className="col-md-6">
                                         <label className="form-label">Nom</label>
-                                        <input onChange={handleInput} value={DirectionInput.nomdirection} type="text" name="nomdirection" className="form-control" placeholder='Nom' />
-                                        <small className="text-danger">{errorlist.nomdirection}</small>
+                                        <input onChange={handleInput} value={DepInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' />
+                                        <small className="text-danger">{errorlist.nomdep}</small>
 
                                     </div>
 
+                                    <div className="col-md-6">
+                                        <label className="form-label">Chef</label>
+                                        <input onChange={handleInput} value={DepInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
+                                        <small className="text-danger">{errorlist.chefdep}</small>
 
+                                    </div>
 
                                     <div className="col-md-6 mt-4">
                                         <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Modifier</button>
                                         &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                            Créer départements
+                                            Créer services
                                         </button>
                                     </div>
                                 </div>
                             </form>
 
-                            <form onSubmit={submitDepAdd} >
+                            <form onSubmit={submitServiceAdd} >
 
                                 <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
@@ -266,15 +270,8 @@ export default function Editdirection(props) {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <label className="form-label">Nom</label>
-                                                        <input id='inputReptext' onChange={handleInputDepAdd} value={DepInputAdd.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' />
-                                                        <small className="text-danger">{errorlist.nomdep}</small>
-
-                                                    </div>
-
-                                                    <div className="col-md-6">
-                                                        <label className="form-label">Chef</label>
-                                                        <input id='inputReptext' onChange={handleInputDepAdd} value={DepInputAdd.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
-                                                        <small className="text-danger">{errorlist.chefdep}</small>
+                                                        <input onChange={handleInputServiceAdd} value={ServiceInputAdd.nomService} type="text" name="nomService" className="form-control" placeholder='Nom' />
+                                                        <small className="text-danger">{errorlist.nomService}</small>
 
                                                     </div>
                                                 </div>
@@ -296,13 +293,13 @@ export default function Editdirection(props) {
                                     <div className="col-12">
 
 
-                                        <form onSubmit={updateDep}>
+                                        <form onSubmit={updateService}>
 
                                             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div className="modal-dialog">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
-                                                            <h5 className="modal-title" id="exampleModalLabel">Modifier département</h5>
+                                                            <h5 className="modal-title" id="exampleModalLabel">Modifier service</h5>
                                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div className="modal-body">
@@ -310,16 +307,11 @@ export default function Editdirection(props) {
                                                             <div className='row'>
                                                                 <div className="col-md-6">
                                                                     <label className="form-label">Nom</label>
-                                                                    <input onChange={handleDepUpdateInput} value={DepUpdateInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' disabled />
-                                                                    <small className="text-danger">{errorlist.nomdep}</small>
+                                                                    <input onChange={handleServiceUpdateInput} value={ServiceUpdateInput.nomService} type="text" name="nomService" className="form-control" placeholder='Nom' />
+                                                                    <small className="text-danger">{errorlist.nomService}</small>
 
                                                                 </div>
-                                                                <div className="col-md-6">
-                                                                    <label className="form-label">Chef</label>
-                                                                    <input onChange={handleDepUpdateInput} value={DepUpdateInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
-                                                                    <small className="text-danger">{errorlist.chefdep}</small>
 
-                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -342,37 +334,28 @@ export default function Editdirection(props) {
 
                                                 {
                                                     title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</h1>
-                                                    , render: (departement) => {
+                                                    , render: (service) => {
                                                         return (
                                                             <div>
-                                                                <p className="text-xs font-weight-bold mb-0">{departement.nomdep}</p>
+                                                                <p className="text-xs font-weight-bold mb-0">{service.nomService}</p>
                                                             </div>)
                                                     }
 
 
                                                 },
 
-                                                {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef</h1>, render: departement => {
-                                                        return (
-                                                            <span className="text-xs text-secondary mb-0">{departement.chefdep}</span>
 
-                                                        )
-                                                    },
-                                                    customFilterAndSearch: (term, departement) => ((departement.chefdep).toLowerCase()).indexOf(term.toLowerCase()) != -1
-
-                                                },
 
                                                 {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style={{ marginLeft: '30px' }}>Etat</h1>, render: departement => {
+                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style={{ marginLeft: '30px' }}>Etat</h1>, render: service => {
                                                         return (
                                                             <div>
-                                                                <Link to='#' onClick={(e) => desactiverDep(e, departement._id.$oid)}>
-                                                                    {departement.etat == 'inactive' ?
+                                                                <Link to='#' onClick={(e) => desactiverService(e, service._id.$oid)}>
+                                                                    {service.etat == 'inactive' ?
                                                                         <button className="btn btn-danger">Désactivé</button> :
                                                                         <button className="btn btn-success">Activé</button>}
                                                                 </Link>                                                              &nbsp;  &nbsp;  &nbsp; &nbsp;
-                                                                <Link to="#" onClick={(e) => showFormUpdateDep(e, departement._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                                <Link to="#" onClick={(e) => showFormUpdateService(e, service._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-tools" viewBox="0 0 16 16">
                                                                         <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
                                                                     </svg>
@@ -386,8 +369,8 @@ export default function Editdirection(props) {
                                             ]
 
                                             }
-                                            data={departement}
-                                            title={<h6>Liste départements</h6>}
+                                            data={service}
+                                            title={<h6>Liste service</h6>}
                                             icons={tableIcons}
 
                                         />

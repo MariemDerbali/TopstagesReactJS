@@ -16,13 +16,13 @@ export default function Adduser() {
     const [roleslist, setRoleslist] = useState([
 
     ]);
-    //Variables d'état pour obtenir la liste des départements
-    const [depslist, setDepslist] = useState([
+    //Variables d'état pour obtenir la liste des services
+    const [serviceslist, setServiceslist] = useState([
 
     ]);
 
-    //Variables d'état pour obtenir la liste des directions
-    const [directionlist, setDirectionlist] = useState([
+    //Variables d'état pour obtenir la liste des départements
+    const [depslist, setDepartementlist] = useState([
 
     ]);
     //On utilise ce Hook -> useEFect() pour indiquer à React que notre composant doit exécuter quelque chose après chaque affichage
@@ -34,19 +34,19 @@ export default function Adduser() {
                 setRoleslist(res.data.roles);
             }
         });
-        //l'API pour obtenir la liste des départements
-        axios.get('/api/departements').then(res => {
+        //l'API pour obtenir la liste des services
+        axios.get('/api/services').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
-                //stockage des départements dans les variables détat
-                setDepslist(res.data.deps);
+                //stockage des services dans les variables détat
+                setServiceslist(res.data.services);
             }
         });
 
-        //l'API pour obtenir la liste des directions
-        axios.get('/api/user-directions').then(res => {
+        //l'API pour obtenir la liste des départements
+        axios.get('/api/user-departements').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
-                //stockage des directions dans les variables détat
-                setDirectionlist(res.data.directions);
+                //stockage des départements dans les variables détat
+                setDepartementlist(res.data.departements);
             }
         });
 
@@ -68,7 +68,7 @@ export default function Adduser() {
         tel: '',
         role_id: '',
         departement: '',
-        direction: '',
+        service: '',
 
     });
 
@@ -101,7 +101,7 @@ export default function Adduser() {
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
         formData.append('departement', UserInput.departement);
-        formData.append('direction', UserInput.direction);
+        formData.append('service', UserInput.service);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -213,13 +213,13 @@ export default function Adduser() {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <label className="form-label">Direction</label>
-                                    <select name="direction" onChange={handleInput} value={UserInput.direction} className="form-select">
-                                        <option>Direction</option>
-                                        {//obtenir la liste des directions
-                                            directionlist.map((direction, index) => {
+                                    <label className="form-label">Service</label>
+                                    <select name="service" onChange={handleInput} value={UserInput.service} className="form-select">
+                                        <option>Service</option>
+                                        {//obtenir la liste des services
+                                            serviceslist.map((service, index) => {
                                                 return (
-                                                    <option value={direction.id} key={index}>{direction.nomdirection}</option>
+                                                    <option value={service.id} key={index}>{service.nomService}</option>
 
 
                                                 )

@@ -138,7 +138,7 @@ export default function DemandesStage() {
 
                                 <div className="modal-footer">
                                     <button type="reset" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                    <button type="submit" className="btn btn-primary">Envoyer</button>
+                                    <button type="submit" className="btn btn-info">Envoyer</button>
                                 </div>
                             </div>
                         </div>

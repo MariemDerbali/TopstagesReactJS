@@ -11,9 +11,9 @@ import Questions from '../components/Topnet/ServiceFormation/Questions/Questions
 import Addquestion from '../components/Topnet/ServiceFormation/Questions/Addquestion';
 import Editquestion from '../components/Topnet/ServiceFormation/Questions/Editquestion';
 
-import Adddirection from '../components/Topnet/ServiceFormation/Directions/Adddirection';
-import Editdirection from '../components/Topnet/ServiceFormation/Directions/Editdirection';
-import Directions from '../components/Topnet/ServiceFormation/Directions/Directions';
+import Adddepartement from '../components/Topnet/ServiceFormation/Departements/Adddepartement';
+import Editdepartement from '../components/Topnet/ServiceFormation/Departements/Editdepartement';
+import Departements from '../components/Topnet/ServiceFormation/Departements/Departements';
 
 import Addcritere from '../components/Topnet/ServiceFormation/Criteres/Addcritere';
 import Editcritere from '../components/Topnet/ServiceFormation/Criteres/Editcritere';
@@ -64,14 +64,14 @@ const routes = [
     //Route pour le profil
     { path: '/serviceformation/profil', exact: true, name: 'Profil', component: Profil },
 
-    /*----------DIRECTION ET DEPARTEMENTS---------- */
+    /*----------DEPARTEMENTS ET SERVICES---------- */
 
-    //Route pour consulter la liste des directions
-    { path: '/serviceformation/directions', exact: true, name: 'Departments', component: Directions },
-    //Route pour créer un direction
-    { path: '/serviceformation/Adddirection', exact: true, name: 'Adddirection', component: Adddirection },
-    //Route pour modifier un direction
-    { path: '/serviceformation/edit-direction/:_id', exact: true, name: 'Editdirection', component: Editdirection },
+    //Route pour consulter la liste des départements
+    { path: '/serviceformation/departements', exact: true, name: 'Departments', component: Departements },
+    //Route pour créer un département
+    { path: '/serviceformation/Adddepartement', exact: true, name: 'Adddepartement', component: Adddepartement },
+    //Route pour modifier un département
+    { path: '/serviceformation/edit-departement/:_id', exact: true, name: 'Editdepartement', component: Editdepartement },
 
 
     /*----------QUESTION ET REPONSES---------- */

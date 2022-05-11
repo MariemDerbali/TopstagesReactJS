@@ -31,8 +31,8 @@ export default function Edituser(props) {
 
     ]);
 
-    //Variables d'état pour obtenir la liste des directions
-    const [directionlist, setDirectionlist] = useState([
+    //Variables d'état pour obtenir la liste des services
+    const [serviceslist, setServiceslist] = useState([
 
     ]);
 
@@ -46,20 +46,20 @@ export default function Edituser(props) {
                 setRoleslist(res.data.roles);
             }
         });
-        //l'API pour obtenir la liste des départements
-        axios.get('/api/departements').then(res => {
+        //l'API pour obtenir la liste des services
+        axios.get('/api/services').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
 
-                //stockage des départements dans les variables détat
-                setDepslist(res.data.deps);
+                //stockage des services dans les variables détat
+                setServiceslist(res.data.services);
             }
         });
 
-        //l'API pour obtenir la liste des directions
-        axios.get('/api/user-directions').then(res => {
+        //l'API pour obtenir la liste des départements
+        axios.get('/api/user-departements').then(res => {
             if (res.data.status === 200) {//si nous avons obtenu la liste
-                //stockage des directions dans les variables détat
-                setDirectionlist(res.data.directions);
+                //stockage des départements dans les variables détat
+                setDepslist(res.data.departements);
             }
         });
 
@@ -93,7 +93,7 @@ export default function Edituser(props) {
         tel: '',
         role_id: '',
         departement: '',
-        direction: '',
+        service: '',
 
 
     });
@@ -126,7 +126,7 @@ export default function Edituser(props) {
         formData.append('image', picture.image);
         formData.append('role_id', UserInput.role_id);
         formData.append('departement', UserInput.departement);
-        formData.append('direction', UserInput.direction);
+        formData.append('service', UserInput.service);
         formData.append('nom', UserInput.nom);
         formData.append('prenom', UserInput.prenom);
         formData.append('tel', UserInput.tel);
@@ -240,13 +240,13 @@ export default function Edituser(props) {
                                     <small className="text-danger">{errorlist.departement}</small>
                                 </div>
                                 <div className="col-md-6">
-                                    <label className="form-label">Direction</label>
-                                    <select name="direction" onChange={handleInput} value={UserInput.direction} className="form-select">
-                                        <option>Direction</option>
-                                        {//obtenir la liste des directions
-                                            directionlist.map((direction, index) => {
+                                    <label className="form-label">Service</label>
+                                    <select name="service" onChange={handleInput} value={UserInput.service} className="form-select">
+                                        <option>Service</option>
+                                        {//obtenir la liste des services
+                                            serviceslist.map((service, index) => {
                                                 return (
-                                                    <option value={direction.id} key={index}>{direction.nomdirection}</option>
+                                                    <option value={service.id} key={index}>{service.nomService}</option>
 
 
                                                 )

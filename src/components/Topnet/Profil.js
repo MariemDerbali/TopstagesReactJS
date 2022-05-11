@@ -48,7 +48,7 @@ export default function Profil() {
         tel: '',
         role_id: '',
         departement: '',
-        direction: '',
+        service: '',
 
     });
 
@@ -102,7 +102,7 @@ export default function Profil() {
         formData.append('image', ProfilPicture.image);
         formData.append('role_id', user.role_id);
         formData.append('departement', ProfileUserInput.departement);
-        formData.append('direction', ProfileUserInput.direction);
+        formData.append('service', ProfileUserInput.service);
         formData.append('nom', ProfileUserInput.nom);
         formData.append('prenom', ProfileUserInput.prenom);
         formData.append('tel', ProfileUserInput.tel);
@@ -178,7 +178,7 @@ export default function Profil() {
 
                                         <ul style={{ listStyle: 'none' }} >
                                             <li className="border-0 ps-0 text-sm mb-2"><strong className="text-dark">Département:</strong> &nbsp; {user.departement}</li>
-                                            <li className="border-0 ps-0 text-sm mb-2"><strong className="text-dark">Direction:</strong> &nbsp; {user.direction}</li>
+                                            <li className="border-0 ps-0 text-sm mb-2"><strong className="text-dark">Service:</strong> &nbsp; {user.service}</li>
 
                                             <li className="  border-0 ps-0 text-sm mb-2"><strong className="text-dark">Téléphone:</strong> &nbsp;{user.tel}</li>
                                             <li className="  border-0 ps-0 text-sm mb-2"><strong className="text-dark">E-mail:</strong> &nbsp; {user.email}</li>
@@ -267,9 +267,9 @@ export default function Profil() {
                                         <div className='row'>
 
                                             <div className="col-md-6">
-                                                <label className="form-label">Direction</label>
-                                                <input required type="text" name="direction" onChange={handleProfileInput} value={ProfileUserInput.direction} className="form-control" placeholder='Direction' disabled />
-                                                <small className="text-danger">{errorlist.direction}</small>
+                                                <label className="form-label">Service</label>
+                                                <input required type="text" name="service" onChange={handleProfileInput} value={ProfileUserInput.service} className="form-control" placeholder='Service' disabled />
+                                                <small className="text-danger">{errorlist.service}</small>
                                             </div>
 
                                             <div className="col-md-6 mb-3">

@@ -5,50 +5,49 @@ import MaterialTable from 'material-table';
 import tableIcons from "../../Coordinateur/MaterialTableIcons";
 
 
-export default function Adddirection() {
+export default function Adddepartement() {
 
 
-    const [DirectionInput, setDirection] = useState({
-        nomdirection: ''
-    });
-
-    const [direction, setDirectionID] = useState([]);
-
-    const [DepartmentInput, setdepartment] = useState({
+    const [DepInput, setDepartement] = useState({
         nomdep: '',
-        chefdep: '',
-        direction,
+        chefdep: ''
     });
 
-    const [Department, setDepList] = useState([]);
+    const [departement, setDepartementID] = useState([]);
+
+    const [ServiceInput, setservice] = useState({
+        nomService: '',
+        departement,
+    });
+
+    const [Service, setServiceList] = useState([]);
 
     const [errorlist, setError] = useState([]);
 
 
     const handleInput = (e) => {
         e.persist();
-        setDirection({ ...DirectionInput, [e.target.name]: e.target.value });
+        setDepartement({ ...DepInput, [e.target.name]: e.target.value });
     }
 
 
-    const handleInputdepartment = (e) => {
+    const handleInputservice = (e) => {
         e.persist();
-        setdepartment({ ...DepartmentInput, [e.target.name]: e.target.value });
+        setservice({ ...ServiceInput, [e.target.name]: e.target.value });
     }
 
 
-    const submitdepartment = (e) => {
+    const submitservice = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('nomdep', DepartmentInput.nomdep);
-        formData.append('chefdep', DepartmentInput.chefdep);
+        formData.append('nomService', ServiceInput.nomService);
 
-        formData.append('direction', direction);
+        formData.append('departement', departement);
 
-        axios.post('/api/departements', formData).then(res => {
+        axios.post('/api/services', formData).then(res => {
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
-                setDepList(Department => [...Department, res.data.Department]);
+                setServiceList(Service => [...Service, res.data.Service]);
                 setError([]);
             } else if (res.data.status === 422) {
                 setError(res.data.errors);
@@ -60,15 +59,16 @@ export default function Adddirection() {
     }
 
 
-    const submitDirection = (e) => {
+    const submitDepartement = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('nomdirection', DirectionInput.nomdirection);
+        formData.append('nomdep', DepInput.nomdep);
+        formData.append('chefdep', DepInput.chefdep);
 
-        axios.post('/api/directions', formData).then(res => {
+        axios.post('/api/departements', formData).then(res => {
             if (res.data.status === 200) {
                 swal("", res.data.message, "success");
-                setDirectionID(res.data.DirectionId);
+                setDepartementID(res.data.DepartementId);
                 setError([]);
             } else if (res.data.status === 422) {
                 setError(res.data.errors);
@@ -88,26 +88,34 @@ export default function Adddirection() {
                 <div className="col-12">
                     <div className="card mb-4">
                         <div className="card-header pb-0">
-                            <h6>Créer direction</h6>
+                            <h6>Créer département</h6>
                         </div>
                         <div className="card-body ">
 
-                            <form className="row" onSubmit={submitDirection} >
+                            <form className="row" onSubmit={submitDepartement} >
                                 <div className="row">
                                     <div className="col-md-6">
                                         <label className="form-label">Nom</label>
 
-                                        <input onChange={handleInput} value={DirectionInput.nomdirection}
-                                            type="text" name="nomdirection" className="form-control"
+                                        <input onChange={handleInput} value={DepInput.nomdep}
+                                            type="text" name="nomdep" className="form-control"
                                             placeholder='Nom' />
-                                        <small className="text-danger">{errorlist.nomdirection}</small>
+                                        <small className="text-danger">{errorlist.nomdep}</small>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label className="form-label">Chef</label>
+
+                                        <input onChange={handleInput} value={DepInput.chefdep}
+                                            type="text" name="chefdep" className="form-control"
+                                            placeholder='Chef' />
+                                        <small className="text-danger">{errorlist.chefdep}</small>
                                     </div>
 
 
                                     <div className="col-md-6 mt-4">
                                         <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Créer</button>
                                         &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Créer départements
+                                            Créer services
                                         </button>
                                     </div>
                                 </div>
@@ -116,13 +124,13 @@ export default function Adddirection() {
                             </form>
 
 
-                            <form onSubmit={submitdepartment}>
+                            <form onSubmit={submitservice}>
 
                                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
                                         <div className="modal-content">
                                             <div className="modal-header">
-                                                <h5 className="modal-title" id="exampleModalLabel">Créer département</h5>
+                                                <h5 className="modal-title" id="exampleModalLabel">Créer service</h5>
                                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div className="modal-body">
@@ -130,19 +138,12 @@ export default function Adddirection() {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <label className="form-label">Nom</label>
-                                                        <input onChange={handleInputdepartment} value={DepartmentInput.nomdep} type="text" name="nomdep" className="form-control" placeholder='Nom' />
-                                                        <small className="text-danger">{errorlist.nomdep}</small>
+                                                        <input onChange={handleInputservice} value={ServiceInput.nomService} type="text" name="nomService" className="form-control" placeholder='Nom' />
+                                                        <small className="text-danger">{errorlist.nomService}</small>
 
                                                     </div>
                                                 </div>
-                                                <div className="row">
-                                                    <div className="col-md-6">
-                                                        <label className="form-label">Chef</label>
-                                                        <input onChange={handleInputdepartment} value={DepartmentInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
-                                                        <small className="text-danger">{errorlist.chefdep}</small>
 
-                                                    </div>
-                                                </div>
 
                                             </div>
                                             <div className="modal-footer">
@@ -168,33 +169,21 @@ export default function Adddirection() {
 
                                 {
                                     title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</h1>
-                                    , render: department => {
+                                    , render: service => {
                                         return (
-                                            <span className="text-xs text-secondary mb-0">{department.nomdep}</span>
+                                            <span className="text-xs text-secondary mb-0">{service.nomService}</span>
 
                                         )
                                     },
-                                    customFilterAndSearch: (term, department) => ((department.nomdep).toLowerCase()).indexOf(term.toLowerCase()) != -1
+                                    customFilterAndSearch: (term, service) => ((service.nomService).toLowerCase()).indexOf(term.toLowerCase()) != -1
 
-                                },
-                                {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Chef</h1>
-                                    , render: department => {
-                                        return (
-                                            <span className="text-xs text-secondary mb-0">{department.chefdep}</span>
-
-                                        )
-                                    },
-                                    customFilterAndSearch: (term, department) => ((department.chefdep).toLowerCase()).indexOf(term.toLowerCase()) != -1
-
-                                },
-
+                                }
 
                             ]
 
                             }
-                            data={Department}
-                            title={<h6>Liste départements</h6>}
+                            data={Service}
+                            title={<h6>Liste services</h6>}
                             icons={tableIcons}
 
                         />

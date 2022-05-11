@@ -123,7 +123,7 @@ export default function Addoffre() {
                                 <label className="form-label">Domaine</label>
                                 <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select">
                                     <option  >Domaine</option>
-                                    <option>{user.direction}</option>
+                                    <option>{user.service}</option>
 
                                 </select>
                                 <small className="text-danger">{errorlist.domaine}</small>
