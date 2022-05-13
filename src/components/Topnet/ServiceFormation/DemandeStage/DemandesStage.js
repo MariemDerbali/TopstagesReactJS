@@ -39,15 +39,20 @@ export default function DemandesStage() {
         });
     }, []);
 
-    const VoirImageFiche = (e, ficherep) => {
+    const VoirImageDemandeStage = (e, demandestage) => {
         e.preventDefault();
-        window.open(`http://127.0.0.1:8000/${ficherep}`)
+        window.open(`http://127.0.0.1:8000/${demandestage}`)
 
 
     }
     const VoirImageCV = (e, cv) => {
         e.preventDefault();
         window.open(`http://127.0.0.1:8000/${cv}`)
+
+    }
+    const VoirImageCIN = (e, cin) => {
+        e.preventDefault();
+        window.open(`http://127.0.0.1:8000/${cin}`)
 
     }
 
@@ -189,10 +194,10 @@ export default function DemandesStage() {
 
 
                                 {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Fiche de réponse</h1>, render: demandesStage => {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Demande de stage</h1>, render: demandesStage => {
                                         return (
                                             <span className="text-secondary text-xs font-weight-bold">
-                                                <Link to='#' onClick={(e) => VoirImageFiche(e, demandesStage.ficherep)}>
+                                                <Link to='#' onClick={(e) => VoirImageDemandeStage(e, demandesStage.demandestage)}>
                                                     <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '50px' }}>
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
@@ -236,6 +241,31 @@ export default function DemandesStage() {
 
                                 },
                                 {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4 ">CIN</h1>
+                                    , render: (demandesStage) => {
+                                        return (
+                                            <span className="text-secondary text-xs font-weight-bold">
+                                                <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '20px' }}>
+
+                                                    <Link to='#' onClick={(e) => VoirImageCIN(e, demandesStage.cin)}>
+                                                        <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '10px' }}>
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                                                <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z" />
+                                                                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z" />
+                                                            </svg>
+                                                        </div>
+                                                    </Link>
+                                                </div></span>
+                                        )
+                                    }
+
+
+
+
+                                },
+                                {
                                     title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5" >Etat</h1>
                                     , render: demandesStage => {
                                         return (
@@ -261,8 +291,7 @@ export default function DemandesStage() {
                                     , render: demandesStage => {
                                         return (
                                             <div className="align-middle text-center text-sm">
-
-                                                <Link onClick={(e) => setStagiaireID(e, demandesStage.stagiaire[0].stagiaireId)} data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                                {demandesStage.etatdemande === 'Nouvellement créé' ? <Link onClick={(e) => setStagiaireID(e, demandesStage.stagiaire[0].stagiaireId)} data-bs-toggle="modal" data-bs-target="#exampleModal" >
                                                     <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#EC9833', marginLeft: '10px' }}>
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16">
@@ -270,7 +299,8 @@ export default function DemandesStage() {
                                                             <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
                                                         </svg>
                                                     </div>
-                                                </Link>
+                                                </Link> : null}
+
 
 
 

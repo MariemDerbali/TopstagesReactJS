@@ -28,12 +28,12 @@ export default function Addcritere() {
         e.persist();
         setCritere({ ...CritereInput, [e.target.name]: e.target.value });
     }
-    const [directionslist, setDirections] = useState([]);
+    const [serviceslist, setServices] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/directions').then(res => {
+        axios.get('/api/critere-services').then(res => {
             if (res.data.status === 200) {
-                setDirections(res.data.directions);
+                setServices(res.data.services);
             }
         });
     }, []);
@@ -83,10 +83,10 @@ export default function Addcritere() {
                                 <label className="form-label">Domaine de stage</label>
                                 <select name="domainestage" onChange={handleInput} value={CritereInput.domainestage} className="form-select">
                                     <option>Domaine</option>
-                                    {//obtenir la liste des départements
-                                        directionslist.map((dep, index) => {
+                                    {//obtenir la liste des services
+                                        serviceslist.map((service, index) => {
                                             return (
-                                                <option value={dep.id} key={index}>{dep.nomdirection}</option>
+                                                <option value={service.id} key={index}>{service.nomService}</option>
 
 
                                             )

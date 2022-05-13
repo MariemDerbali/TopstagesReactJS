@@ -140,12 +140,7 @@ export default class TestPsychotechnique extends React.Component {
           }
       };
   */
-    handleQuitButtonClick = () => {
-        this.playButtonSound();
-        if (window.confirm('Êtes-vous sûr de vouloir quitter?')) {
-            this.props.history.push('/');
-        }
-    };
+
 
     handleButtonClick = (e) => {
         switch (e.target.id) {
@@ -410,7 +405,6 @@ export default class TestPsychotechnique extends React.Component {
                                     <button id="next-button" className='button-72' onClick={this.handleButtonClick}>Question suivante&nbsp;&nbsp;<i className="fas fa-arrow-alt-circle-right"></i></button>
                                 }
 
-                                <button id="quit-button" className='button-73' onClick={this.handleButtonClick}>Arrêter le test</button>
 
                             </div>
                         </div>

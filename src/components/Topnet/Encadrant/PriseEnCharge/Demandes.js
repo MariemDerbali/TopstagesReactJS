@@ -99,7 +99,7 @@ export default function Demandes() {
 
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 ">Cv</h1>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-3 ">Cv</h1>
                                 , render: (demandesStage) => {
                                     return (
                                         <span className="text-secondary text-xs font-weight-bold">
@@ -121,7 +121,7 @@ export default function Demandes() {
 
 
                             {
-                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4" >Etat</h1>
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-7" >Etat</h1>
                                 , render: demandesStage => {
                                     return (
                                         <div className="align-middle text-center text-sm">

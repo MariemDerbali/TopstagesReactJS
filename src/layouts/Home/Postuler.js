@@ -28,10 +28,12 @@ export default function Postuler() {
 
     const [picture1, setPicture1] = useState([]);
     const [picture2, setPicture2] = useState([]);
+    const [picture3, setPicture3] = useState([]);
+
 
 
     const handleImage1 = (e) => {
-        setPicture1({ ficherep: e.target.files[0] });
+        setPicture1({ demandestage: e.target.files[0] });
 
     }
     const handleImage2 = (e) => {
@@ -39,14 +41,22 @@ export default function Postuler() {
 
     }
 
+    const handleImage3 = (e) => {
+        setPicture3({ cin: e.target.files[0] });
+
+    }
+
+
 
 
     const updatePost = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('ficherep', picture1.ficherep);
+        formData.append('demandestage', picture1.demandestage);
         formData.append('cv', picture2.cv);
+        formData.append('cin', picture3.cin);
+
 
         axios.post(`/api/postuler/${post_id}`, formData).then(res => {
 
@@ -83,13 +93,18 @@ export default function Postuler() {
 
 
                                         <p className="card-text font-weight-bold">
-                                            <label className="form-label">Fiche de réponse &nbsp;<span style={{ color: 'red' }}>*</span></label>
-                                            <input name="ficherep" onChange={handleImage1} className="form-control" type="file" id="formFile" required />
+                                            <label className="form-label">Demande de stage &nbsp;<span style={{ color: 'red' }}>*</span></label>
+                                            <input name="demandestage" onChange={handleImage1} className="form-control" type="file" id="formFile" required />
 
                                         </p>
                                         <p className="card-text font-weight-bold">
                                             <label className="form-label">CV &nbsp;<span style={{ color: 'red' }}>*</span></label>
                                             <input name="cv" onChange={handleImage2} className="form-control" type="file" id="formFile" required />
+
+                                        </p>
+                                        <p className="card-text font-weight-bold">
+                                            <label className="form-label">CIN &nbsp;<span style={{ color: 'red' }}>*</span></label>
+                                            <input name="cin" onChange={handleImage3} className="form-control" type="file" id="formFile" required />
 
                                         </p>
                                         <hr className="my-4" />

@@ -11,15 +11,13 @@ export default function Dossier() {
 
     const [loading, setLoading] = useState(true);
 
-    const [notifExist, setNotifExist] = useState(false);
 
     const [demandesStage, setDemandeStage] = useState([]);
 
-    const [notif, setNotif] = useState([]);
 
-    const VoirImageFiche = (e, ficherep) => {
+    const VoirImageDemandeStage = (e, demandestage) => {
         e.preventDefault();
-        window.open(`http://127.0.0.1:8000/${ficherep}`)
+        window.open(`http://127.0.0.1:8000/${demandestage}`)
 
 
     }
@@ -28,6 +26,12 @@ export default function Dossier() {
         window.open(`http://127.0.0.1:8000/${cv}`)
 
     }
+    const VoirImageCIN = (e, cin) => {
+        e.preventDefault();
+        window.open(`http://127.0.0.1:8000/${cin}`)
+
+    }
+
 
 
 
@@ -43,16 +47,7 @@ export default function Dossier() {
 
         });
 
-        axios.get('/api/notif').then(res => {
-            if (res.data.status === 200) {
 
-                setNotif(res.data.notif);
-                setNotifExist(true);
-                setLoading(false);
-
-            }
-
-        });
 
     }, []);
 
@@ -65,9 +60,13 @@ export default function Dossier() {
     const handle1 = (e) => {
         setCvFile({ cv: e.target.files[0] });
     }
-    const [file2, setFicherepFile] = useState([]);
+    const [file2, setdemandestageFile] = useState([]);
     const handle2 = (e) => {
-        setFicherepFile({ ficherep: e.target.files[0] });
+        setdemandestageFile({ demandestage: e.target.files[0] });
+    }
+    const [file3, setCinFile] = useState([]);
+    const handle3 = (e) => {
+        setCinFile({ cin: e.target.files[0] });
     }
 
     const updateDocuments = (e) => {
@@ -77,8 +76,8 @@ export default function Dossier() {
 
         const formData = new FormData();
         formData.append('cv', file1.cv);
-        formData.append('ficherep', file2.ficherep);
-
+        formData.append('demandestage', file2.demandestage);
+        formData.append('cin', file3.cin);
 
         axios.post(`/api/documents/${postID}`, formData).then(res => {
 
@@ -103,13 +102,7 @@ export default function Dossier() {
         return (
             <div>
 
-                {
-                    notifExist ?
-                        <div className="alert alert-danger" role="alert" style={{ color: '#fff' }}>
-                            {notif.message}
-                        </div> :
-                        null
-                }
+
 
                 <form onSubmit={updateDocuments} >
 
@@ -129,9 +122,14 @@ export default function Dossier() {
                                         </div>
 
                                         <div className="col-md-6 ">
-                                            <label className="form-label">Fiche de réponse</label>
-                                            <input name="ficherep" onChange={handle2} className="form-control" type="file" id="formFile" />
-                                            <small className="text-danger">{errorlist.ficherep}</small>
+                                            <label className="form-label">Demande de stage</label>
+                                            <input name="demandestage" onChange={handle2} className="form-control" type="file" id="formFile" />
+                                            <small className="text-danger">{errorlist.demandestage}</small>
+                                        </div>
+                                        <div className="col-md-6 ">
+                                            <label className="form-label">CIN</label>
+                                            <input name="cin" onChange={handle3} className="form-control" type="file" id="formFile" />
+                                            <small className="text-danger">{errorlist.cin}</small>
                                         </div>
 
                                     </div>
@@ -174,9 +172,9 @@ export default function Dossier() {
 
 
                                 {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Fiche de réponse</h1>, render: demandesStage => {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Demande de stage</h1>, render: demandesStage => {
                                         return (
-                                            <span className="text-secondary text-xs font-weight-bold"> <Link to='#' onClick={(e) => VoirImageFiche(e, demandesStage.ficherep)}>
+                                            <span className="text-secondary text-xs font-weight-bold"> <Link to='#' onClick={(e) => VoirImageDemandeStage(e, demandesStage.demandestage)}>
                                                 <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '40px' }}>
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
@@ -200,6 +198,29 @@ export default function Dossier() {
                                         return (
                                             <span className="text-secondary text-xs font-weight-bold">
                                                 <Link to='#' onClick={(e) => VoirImageCV(e, demandesStage.cv)}>
+                                                    <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '10px' }}>
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                                            <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z" />
+                                                            <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z" />
+                                                        </svg>
+                                                    </div>
+                                                </Link></span>
+                                        )
+                                    }
+
+
+
+
+                                },
+
+                                {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4 ">CIN</h1>
+                                    , render: (demandesStage) => {
+                                        return (
+                                            <span className="text-secondary text-xs font-weight-bold">
+                                                <Link to='#' onClick={(e) => VoirImageCIN(e, demandesStage.cin)}>
                                                     <div className="icon-shape icon-sm shadow border-radius-md text-center me-2 d-flex align-items-center justify-content-center" style={{ color: 'white', backgroundColor: '#09288C', marginLeft: '10px' }}>
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">

@@ -77,7 +77,7 @@ export default class TestSummary extends Component {
                         </div>
                         <section className='section'>
                             <ul>
-                                {remark === 'Vous avez été excellent' || remark === 'Vous êtes un génie absolu!' ?
+                                {remark === 'Excellent!' || remark === 'Vous êtes un génie absolu!' ?
                                     <li><Link to={`/postuler/${this.state.postID}`}>Cliquer pour postuler</Link></li> : <li><Link to='/'>Retour à la page d'accueil</Link></li>}
 
 

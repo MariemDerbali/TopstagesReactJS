@@ -18,6 +18,9 @@ export default function Header() {
     //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);
 
+    const [notifExist, setNotifExist] = useState(false);
+
+    const [notif, setNotif] = useState([]);
 
     //Fonction de déconnexion
     const logoutSubmit = (e) => {
@@ -57,6 +60,17 @@ export default function Header() {
                 swal("", res.data.message, "error");
             }
         });
+
+        axios.get('/api/serviceformation-notif').then(res => {
+            if (res.data.status === 200) {
+
+                setNotif(res.data.notif);
+                setNotifExist(true);
+                setLoading(false);
+
+            }
+
+        });
     }, []);
 
 
@@ -66,17 +80,18 @@ export default function Header() {
             <div className="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Pages</Link></li>
-                        <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Tableau de bord</li>
+                        <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Espace</Link></li>
+                        <li className="breadcrumb-item text-sm text-dark active" aria-current="page">{user.role_id}</li>
                     </ol>
-                    {/*afficher le rôle de l'utilisateur authentifié actuel */}
-                    <h6 className="font-weight-bolder mb-0">{user.role_id}</h6>
+
                 </nav>
                 <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div className="ms-md-auto pe-md-3 d-flex align-items-center">
 
                     </div>
+
                     <ul className="navbar-nav  justify-content-end">
+
 
                         <li className="nav-item dropdown pe-3">
                             {/*si la page est en cours de chargement, donc afficher un spinner*/}
@@ -136,6 +151,68 @@ export default function Header() {
 
                             </ul>
                         </li>
+                        <li className="nav-item dropdown pe-2 d-flex align-items-center">
+                            {
+                                notifExist ?
+                                    <div>
+                                        <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div className="position-relative">
+                                                <i className="fa fa-bell cursor-pointer"></i>
+
+                                                <span className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                                </span>
+                                            </div>
+                                        </a>
+                                        <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                            <li className="mb-2">
+
+                                                <div className="dropdown-item border-radius-md" >
+                                                    <div className="d-flex py-1">
+                                                        <div className="my-auto">
+                                                            <img src={`http://127.0.0.1:8000/${notif.emetteurImage}`} className="avatar avatar-sm  me-3 " />
+                                                        </div>
+                                                        <div className="d-flex flex-column justify-content-center">
+                                                            <h6 className="text-sm font-weight-normal mb-1">
+                                                                <span className="font-weight-bold">Nouvelle notification </span>de {notif.emetteur}
+                                                                <br></br> a mis à jour ses fichiers
+                                                            </h6>
+
+                                                            <p className="text-xs text-secondary mb-0 ">
+                                                                <i className="fa fa-clock me-1"></i>
+                                                                {notif.date}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div> :
+                                    <div>
+                                        <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i className="fa fa-bell cursor-pointer"></i>
+                                        </a>
+                                        <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                            <li className="mb-2">
+
+                                                <a className="dropdown-item border-radius-md" href="#">
+                                                    <div className="d-flex py-1">
+
+                                                        <div className="d-flex flex-column justify-content-center">
+                                                            <h6 className="text-sm font-weight-normal mb-1">
+                                                                <span className="font-weight-bold">Pas de notifications</span>
+                                                            </h6>
+
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                            }
+                        </li>
+
                     </ul>
                 </div>
             </div>

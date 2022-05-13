@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import swal from 'sweetalert';
-import { useHistory } from "react-router-dom";
 import Loading from './Loading';
 
 //En-tête de page pour tous les utilisateurs
 export default function Header() {
 
-    // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
-    const history = useHistory();
 
     //Le useState() est un Hook qui vous permet d'avoir des variables d'état dans les composants fonctionnels.
     // Le premier élément est l’état initial et le second est une fonction qui est utilisée pour mettre à jour l’état.
@@ -17,6 +14,11 @@ export default function Header() {
     const [user, setUser] = useState([]);
     //Variables d'état pour afficher le spinner qui indique le chargement de la page
     const [loading, setLoading] = useState(true);
+
+    const [notifExist, setNotifExist] = useState(false);
+
+    const [notif, setNotif] = useState([]);
+
 
 
     //Fonction de déconnexion
@@ -57,67 +59,145 @@ export default function Header() {
                 swal("", res.data.message, "error");
             }
         });
+
+
+        axios.get('/api/notif').then(res => {
+            if (res.data.status === 200) {
+
+                setNotif(res.data.notif);
+                setNotifExist(true);
+                setLoading(false);
+
+            }
+
+        });
     }, []);
 
 
 
     return (
-        <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-            <div className="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Pages</Link></li>
-                        <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Mon espace</li>
-                    </ol>
-                    {/*afficher le rôle de l'utilisateur authentifié actuel */}
-                    <h6 className="font-weight-bolder mb-0">{user.role_id}</h6>
-                </nav>
-                <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+        <div>
 
+
+            <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+                <div className="container-fluid py-1 px-3">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                            <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Pages</Link></li>
+                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Mon espace</li>
+                        </ol>
+                        {/*afficher le rôle de l'utilisateur authentifié actuel */}
+                        <h6 className="font-weight-bolder mb-0">{user.role_id}</h6>
+                    </nav>
+                    <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                        <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+
+                        </div>
+                        <ul className="navbar-nav  justify-content-end">
+
+                            <li className="nav-item dropdown pe-3">
+                                {/*si la page est en cours de chargement, donc afficher un spinner*/}
+                                {loading ? <Loading /> :
+                                    // sinon afficher l'image , le nom et prénom de l'utilisateur authentifié actuel
+                                    <Link className="nav-link nav-profile d-flex align-items-center pe-0" to="#" data-bs-toggle="dropdown">
+                                        <img src={`http://127.0.0.1:8000/${user.image}`} alt="Profile" className="avatar avatar-sm " />
+                                        <span className="d-none d-md-block dropdown-toggle ps-2">{`${user.nom} ${user.prenom}`}</span>
+                                    </Link>}
+
+                                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                    <li>
+                                        <Link className="dropdown-item d-flex align-items-center" to="/stagiaire/profil">
+                                            <i className="bi bi-person"></i>
+                                            <span>Mon profil</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link className="dropdown-item d-flex align-items-center" to="/stagiaire/dossier">
+                                            <i className="bi bi-person"></i>
+                                            <span>Suivre dossier</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <hr className="dropdown-divider" />
+                                    </li>
+
+                                    <li>
+                                        {/*Option pour la déconnexion */}
+                                        <Link className="dropdown-item d-flex align-items-center" to="/auth" onClick={logoutSubmit} >
+                                            <i className="bi bi-box-arrow-right"></i>
+                                            <span>Se déconnecter</span>
+                                        </Link>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li className="nav-item dropdown pe-2 d-flex align-items-center">
+                                {
+                                    notifExist ?
+                                        <div>
+                                            <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <div className="position-relative">
+                                                    <i className="fa fa-bell cursor-pointer"></i>
+
+                                                    <span className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                                    </span>
+                                                </div>
+                                            </a>
+                                            <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                                <li className="mb-2">
+
+                                                    <div className="dropdown-item border-radius-md" >
+                                                        <div className="d-flex py-1">
+                                                            <div className="my-auto">
+                                                                <img src={`http://127.0.0.1:8000/${notif.emetteurImage}`} className="avatar avatar-sm  me-3 " />
+                                                            </div>
+                                                            <div className="d-flex flex-column justify-content-center">
+                                                                <h6 className="text-sm font-weight-normal mb-1">
+                                                                    <span className="font-weight-bold">Nouvelle notification </span>de {notif.emetteurRole}
+                                                                    <br></br> {notif.message}
+                                                                </h6>
+
+                                                                <p className="text-xs text-secondary mb-0 ">
+                                                                    <i className="fa fa-clock me-1"></i>
+                                                                    {notif.date}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                            </ul>
+                                        </div> :
+                                        <div>
+                                            <a href="#" className="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i className="fa fa-bell cursor-pointer"></i>
+                                            </a>
+                                            <ul className="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                                                <li className="mb-2">
+
+                                                    <a className="dropdown-item border-radius-md" href="#">
+                                                        <div className="d-flex py-1">
+
+                                                            <div className="d-flex flex-column justify-content-center">
+                                                                <h6 className="text-sm font-weight-normal mb-1">
+                                                                    <span className="font-weight-bold">Pas de notifications</span>
+                                                                </h6>
+
+                                                            </div>
+                                                        </div>
+                                                    </a>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                }
+                            </li>
+                        </ul>
                     </div>
-                    <ul className="navbar-nav  justify-content-end">
-
-                        <li className="nav-item dropdown pe-3">
-                            {/*si la page est en cours de chargement, donc afficher un spinner*/}
-                            {loading ? <Loading /> :
-                                // sinon afficher l'image , le nom et prénom de l'utilisateur authentifié actuel
-                                <Link className="nav-link nav-profile d-flex align-items-center pe-0" to="#" data-bs-toggle="dropdown">
-                                    <img src={`http://127.0.0.1:8000/${user.image}`} alt="Profile" className="avatar avatar-sm " />
-                                    <span className="d-none d-md-block dropdown-toggle ps-2">{`${user.nom} ${user.prenom}`}</span>
-                                </Link>}
-
-                            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                                <li>
-                                    <Link className="dropdown-item d-flex align-items-center" to="/stagiaire/profil">
-                                        <i className="bi bi-person"></i>
-                                        <span>Mon profil</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item d-flex align-items-center" to="/stagiaire/dossier">
-                                        <i className="bi bi-person"></i>
-                                        <span>Suivre dossier</span>
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <hr className="dropdown-divider" />
-                                </li>
-
-                                <li>
-                                    {/*Option pour la déconnexion */}
-                                    <Link className="dropdown-item d-flex align-items-center" to="/auth" onClick={logoutSubmit} >
-                                        <i className="bi bi-box-arrow-right"></i>
-                                        <span>Se déconnecter</span>
-                                    </Link>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     )
 }

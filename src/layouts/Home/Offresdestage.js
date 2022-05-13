@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom';
 import "./css/Homestyle.css"
 import swal from 'sweetalert';
 
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+
+
 export default function Offresdestage() {
 
 
@@ -65,16 +69,16 @@ export default function Offresdestage() {
 
 
 
-    //Variables d'état pour obtenir la liste des départements
-    const [directionlist, setDirectionlist] = useState([
+    //Variables d'état pour obtenir la liste des services
+    const [serviceslist, setServicelist] = useState([
 
     ]);
     useEffect(() => {
 
-        //l'API pour obtenir la liste des directions
-        axios.get('/api/homepage-directions').then(res => {
+        //l'API pour obtenir la liste des services
+        axios.get('/api/homepage-services').then(res => {
             if (res.data.status === 200) {
-                setDirectionlist(res.data.directions);
+                setServicelist(res.data.services);
             }
         });
 
@@ -100,8 +104,7 @@ export default function Offresdestage() {
 
 
 
-    const submitOffreDemandee = (e) => {
-        e.preventDefault();//C'est une méthode présente dans l'interface événementielle. Cette méthode empêche le navigateur d'exécuter le comportement par défaut de l'élément sélectionné. Cette méthode ne peut annuler l'événement que si l'événement est annulable.
+    const submitOffreDemandee = () => {
 
         // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
@@ -123,12 +126,51 @@ export default function Offresdestage() {
         })
     }
 
+    const submit = () => {
+
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className="container h-100" style={{ width: '6000px' }} >
+                        <div className="row justify-content-center h-100">
+                            <div className="col-md-6  "   >
+                                <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
+                                    <div className="card h-100">
+                                        <div className="card-body">
+                                            <h6 className="card-title">Vous êtes sur le point de lancer le test psychotechnique. Vous ne pourrez pas faire de pause. </h6>
+                                            <h4 className="card-subtitle mb-2 " style={{ color: '#ef8e1f', textAlign: 'center' }} >Êtes-vous prêt ?</h4>
+
+
+
+                                            <hr className="my-4" />
+
+                                            <button className='btn btn-info' onClick={() => {
+                                                submitOffreDemandee();
+                                                onClose();
+                                            }}>Commencer le test</button>&nbsp;&nbsp;
+                                            <button onClick={onClose} className="btn btn-light ">Quitter</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                );
+            }
+        });
+
+    }
 
 
 
     return (
         <div>
-            <form className="row" onSubmit={submitOffreDemandee} >
+            <form className="row"  >
 
                 <div className="container d-flex align-items-center mb-3 mt-3" style={{ marginLeft: "20px" }}>
 
@@ -143,10 +185,10 @@ export default function Offresdestage() {
                             <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
 
                                 <option value="">Domaine de stage</option>
-                                {//obtenir la liste des directions
-                                    directionlist.map((direction, index) => {
+                                {//obtenir la liste des services
+                                    serviceslist.map((service, index) => {
                                         return (
-                                            <option value={direction.id} key={index}>{direction.nomdirection}</option>
+                                            <option value={service.id} key={index}>{service.nomService}</option>
 
 
                                         )
@@ -212,7 +254,7 @@ export default function Offresdestage() {
                                                         </p>
                                                         <hr className="my-4" />
 
-                                                        <button type="submit" className="btn btn-info ">Postuler!</button>
+                                                        <button type="button" className="btn btn-info " onClick={submit}>Postuler!</button>
 
                                                     </div>
                                                 </div>

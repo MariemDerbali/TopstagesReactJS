@@ -154,8 +154,15 @@ export default function Offres() {
                                 <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
                                     <div className="card h-100">
                                         <div className="card-body">
+
                                             <h5 className="card-title">{offre.sujet}</h5>
-                                            <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
+
+                                            {user.role_id === "ChefDepartement" ?
+                                                <div >
+                                                    <span class="badge bg-secondary mb-2">Encadrant: {offre.encadrant}</span>
+                                                    <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
+                                                </div>
+                                                : <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>}
                                             <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
 
                                             <p className="card-text font-weight-bold">
