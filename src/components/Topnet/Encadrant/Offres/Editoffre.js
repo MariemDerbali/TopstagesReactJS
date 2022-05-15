@@ -195,7 +195,7 @@ export default function Editoffre(props) {
 
                             <div className="col-md-6">
                                 <label className="form-label">Déscription</label>
-                                <textarea class="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
+                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
                                 <small className="text-danger">{errorlist.description}</small>
                             </div>
 

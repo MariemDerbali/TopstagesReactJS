@@ -1,10 +1,10 @@
 import React from 'react'
 
-//tableau de bord pour le service formation
+import Charts from '../../ChefDepartement/Statistiques/Charts';
 export default function DashboardServiceFormation() {
     return (
         <div>
-
+            <Charts />
         </div>
     )
 }

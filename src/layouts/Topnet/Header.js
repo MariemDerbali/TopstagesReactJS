@@ -200,7 +200,7 @@ export default function Header() {
 
                                                         <div className="d-flex flex-column justify-content-center">
                                                             <h6 className="text-sm font-weight-normal mb-1">
-                                                                <span className="font-weight-bold">Pas de notifications</span>
+                                                                <span className="font-weight-bold">Pas de notifications pour le moment..</span>
                                                             </h6>
 
                                                         </div>
