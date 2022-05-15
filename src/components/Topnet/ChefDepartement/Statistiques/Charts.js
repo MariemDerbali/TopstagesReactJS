@@ -23,7 +23,7 @@ export default function Charts() {
                 labels: statOffres.map((data) => data.annee),
                 datasets: [
                     {
-                        label: "Offres des stages",
+                        label: "Offres des stages publiées",
                         data: statOffres.map((data) => data.offres),
                         backgroundColor: ["#008ac5", "#00a9b5", "#00c698", "#1fe074"]
                     },
