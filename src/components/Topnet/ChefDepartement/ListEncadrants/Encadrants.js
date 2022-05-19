@@ -75,15 +75,15 @@ export default function Encadrants() {
                             },
 
                             {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Direction</h1>//Cellule d'en-tête <th>
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Service</h1>//Cellule d'en-tête <th>
                                 , render: (encadrants) => {
                                     return (
-                                        <p className="text-xs font-weight-bold mb-0">{encadrants.direction}</p>)//Cellule de données <td>
+                                        <p className="text-xs font-weight-bold mb-0">{encadrants.service}</p>)//Cellule de données <td>
                                 }
                                 ,
 
                                 //pour personnaliser le filtrage et la recherche
-                                customFilterAndSearch: (term, encadrants) => ((encadrants.direction).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par rôle
+                                customFilterAndSearch: (term, encadrants) => ((encadrants.service).toLowerCase()).indexOf(term.toLowerCase()) != -1 //filtrer et rechercher par service
 
 
                             },

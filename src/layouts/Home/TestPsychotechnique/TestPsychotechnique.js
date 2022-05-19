@@ -5,7 +5,6 @@ import M from 'materialize-css';
 import correctNotification from '../audio/correct-answer.mp3';
 import wrongNotification from '../audio/wrong-answer.mp3';
 import buttonSound from '../audio/button-sound.mp3';
-import bg from '../img/quiz.jpg';
 import Loading from '../../Topnet/Loading';
 
 export default class TestPsychotechnique extends React.Component {
@@ -275,7 +274,7 @@ export default class TestPsychotechnique extends React.Component {
     render() {
         return (
 
-            <div className='mainTest' style={{ backgroundImage: `url(${bg})` }}>
+            <div className='mainTest'  >
 
                 <div className='questions mb-5' >
                     <h2 className='H2'>Test psychotechnique</h2>
@@ -286,8 +285,8 @@ export default class TestPsychotechnique extends React.Component {
                     {this.state.loading ? <Loading /> :
                         <div >
                             <p>
-                                <span className='left' style={{ color: '#fff' }} >{this.state.currentQuestionIndex + 1} sur {this.state.numberOfQuestions}</span>
-                                <span className='right' style={{ color: '#fff' }} > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
+                                <span className='left'  >{this.state.currentQuestionIndex + 1} sur {this.state.numberOfQuestions}</span>
+                                <span className='right'  > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
 
                             </p>
 
@@ -302,7 +301,7 @@ export default class TestPsychotechnique extends React.Component {
                                         <div className='options-container' >
 
 
-                                            <h5 ><span className="textDanger">Q.</span><span style={{ color: '#fff' }}>{this.state.currentQuestion.questionText}</span></h5>
+                                            <h5 ><span className="textDanger">Q.</span><span  >{this.state.currentQuestion.questionText}</span></h5>
                                             <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} />
                                         </div>
                                     </div>
@@ -311,7 +310,7 @@ export default class TestPsychotechnique extends React.Component {
                                         <div className='container-ques' data-aos="zoom-in-left" style={{ margin: 'auto' }}>
                                             <div className='options-container'  >
 
-                                                <h5 ><span className="textDanger">Q.</span><span style={{ color: '#fff' }}>{this.state.currentQuestion.questionText}</span></h5>
+                                                <h5 ><span className="textDanger">Q.</span><span  >{this.state.currentQuestion.questionText}</span></h5>
                                             </div>
                                         </div>
                                         :
