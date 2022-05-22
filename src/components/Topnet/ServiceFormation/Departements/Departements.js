@@ -52,7 +52,7 @@ export default function Departements() {
     else {
         return (
             <div className="row">
-                <div className="col-12">
+                <div className="col-12" >
                     <MaterialTable
                         columns={[
 

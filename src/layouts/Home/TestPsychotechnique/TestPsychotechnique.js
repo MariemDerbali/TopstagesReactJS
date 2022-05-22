@@ -1,9 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import "../css/Homestyle.css"
-import M from 'materialize-css';
-import correctNotification from '../audio/correct-answer.mp3';
-import wrongNotification from '../audio/wrong-answer.mp3';
 import buttonSound from '../audio/button-sound.mp3';
 import Loading from '../../Topnet/Loading';
 
@@ -18,11 +15,9 @@ export default class TestPsychotechnique extends React.Component {
 
             currentQuestion: {},
             nextQuestion: {},
-            // previousQuestion: {},
 
             currentReponses: [],
             nextReponses: [],
-            //previousReponses: [],
 
             repcorrecte: {},
 
@@ -36,8 +31,6 @@ export default class TestPsychotechnique extends React.Component {
             time: {}
         };
         this.interval = null
-        this.correctSound = React.createRef();
-        this.wrongSound = React.createRef();
         this.buttonSound = React.createRef();
     }
 
@@ -50,14 +43,10 @@ export default class TestPsychotechnique extends React.Component {
                     const currentStagiaire = res.data.stagiaire;
                     const noteTesttotale = res.data.notetotale;
                     const postID = res.data.postid;
-                    const type = res.data.type;
-                    const domaine = res.data.domaine;
                     this.setState(this.state.questionsreponses = questionrep);
                     this.setState(this.state.stagiaire = currentStagiaire);
                     this.setState({ postID: postID });
                     this.setState({ postID: postID });
-
-
                     this.setState({ notetotale: noteTesttotale });
 
                     if (this.state.questionsreponses.length != 0) {
@@ -86,17 +75,11 @@ export default class TestPsychotechnique extends React.Component {
     handleOptionClick = (e) => {
 
         if (e.target.id === 'Oui') {
-            setTimeout(() => {
-                this.correctSound.current.play();
 
-            }, 500);
             this.correctAnswer();
 
         } else if (e.target.id === 'Non') {
-            setTimeout(() => {
-                this.wrongSound.current.play();
 
-            }, 500);
             this.wrongAnswer();
         }
 
@@ -110,10 +93,8 @@ export default class TestPsychotechnique extends React.Component {
                 currentQuestionIndex: prevState.currentQuestionIndex + 1
             }), () => {
                 this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                // this.setState(this.state.previousQuestion = this.state.questionsreponses[this.state.currentQuestionIndex - 1].question);
                 this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
                 this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                //this.setState(this.state.previousReponses = this.state.questionsreponses[this.state.currentQuestionIndex - 1].reponses);
                 this.setState({ numberOfQuestions: this.state.questionsreponses.length });
             });
 
@@ -121,41 +102,9 @@ export default class TestPsychotechnique extends React.Component {
     };
 
 
-    /*  handlePreviousButtonClick = () => {
-          this.playButtonSound();
-          if (this.state.previousQuestion !== undefined) {
-              this.setState(prevState => ({
-                  currentQuestionIndex: prevState.currentQuestionIndex - 1
-              }), () => {
-                  this.setState(this.state.currentQuestion = this.state.questionsreponses[this.state.currentQuestionIndex].question);
-                  this.setState(this.state.nextQuestion = this.state.questionsreponses[this.state.currentQuestionIndex + 1].question);
-                  this.setState(this.state.repcorrecte = this.state.questionsreponses[this.state.currentQuestionIndex].reponsecorrecte);
-                  this.setState(this.state.currentReponses = this.state.questionsreponses[this.state.currentQuestionIndex].reponses);
-                  this.setState(this.state.nextReponses = this.state.questionsreponses[this.state.currentQuestionIndex + 1].reponses);
-                  this.setState({ numberOfQuestions: this.state.questionsreponses.length });
-              });
-  
-  
-          }
-      };
-  */
 
 
-    handleButtonClick = (e) => {
-        switch (e.target.id) {
-            case 'next-button':
-                this.handleNextButtonClick();
-                break;
-            //  case 'previous-button':
-            //    this.handlePreviousButtonClick();
-            //   break;
-            case 'quit-button':
-                this.handleQuitButtonClick();
-            default:
-                break;
 
-        }
-    }
     playButtonSound = () => {
 
         this.buttonSound.current.play();
@@ -164,11 +113,7 @@ export default class TestPsychotechnique extends React.Component {
 
 
     correctAnswer = () => {
-        M.toast({
-            html: 'Bonne réponse!',
-            classes: 'toast-valid',
-            displayLength: 1500
-        });
+
         this.setState(prevState => ({
             score: prevState.score + (this.state.notetotale / this.state.numberOfQuestions),
             correctAnswers: prevState.correctAnswers + 1,
@@ -192,12 +137,7 @@ export default class TestPsychotechnique extends React.Component {
     }
 
     wrongAnswer = () => {
-        navigator.vibrate(1000);
-        M.toast({
-            html: 'Mauvaise réponse!',
-            classes: 'toast-invalid',
-            displayLength: 1500
-        });
+
         this.setState(prevState => ({
             wrongAnswers: prevState.wrongAnswers + 1,
             currentQuestionIndex: prevState.currentQuestionIndex + 1,
@@ -278,8 +218,6 @@ export default class TestPsychotechnique extends React.Component {
 
                 <div className='questions mb-5' >
                     <h2 className='H2'>Test psychotechnique</h2>
-                    <audio ref={this.correctSound} src={correctNotification}></audio>
-                    <audio ref={this.wrongSound} src={wrongNotification}></audio>
                     <audio ref={this.buttonSound} src={buttonSound}></audio>
 
                     {this.state.loading ? <Loading /> :
@@ -381,27 +319,12 @@ export default class TestPsychotechnique extends React.Component {
 
                             <div style={{ marginRight: '60%' }}>
 
-                                {/* {this.state.currentQuestionIndex === 0 ?
-                                    <button className='button-71' type="button" id="previous-button" onClick={this.handleButtonClick} disabled style={{
-                                        backgroundColor: '#ccc',
-                                        boxShadow: 'none',
-                                        opacity: '0.9',
-                                        pointerEvents: 'none'
-                                    }}>Précédent </button>
-                                    :
-                                    <button type="button" className='button-71' id="previous-button" onClick={this.handleButtonClick} >Précédent</button>
-                                }*/}
 
                                 {this.state.currentQuestionIndex + 1 === this.state.numberOfQuestions ?
-                                    <button id="next-button" className='button-72' onClick={this.endTest}
-                                     /* disabled style={{
-                                        backgroundColor: '#ccc',
-                                        boxShadow: 'none',
-                                        opacity: '0.9',
-                                        pointerEvents: 'none'
-                                    }}*/>Terminer</button>
+                                    <button className='button-72' onClick={this.endTest}
+                                    >Terminer</button>
                                     :
-                                    <button id="next-button" className='button-72' onClick={this.handleButtonClick}>Question suivante&nbsp;&nbsp;<i className="fas fa-arrow-alt-circle-right"></i></button>
+                                    <button className='button-72' onClick={this.handleNextButtonClick}>Question suivante&nbsp;&nbsp;<i className="fas fa-arrow-alt-circle-right"></i></button>
                                 }
 
 

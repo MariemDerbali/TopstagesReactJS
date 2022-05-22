@@ -11,7 +11,6 @@ export default function Addcritere() {
     const [errorlist, setError] = useState([]);
 
     const [CritereInput, setCritere] = useState({
-        domainestage: '',
         typestage: '',
         nombrequestionsfaciles: '',
         nombrequestionsmoyennes: '',
@@ -45,7 +44,6 @@ export default function Addcritere() {
 
         // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
         const formData = new FormData();
-        formData.append('domainestage', CritereInput.domainestage);
         formData.append('typestage', CritereInput.typestage);
         formData.append('nombrequestionsfaciles', CritereInput.nombrequestionsfaciles);
         formData.append('nombrequestionsmoyennes', CritereInput.nombrequestionsmoyennes);
@@ -79,23 +77,7 @@ export default function Addcritere() {
 
                         <form className="row" onSubmit={submitCritere} >
 
-                            <div className="col-md-6">
-                                <label className="form-label">Domaine de stage</label>
-                                <select name="domainestage" onChange={handleInput} value={CritereInput.domainestage} className="form-select">
-                                    <option>Domaine</option>
-                                    {//obtenir la liste des services
-                                        serviceslist.map((service, index) => {
-                                            return (
-                                                <option value={service.id} key={index}>{service.nomService}</option>
 
-
-                                            )
-                                        })
-                                    }
-
-                                </select>
-
-                            </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Type de stage</label>

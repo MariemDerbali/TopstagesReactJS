@@ -67,18 +67,6 @@ export default function Criteres() {
 
 
                             },
-                            {
-                                title: <h1 className="text-center text-uppercase text-secondary text-xxs  font-weight-bolder opacity-7">Domaine de stage</h1>
-                                , render: (criteres) => {
-                                    return (
-                                        //Cellule de données <td>
-                                        <p className="text-xs font-weight-bold" style={{ marginLeft: '30px' }}>{criteres.domainestage}</p>)
-                                },
-                                customFilterAndSearch: (term, criteres) => ((criteres.domainestage).toLowerCase()).indexOf(term.toLowerCase()) != -1
-
-
-
-                            },
 
                             {
                                 title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre questions faciles</h1>

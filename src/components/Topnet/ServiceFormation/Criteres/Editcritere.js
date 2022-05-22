@@ -15,7 +15,6 @@ export default function Editcritere(props) {
 
 
     const [CritereInput, setCritere] = useState({
-        domainestage: '',
         typestage: '',
         nombrequestionsfaciles: '',
         nombrequestionsmoyennes: '',
@@ -56,7 +55,6 @@ export default function Editcritere(props) {
         e.preventDefault();
         const critere_id = props.match.params._id
         const formData = new FormData();
-        formData.append('domainestage', CritereInput.domainestage);
         formData.append('typestage', CritereInput.typestage);
         formData.append('nombrequestionsfaciles', CritereInput.nombrequestionsfaciles);
         formData.append('nombrequestionsmoyennes', CritereInput.nombrequestionsmoyennes);
@@ -106,23 +104,6 @@ export default function Editcritere(props) {
 
                         <form className="row" onSubmit={updateCritere} >
 
-                            <div className="col-md-6">
-                                <label className="form-label">Domaine de stage</label>
-                                <select name="domainestage" onChange={handleInput} value={CritereInput.domainestage} className="form-select">
-                                    <option>Domaine</option>
-                                    {//obtenir la liste des services
-                                        serviceslist.map((service, index) => {
-                                            return (
-                                                <option value={service.id} key={index}>{service.nomService}</option>
-
-
-                                            )
-                                        })
-                                    }
-
-                                </select>
-
-                            </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Type de stage</label>
