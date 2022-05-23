@@ -169,6 +169,36 @@ export default function Dossier() {
 
 
                                 },
+                                {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Sujet de stage</h1>, render: demandesStage => {
+                                        return (
+                                            <span className="text-secondary text-xs font-weight-bold">
+                                                {demandesStage.sujet ?
+                                                    demandesStage.sujet :
+                                                    <span className="badge rounded-pill bg-light text-dark">Sans sujet</span>
+                                                }
+                                            </span>
+
+                                        )
+                                    }
+
+
+
+                                },
+                                {
+                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Encadrant</h1>, render: demandesStage => {
+                                        return (
+                                            <span className="text-secondary text-xs font-weight-bold">
+                                                {demandesStage.encadrant
+                                                }
+                                            </span>
+
+                                        )
+                                    }
+
+
+
+                                },
 
 
                                 {

@@ -104,30 +104,32 @@ export default function Offresdestage() {
 
 
 
-    const submitOffreDemandee = () => {
-
-        // l'objet FormData sera rempli avec les clés/valeurs du formulaire en utilisant les noms de propriétés de chaque élément pour clé et les valeurs soumises. Cela encodera aussi le contenu des fichiers.
+    const submitOffreDemandee = (e, offre) => {
+        e.preventDefault();
         const formData = new FormData();
         formData.append('domaine', OffreDemandee.domaine);
         formData.append('type', OffreDemandee.type);
         formData.append('stagiaireID', stagiaire._id);
+        formData.append('sujet', offre.sujet);
+        formData.append('encadrant', offre.encadrant[0].nom + ' ' + offre.encadrant[0].prenom);
 
 
 
-        //l'API pour créer un département
         axios.post('/api/homepage-postuler', formData).then(res => {
             if (res.data.status === 200) {
 
                 history.push(`/test-psychotechnique/${stagiaire._id}`);
 
-            } else if (res.data.status === 422) {//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
+            } else if (res.data.status === 401) {
                 swal("", res.data.message, "warning");
+            }
+            else {
+                swal("", res.data.message, "warning");//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
             }
         })
     }
 
-    const submit = () => {
-
+    const submit = (e, offre) => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
@@ -145,7 +147,7 @@ export default function Offresdestage() {
                                             <hr className="my-4" />
 
                                             <button className='btn btn-info' onClick={() => {
-                                                submitOffreDemandee();
+                                                submitOffreDemandee(e, offre);
                                                 onClose();
                                             }}>Commencer le test</button>&nbsp;&nbsp;
                                             <button onClick={onClose} className="btn btn-light ">Quitter</button>
@@ -163,6 +165,7 @@ export default function Offresdestage() {
                 );
             }
         });
+
 
     }
 
@@ -222,11 +225,11 @@ export default function Offresdestage() {
                 <div className="container h-100" style={{ width: '80%' }}>
                     <div className="row justify-content-center h-100">
                         {/**s'il n'y a pas de sujet  pour le type de stage initiaton & perfectionnement*/}
-                        {(type === 'Stage initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?
+                        {(type === 'Stage Initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?
                             <div className="col-md-6 " data-aos="fade-down" style={{ textAlign: 'center' }}>
                                 {localStorage.getItem('auth_token') ?
-                                    <Link to={`/test-psychotechnique/${stagiaire._id}`} ><button type='button' className='btn btn-primary ' >Cliquez ici pour postuler!</button></Link> :
-                                    <Link to="/auth" ><button type='button' className='btn btn-primary ' >Cliquez ici pour postuler!</button></Link>
+                                    <button type='button' className='btn btn-primary ' onClick={submit}  >Cliquez ici pour postuler!</button> :
+                                    <Link to="/auth" ><button type='button' className='btn btn-primary '>Cliquez ici pour postuler!</button></Link>
                                 }
                             </div> :
                             /**s'il n'y a pas de sujet  pour le type de stage PFE*/
@@ -244,7 +247,8 @@ export default function Offresdestage() {
                                                 <div className="card h-100">
                                                     <div className="card-body">
                                                         <h5 className="card-title">{offre.sujet}</h5>
-                                                        <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
+                                                        <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>
+                                                            {offre.periode} mois</h6>
                                                         <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
 
                                                         <p className="card-text font-weight-bold">
@@ -254,7 +258,7 @@ export default function Offresdestage() {
                                                         </p>
                                                         <hr className="my-4" />
 
-                                                        <button type="button" className="btn btn-info " onClick={submit}>Postuler!</button>
+                                                        <button type="button" className="btn btn-info " onClick={(e) => submit(e, offre)}>Postuler!</button>
 
                                                     </div>
                                                 </div>

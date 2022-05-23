@@ -159,7 +159,11 @@ export default function Offres() {
 
                                             {user.role_id === "ChefDepartement" ?
                                                 <div >
-                                                    <span class="badge bg-secondary mb-2">Encadrant: {offre.encadrant}</span>
+                                                    <span class="badge mb-2" style={{ backgroundColor: '#8392ab9c' }}>
+                                                        <span style={{ color: "#3a416f" }}>Encadrant: </span>
+                                                        {offre.encadrant[0].nom} {offre.encadrant[0].prenom} <br /><br />
+                                                        <span style={{ color: "#3a416f" }}>Téléphone: </span> {offre.encadrant[0].tel} <br /><br />
+                                                        <span style={{ color: "#3a416f" }}>E-mail: </span> {offre.encadrant[0].email}</span>
                                                     <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
                                                 </div>
                                                 : <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>}
