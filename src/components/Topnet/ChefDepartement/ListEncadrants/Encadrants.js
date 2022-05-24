@@ -121,6 +121,12 @@ export default function Encadrants() {
                         title={<h6>Liste encadrants</h6>}
                         icons={tableIcons}
 
+                        options={{
+                            padding: "dense",
+                            pageSize: 4,
+                            pageSizeOptions: [2, 3, 4],
+
+                        }}
                     />
                 </div>
             </div>

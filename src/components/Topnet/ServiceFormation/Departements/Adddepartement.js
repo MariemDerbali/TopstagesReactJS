@@ -85,7 +85,7 @@ export default function Adddepartement() {
 
         <div>
             <div className="row">
-                <div className="col-12">
+                <div className="col-6">
                     <div className="card mb-4">
                         <div className="card-header pb-0">
                             <h6>Créer département</h6>
@@ -112,9 +112,12 @@ export default function Adddepartement() {
                                     </div>
 
 
-                                    <div className="col-md-6 mt-4">
+                                    <div className="col-md-3 mt-4">
                                         <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Créer</button>
-                                        &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                                    </div>
+                                    <div className="col-6 mt-4">
+                                        <button type="button" className="btn   btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             Créer services
                                         </button>
                                     </div>
@@ -159,40 +162,43 @@ export default function Adddepartement() {
                         </div>
                     </div>
                 </div>
-            </div>
+                <div className="col-6">
+                    <MaterialTable
+                        columns={[
 
-            <div className="row">
-                <div className='col-12'>
-                    <div className="col-12">
-                        <MaterialTable
-                            columns={[
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</h1>
+                                , render: service => {
+                                    return (
+                                        <span className="text-xs text-secondary mb-0">{service.nomService}</span>
 
-                                {
-                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</h1>
-                                    , render: service => {
-                                        return (
-                                            <span className="text-xs text-secondary mb-0">{service.nomService}</span>
-
-                                        )
-                                    },
-                                    customFilterAndSearch: (term, service) => ((service.nomService).toLowerCase()).indexOf(term.toLowerCase()) != -1
-
-                                }
-
-                            ]
+                                    )
+                                },
+                                customFilterAndSearch: (term, service) => ((service.nomService).toLowerCase()).indexOf(term.toLowerCase()) != -1
 
                             }
-                            data={Service}
-                            title={<h6>Liste services</h6>}
-                            icons={tableIcons}
 
-                        />
-                    </div>
+                        ]
 
+                        }
+                        data={Service}
+                        title={<h6>Liste services</h6>}
+                        icons={tableIcons}
+                        options={{
+                            padding: "dense",
+                        }}
+
+                    />
                 </div>
             </div>
 
+
+
+
         </div>
+
+
+
 
 
     )

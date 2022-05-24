@@ -152,7 +152,7 @@ export default function Offres() {
 
                             <div className="col-md-6  ">
                                 <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
-                                    <div className="card h-100">
+                                    <div className="card h-80">
                                         <div className="card-body">
 
                                             <h5 className="card-title">{offre.sujet}</h5>

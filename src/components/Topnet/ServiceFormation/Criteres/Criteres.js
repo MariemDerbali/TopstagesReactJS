@@ -174,6 +174,12 @@ export default function Criteres() {
                         data={criteres}
                         title={<h6>Liste critères</h6>}
                         icons={tableIcons}
+                        options={{
+                            padding: "dense",
+                            pageSize: 4,
+                            pageSizeOptions: [2, 3, 4],
+
+                        }}
                     />
                 </div>
             </div>

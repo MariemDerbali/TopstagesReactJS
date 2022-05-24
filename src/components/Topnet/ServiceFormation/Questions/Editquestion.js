@@ -327,7 +327,7 @@ export default function Editquestion(props) {
     return (
         <div>
             <div className="row">
-                <div className="col-12">
+                <div className="col-6">
                     <div className="card mb-4">
                         <div className="card-header pb-0">
                             <h6>Modifier question</h6>
@@ -370,35 +370,41 @@ export default function Editquestion(props) {
 
                                 }
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Durée de la question (En secondes)</label>
-                                    <input onChange={handleInput} value={QuestionInput.duree} type="number" name="duree" className="form-control" placeholder='Durée question (En secondes)' />
-                                    <small className="text-danger">{errorlist.duree}</small>
+                                <div className='row'>
+                                    <div className="col-md-6">
+                                        <label className="form-label">Durée de la question (En secondes)</label>
+                                        <input onChange={handleInput} value={QuestionInput.duree} type="number" name="duree" className="form-control" placeholder='Durée question (En secondes)' />
+                                        <small className="text-danger">{errorlist.duree}</small>
+
+                                    </div>
+
+
+                                    <div className="col-md-6 mt-3">
+                                        <label className="form-label">Niveau de difficulté</label>
+                                        <select onChange={handleInput} value={QuestionInput.niveau} name="niveau" className="form-select">
+                                            <option  >Niveau de difficulté</option>
+                                            <option>Facile</option>
+                                            <option>Moyenne</option>
+                                            <option>difficile</option>
+                                        </select>
+                                        <small className="text-danger">{errorlist.niveau}</small>
+                                    </div>
+
 
                                 </div>
 
+                                <div className='row'>
+                                    <div className="col-md-3 mt-4">
+                                        <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Modifier</button>
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Niveau de difficulté</label>
-                                    <select onChange={handleInput} value={QuestionInput.niveau} name="niveau" className="form-select">
-                                        <option  >Niveau de difficulté</option>
-                                        <option>Facile</option>
-                                        <option>Moyenne</option>
-                                        <option>difficile</option>
-                                    </select>
-                                    <small className="text-danger">{errorlist.niveau}</small>
+                                    </div>
+
+                                    <div className="col-6 mt-4">
+                                        <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            Créer réponses
+                                        </button>
+                                    </div>
                                 </div>
-
-
-
-
-                                <div className="col-md-6 mt-4">
-                                    <button type="submit" className="btn" style={{ backgroundColor: "#3a416f", color: '#fff' }}>Modifier</button>
-                                    &nbsp; <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                        Créer réponses
-                                    </button>
-                                </div>
-
                             </form>
 
                             <form onSubmit={submitReponseAdd} >
@@ -556,75 +562,7 @@ export default function Editquestion(props) {
 
 
 
-                                        <MaterialTable
-                                            columns={[
-                                                {
-                                                    title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse image</h1>
-                                                    , render: reponse => {
-                                                        return (
-                                                            <div className="d-flex px-2 py-1">
-                                                                <div>
-                                                                    {reponse.reponseImage ? <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" /> : <span className="badge rounded-pill bg-light text-dark">Sans image</span>}
-                                                                </div>
 
-                                                            </div>)
-                                                    }
-
-
-                                                },
-
-
-                                                {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse text</h1>
-                                                    , render: (reponse) => {
-                                                        return (
-                                                            <div>
-                                                                {reponse.reponseText ? <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p> : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
-                                                            </div>)
-                                                    }
-
-
-                                                },
-
-                                                {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse correcte?</h1>, render: reponse => {
-                                                        return (
-                                                            <span className="text-xs text-secondary mb-0">{reponse.reponseCorrecte}</span>
-
-                                                        )
-                                                    },
-                                                    customFilterAndSearch: (term, reponse) => ((reponse.reponseCorrecte).toLowerCase()).indexOf(term.toLowerCase()) != -1
-
-                                                },
-
-                                                {
-                                                    title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style={{ marginLeft: '30px' }}>Etat</h1>, render: reponse => {
-                                                        return (
-                                                            <div>
-                                                                <Link to='#' onClick={(e) => desactiverReponse(e, reponse._id.$oid)}>
-                                                                    {reponse.etat == 'inactive' ?
-                                                                        <button className="btn btn-danger">Désactivé</button> :
-                                                                        <button className="btn btn-success">Activé</button>}
-                                                                </Link>                                                              &nbsp;  &nbsp;  &nbsp; &nbsp;
-                                                                <Link to="#" onClick={(e) => showFormUpdateReponse(e, reponse._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-tools" viewBox="0 0 16 16">
-                                                                        <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
-                                                                    </svg>
-                                                                </Link>
-                                                            </div>
-
-                                                        )
-                                                    }
-
-                                                },
-                                            ]
-
-                                            }
-                                            data={reponse}
-                                            title={<h6>Liste réponses</h6>}
-                                            icons={tableIcons}
-
-                                        />
                                     </div>
 
                                 </div>
@@ -632,6 +570,83 @@ export default function Editquestion(props) {
 
                         </div>
                     </div>
+                </div>
+                <div className='col-6' >
+                    <MaterialTable
+                        columns={[
+                            {
+                                title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse image</h1>
+                                , render: reponse => {
+                                    return (
+                                        <div className="d-flex px-2 py-1">
+                                            <div>
+                                                {reponse.reponseImage ? <img src={`http://127.0.0.1:8000/${reponse.reponseImage}`} className="avatar avatar-sm me-3" alt="user1" /> : <span className="badge rounded-pill bg-light text-dark">Sans image</span>}
+                                            </div>
+
+                                        </div>)
+                                }
+
+
+                            },
+
+
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse text</h1>
+                                , render: (reponse) => {
+                                    return (
+                                        <div>
+                                            {reponse.reponseText ? <p className="text-xs font-weight-bold mb-0">{reponse.reponseText}</p> : <span className="badge rounded-pill bg-light text-dark">Sans texte</span>}
+                                        </div>)
+                                }
+
+
+                            },
+
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Réponse correcte?</h1>, render: reponse => {
+                                    return (
+                                        <span className="text-xs text-secondary mb-0">{reponse.reponseCorrecte}</span>
+
+                                    )
+                                },
+                                customFilterAndSearch: (term, reponse) => ((reponse.reponseCorrecte).toLowerCase()).indexOf(term.toLowerCase()) != -1
+
+                            },
+
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style={{ marginLeft: '30px' }}>Etat</h1>, render: reponse => {
+                                    return (
+                                        <div>
+                                            <Link to='#' onClick={(e) => desactiverReponse(e, reponse._id.$oid)}>
+                                                {reponse.etat == 'inactive' ?
+                                                    <button className="btn btn-danger">Désactivé</button> :
+                                                    <button className="btn btn-success">Activé</button>}
+                                            </Link>                                                              &nbsp;  &nbsp;  &nbsp; &nbsp;
+                                            <Link to="#" onClick={(e) => showFormUpdateReponse(e, reponse._id.$oid)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-tools" viewBox="0 0 16 16">
+                                                    <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
+                                                </svg>
+                                            </Link>
+                                        </div>
+
+                                    )
+                                }
+
+                            },
+                        ]
+
+                        }
+                        data={reponse}
+                        title={<h6>Liste réponses</h6>}
+                        icons={tableIcons}
+                        options={{
+                            padding: "dense",
+                            pageSize: 2,
+                            pageSizeOptions: [2, 3, 4],
+
+                        }}
+
+                    />
                 </div>
             </div>
         </div>

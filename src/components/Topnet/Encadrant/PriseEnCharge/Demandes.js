@@ -160,6 +160,12 @@ export default function Demandes() {
                         data={demandesStage}
                         title={<h6>Prise en charge des stagiaires</h6>}
                         icons={tableIcons}
+                        options={{
+                            padding: "dense",
+                            pageSize: 4,
+                            pageSizeOptions: [2, 3, 4],
+
+                        }}
 
                     />
                 </div>

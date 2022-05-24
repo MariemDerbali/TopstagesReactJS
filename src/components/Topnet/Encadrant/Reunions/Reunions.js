@@ -136,6 +136,12 @@ export default function Reunions() {
                     data={events}
                     title={<h6>Liste réunions</h6>}
                     icons={tableIcons}
+                    options={{
+                        padding: "dense",
+                        pageSize: 4,
+                        pageSizeOptions: [2, 3, 4],
+
+                    }}
 
                 />
             </div>

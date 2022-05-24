@@ -159,6 +159,7 @@ export default function Profil() {
                                         <p className="mb-0 font-weight-bold text-sm">
                                             Stagiaire
                                         </p>
+
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +178,9 @@ export default function Profil() {
 
 
                                     <ul style={{ listStyle: 'none' }} >
+
                                         <li className=" border-0 ps-0 text-sm  mb-2"><strong className="text-dark">Téléphone:</strong> &nbsp;{user.tel}</li>
+
                                         <li className=" border-0 ps-0 text-sm  mb-2"><strong className="text-dark">Cin/Passeport:</strong> &nbsp;{user.cinpasseport}</li>
 
                                         <li className=" border-0 ps-0 text-sm  mb-2"><strong className="text-dark">E-mail:</strong> &nbsp; {user.email}</li>

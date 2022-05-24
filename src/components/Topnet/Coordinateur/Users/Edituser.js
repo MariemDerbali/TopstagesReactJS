@@ -161,136 +161,137 @@ export default function Edituser(props) {
 
 
     return (
-        <div>
-            <div className="row">
-                <div className="col-12">
-                    <div className="card mb-4">
-                        <div className="card-header pb-0">
-                            <h6>Modifier utilisateur</h6>
-                        </div>
-                        <div className="card-body ">
+        <div className="row justify-content-center" >
+            <div className="col-8 ">
+                <div className="card shadow-lg  bg-white rounded">
+                    <div className="card-header pb-0">
+                        <h6>Modifier utilisateur</h6>
+                    </div>
+                    <div className="card-body ">
 
-                            <form className="row" onSubmit={updateUser}  >
-
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Matricule</label>
-                                    <input type="text" name="matricule" onChange={handleInput} value={UserInput.matricule} className="form-control" placeholder='Matricule' disabled />
-                                    <small className="text-danger">{errorlist.matricule}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Nom</label>
-                                    <input type="text" name="nom" onChange={handleInput} value={UserInput.nom} className="form-control" placeholder='Nom' disabled />
-                                    <small className="text-danger">{errorlist.nom}</small>
-                                </div>
+                        <form className="row" onSubmit={updateUser}  >
 
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Prénom</label>
-                                    <input type="text" name="prenom" onChange={handleInput} value={UserInput.prenom} className="form-control" placeholder='Prénom' disabled />
-                                    <small className="text-danger">{errorlist.prenom}</small>
-                                </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Matricule</label>
+                                <input type="text" name="matricule" onChange={handleInput} value={UserInput.matricule} className="form-control" placeholder='Matricule' disabled />
+                                <small className="text-danger">{errorlist.matricule}</small>
+                            </div>
 
-                                <div className="col-md-6">
-                                    <label className="form-label">Email</label>
-                                    <input type="email" name="email" onChange={handleInput} value={UserInput.email} className="form-control" placeholder='Email' disabled />
-                                    <small className="text-danger">{errorlist.email}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Mot de passe</label>
-                                    <input type="password" name="password" autoComplete="on" onChange={handleInput} value={UserInput.password} className="form-control" placeholder='Mot de passe' disabled />
-                                    <small className="text-danger">{errorlist.password}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Adresse</label>
-                                    <input type="text" name="adresse" onChange={handleInput} value={UserInput.adresse} className="form-control" placeholder="Adresse" />
-                                    <small className="text-danger">{errorlist.adresse}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Login</label>
-                                    <input type="text" name="loginTOPNET" onChange={handleInput} value={UserInput.loginTOPNET} className="form-control" placeholder="Login" disabled />
-                                    <small className="text-danger">{errorlist.loginTOPNET}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Téléphone</label>
-                                    <input type="text" name="tel" onChange={handleInput} value={UserInput.tel} className="form-control" placeholder="Tél" />
-                                    <small className="text-danger">{errorlist.tel}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Département</label>
-                                    <select name="departement" onChange={handleInput} value={UserInput.departement} className="form-select">
-                                        <option>Départements</option>
-                                        {//obtenir la liste des départements
-                                            depslist.map((dep, index) => {
-                                                return (
-                                                    <option value={dep.id} key={index}>{dep.nomdep}</option>
+                            <div className="col-md-4">
+                                <label className="form-label">Nom</label>
+                                <input type="text" name="nom" onChange={handleInput} value={UserInput.nom} className="form-control" placeholder='Nom' disabled />
+                                <small className="text-danger">{errorlist.nom}</small>
+                            </div>
 
 
-                                                )
-                                            })
-                                        }
+                            <div className="col-md-4">
+                                <label className="form-label">Prénom</label>
+                                <input type="text" name="prenom" onChange={handleInput} value={UserInput.prenom} className="form-control" placeholder='Prénom' disabled />
+                                <small className="text-danger">{errorlist.prenom}</small>
+                            </div>
 
-                                    </select>
-                                    <small className="text-danger">{errorlist.departement}</small>
-                                </div>
-                                <div className="col-md-6">
-                                    <label className="form-label">Service</label>
-                                    <select name="service" onChange={handleInput} value={UserInput.service} className="form-select">
-                                        <option>Service</option>
-                                        {//obtenir la liste des services
-                                            serviceslist.map((service, index) => {
-                                                return (
-                                                    <option value={service.id} key={index}>{service.nomService}</option>
+                            <div className="col-md-4">
+                                <label className="form-label">Email</label>
+                                <input type="email" name="email" onChange={handleInput} value={UserInput.email} className="form-control" placeholder='Email' disabled />
+                                <small className="text-danger">{errorlist.email}</small>
+                            </div>
 
-
-                                                )
-                                            })
-                                        }
-
-                                    </select>
-                                    <small className="text-danger">{errorlist.direction}</small>
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label className="form-label">Role</label>
-                                    <select name="role_id" onChange={handleInput} value={UserInput.role_id} className="form-select">
-                                        <option>Rôle</option>
-                                        {//obtenir la liste des rôles
-                                            roleslist.map((role, index) => {
-                                                return (
-                                                    <option value={role.id} key={index}>{role.nom}</option>
+                            <div className="col-md-4">
+                                <label className="form-label">Mot de passe</label>
+                                <input type="password" name="password" autoComplete="on" onChange={handleInput} value={UserInput.password} className="form-control" placeholder='Mot de passe' disabled />
+                                <small className="text-danger">{errorlist.password}</small>
+                            </div>
 
 
-                                                )
-                                            })
-                                        }
 
-                                    </select>
-                                    <small className="text-danger">{errorlist.role_id}</small>
-                                </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Login</label>
+                                <input type="text" name="loginTOPNET" onChange={handleInput} value={UserInput.loginTOPNET} className="form-control" placeholder="Login" disabled />
+                                <small className="text-danger">{errorlist.loginTOPNET}</small>
+                            </div>
 
-                                <div className="col-md-6 mb-3">
-                                    <label className="form-label">Image</label>
-                                    <input name="image" onChange={handleImage} className="form-control" type="file" id="formFile" />
-                                    <small className="text-danger">{errorlist.image}</small>
-                                </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Adresse</label>
+                                <input type="text" name="adresse" onChange={handleInput} value={UserInput.adresse} className="form-control" placeholder="Adresse" />
+                                <small className="text-danger">{errorlist.adresse}</small>
+                            </div>
 
-                                <div className="col-md-6">
-                                    <button type="submit" className="btn btn-info">Modifier</button>
-                                </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Téléphone</label>
+                                <input type="text" name="tel" onChange={handleInput} value={UserInput.tel} className="form-control" placeholder="Tél" />
+                                <small className="text-danger">{errorlist.tel}</small>
+                            </div>
 
-                            </form>
-                        </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Département</label>
+                                <select name="departement" onChange={handleInput} value={UserInput.departement} className="form-select">
+                                    <option>Départements</option>
+                                    {//obtenir la liste des départements
+                                        depslist.map((dep, index) => {
+                                            return (
+                                                <option value={dep.id} key={index}>{dep.nomdep}</option>
+
+
+                                            )
+                                        })
+                                    }
+
+                                </select>
+                                <small className="text-danger">{errorlist.departement}</small>
+                            </div>
+                            <div className="col-md-4">
+                                <label className="form-label">Service</label>
+                                <select name="service" onChange={handleInput} value={UserInput.service} className="form-select">
+                                    <option>Service</option>
+                                    {//obtenir la liste des services
+                                        serviceslist.map((service, index) => {
+                                            return (
+                                                <option value={service.id} key={index}>{service.nomService}</option>
+
+
+                                            )
+                                        })
+                                    }
+
+                                </select>
+                                <small className="text-danger">{errorlist.direction}</small>
+                            </div>
+
+                            <div className="col-md-4">
+                                <label className="form-label">Role</label>
+                                <select name="role_id" onChange={handleInput} value={UserInput.role_id} className="form-select">
+                                    <option>Rôle</option>
+                                    {//obtenir la liste des rôles
+                                        roleslist.map((role, index) => {
+                                            return (
+                                                <option value={role.id} key={index}>{role.nom}</option>
+
+
+                                            )
+                                        })
+                                    }
+
+                                </select>
+                                <small className="text-danger">{errorlist.role_id}</small>
+                            </div>
+
+                            <div className="col-md-4 mb-3">
+                                <label className="form-label">Image</label>
+                                <input name="image" onChange={handleImage} className="form-control" type="file" id="formFile" />
+                                <small className="text-danger">{errorlist.image}</small>
+                            </div>
+
+                            <div className="col-md-4">
+                                <button type="submit" className="btn btn-info">Modifier</button>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
     )
 }

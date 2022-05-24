@@ -181,7 +181,6 @@ export default function Calendar() {
             }
 
 
-
             <FullCalendar
                 ref={calendarRef}
                 locale={frLocale}
@@ -194,7 +193,7 @@ export default function Calendar() {
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 }}
                 aspectRatio={6}
-                height={600}
+                height={400}
                 eventAdd={submitreunions}
                 eventClick={
                     function (arg) {
@@ -218,6 +217,7 @@ export default function Calendar() {
                     }}
 
             />
+
 
 
 
