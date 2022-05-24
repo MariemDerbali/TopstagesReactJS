@@ -242,7 +242,7 @@ export default function Editdepartement(props) {
 
                                     <div className="col-md-6">
                                         <label className="form-label">Chef</label>
-                                        <input onChange={handleInput} value={DepInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' />
+                                        <input onChange={handleInput} value={DepInput.chefdep} type="text" name="chefdep" className="form-control" placeholder='Chef' required />
                                         <small className="text-danger">{errorlist.chefdep}</small>
 
                                     </div>

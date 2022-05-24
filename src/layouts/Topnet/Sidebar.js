@@ -30,16 +30,16 @@ export default function Sidebar() {
 
 
     return (
-        <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main" >
+        <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main" style={{ backgroundColor: '#081339' }} >
             <div className="sidenav-header mb-4">
                 <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <Link className="navbar-brand m-0" to="#" target="_blank">
 
-                    <img src="/assets/img/logos/logo-topstages.png" className="navbar-brand-img h-100" style={{ maxHeight: '80px' }} alt="main_logo" />
+                    <img src="/assets/img/logos/logo-topstages.png" className="navbar-brand-img h-100" style={{ maxHeight: '80px', marginLeft: '35px' }} alt="main_logo" />
                 </Link>
             </div>
 
-            <hr className="horizontal dark mt-0" />
+            <hr style={{ marginTop: '40px', width: "170px", marginLeft: '35px' }} />
             {user.role_id === 'ServiceFormation' ?//si l'ustilisateur authentifié actuel est un service formation
 
                 //afficher ses fonctionnalités dans la barre latérale
@@ -75,7 +75,7 @@ export default function Sidebar() {
                                         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
                                     </svg>
                                 </div>
-                                <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Demandes de stage</span>
+                                <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Demandes de stage</span>
                             </Link>
                         </li>
 
@@ -99,18 +99,18 @@ export default function Sidebar() {
                                         </g>
                                     </svg>
                                 </div>
-                                <span className="nav-link-text ms-0" style={{ color: "#3a416f" }}>Départements</span>
+                                <span className="nav-link-text ms-0" style={{ color: "#fff" }}>Départements</span>
                             </Link>
                             <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                 <li style={{ marginLeft: '80px' }}>
 
-                                    <Link to="/serviceformation/Adddepartement" style={{ color: "#09288C" }}  >
+                                    <Link to="/serviceformation/Adddepartement" style={{ color: "#c2beb7" }}  >
                                         <span style={{ fontSize: "14px" }}>Créer</span>
                                     </Link>
                                 </li>
                                 <li style={{ marginLeft: '80px' }}>
 
-                                    <Link to="/serviceformation/Departements" style={{ color: "#09288C" }}  >
+                                    <Link to="/serviceformation/Departements" style={{ color: "#c2beb7" }}  >
                                         <span style={{ fontSize: "14px" }}>Consulter</span>
                                     </Link>
                                 </li>
@@ -130,16 +130,16 @@ export default function Sidebar() {
                                         <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
                                     </svg>
                                 </div>
-                                <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Questions</span>
+                                <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Questions</span>
                             </Link>
                             <ul id="tables-nav2" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                 <li style={{ marginLeft: '80px' }}>
-                                    <Link to="/serviceformation/Addquestion" style={{ color: "#09288C" }} >
+                                    <Link to="/serviceformation/Addquestion" style={{ color: "#c2beb7" }} >
                                         <span style={{ fontSize: "14px" }}>Créer</span>
                                     </Link>
                                 </li>
                                 <li style={{ marginLeft: '80px' }}>
-                                    <Link to="/serviceformation/Questions" style={{ color: "#09288C" }}>
+                                    <Link to="/serviceformation/Questions" style={{ color: "#c2beb7" }}>
                                         <span style={{ fontSize: "14px" }}>Consulter</span>
                                     </Link>
                                 </li>
@@ -158,16 +158,16 @@ export default function Sidebar() {
                                         <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z" />
                                     </svg>
                                 </div>
-                                <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Critères</span>
+                                <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Critères</span>
                             </Link>
                             <ul id="tables-nav3" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                 <li style={{ marginLeft: '80px' }}>
-                                    <Link to="/serviceformation/Addcritere" >
+                                    <Link to="/serviceformation/Addcritere" style={{ color: "#c2beb7" }}>
                                         <span style={{ fontSize: "14px" }}>Créer</span>
                                     </Link>
                                 </li>
                                 <li style={{ marginLeft: '80px' }}>
-                                    <Link to="/serviceformation/Criteres">
+                                    <Link to="/serviceformation/Criteres" style={{ color: "#c2beb7" }}>
                                         <span style={{ fontSize: "14px" }}>Consulter</span>
                                     </Link>
                                 </li>
@@ -219,17 +219,17 @@ export default function Sidebar() {
                                             <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                                         </svg>
                                     </div>
-                                    <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Utilisateurs</span>
+                                    <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Utilisateurs</span>
                                 </Link>
                                 <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                     <li style={{ marginLeft: '80px' }}>
-                                        <Link to="/coordinateur/Adduser" style={{ color: "#09288C" }} >
-                                            <span style={{ fontSize: "14px" }}>Créer</span>
+                                        <Link to="/coordinateur/Adduser"   >
+                                            <span style={{ fontSize: "14px", color: "#c2beb7" }}>Créer</span>
                                         </Link>
                                     </li>
                                     <li style={{ marginLeft: '80px' }}>
-                                        <Link to="/coordinateur/Users" style={{ color: "#09288C" }}>
-                                            <span style={{ fontSize: "14px" }}>  Consulter</span>
+                                        <Link to="/coordinateur/Users" >
+                                            <span style={{ fontSize: "14px", color: "#c2beb7" }}>  Consulter</span>
                                         </Link>
                                     </li>
 
@@ -373,7 +373,7 @@ export default function Sidebar() {
                                                     <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
                                                 </svg>
                                             </div>
-                                            <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Encadrants</span>
+                                            <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Encadrants</span>
                                         </Link>
                                     </li>
 
@@ -384,7 +384,7 @@ export default function Sidebar() {
                                                     <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
                                                 </svg>
                                             </div>
-                                            <span className="nav-link-text" style={{ color: "#3a416f" }}>Demandes stage</span>
+                                            <span className="nav-link-text" style={{ color: "#fff" }}>Demandes stage</span>
                                         </Link>
                                     </li>
 
@@ -399,16 +399,16 @@ export default function Sidebar() {
                                                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
                                                 </svg>
                                             </div>
-                                            <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Offres de stage</span>
+                                            <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Offres de stage</span>
                                         </Link>
                                         <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                             <li style={{ marginLeft: '80px' }}>
-                                                <Link to="/chefdepartement/Addoffre" style={{ color: "#09288C" }}>
+                                                <Link to="/chefdepartement/Addoffre" style={{ color: "#c2beb7" }}>
                                                     <span style={{ fontSize: "14px" }}>Créer</span>
                                                 </Link>
                                             </li>
                                             <li style={{ marginLeft: '80px' }}>
-                                                <Link to="/chefdepartement/Offres" style={{ color: "#09288C" }}>
+                                                <Link to="/chefdepartement/Offres" style={{ color: "#c2beb7" }}>
                                                     <span style={{ fontSize: "14px" }}>Consulter</span>
                                                 </Link>
                                             </li>
@@ -426,17 +426,17 @@ export default function Sidebar() {
                                                     <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
                                                 </svg>
                                             </div>
-                                            <span className="nav-link-text ms-1" style={{ color: "#3a416f" }}>Réunions</span>
+                                            <span className="nav-link-text ms-1" style={{ color: "#fff" }}>Réunions</span>
                                         </Link>
                                         <ul id="tables-navreunions" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                                             <li style={{ marginLeft: '80px' }}>
-                                                <Link to="/chefdepartement/calendrier" style={{ color: "#09288C" }}>
+                                                <Link to="/chefdepartement/calendrier" style={{ color: "#c2beb7" }}>
                                                     <span style={{ fontSize: "14px" }}>Créer</span>
                                                 </Link>
 
                                             </li>
                                             <li style={{ marginLeft: '80px' }}>
-                                                <Link to="/chefdepartement/reunions" style={{ color: "#09288C" }}>
+                                                <Link to="/chefdepartement/reunions" style={{ color: "#c2beb7" }}>
                                                     <span style={{ fontSize: "14px" }}>Consulter</span>
                                                 </Link>
                                             </li>

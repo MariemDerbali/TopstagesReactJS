@@ -56,13 +56,13 @@ export default function TopnetResetforgottenpassword() {
     }
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#081339' }}>
             <section >
                 <div className="container">
                     <div className="row">
 
                         <div className="col-lg-5 col-md-7 mx-auto">
-                            <div className="card z-index-0 mt-sm-12 mt-9 mb-4">
+                            <div className="card z-index-0 mt-sm-9  mb-4">
                                 <div className="card-header text-center pt-4 pb-1">
                                     <h3 className="font-weight-bolder mb-1">Réinitialiser votre mot de passe</h3>
 
@@ -72,19 +72,19 @@ export default function TopnetResetforgottenpassword() {
 
                                         <div className="mb-3">
                                             <label className="form-label">Nouveau mot de passe</label>
-                                            <input name="password" onChange={handleInput} value={resetforgottenpasswordInput.password} autoComplete="on" className="form-control" placeholder="Mot de passe" type="password" />
+                                            <input name="password" onChange={handleInput} value={resetforgottenpasswordInput.password} autoComplete="on" className="form-control" placeholder="Mot de passe" type="password" required />
                                             <span className="text-danger">{resetforgottenpasswordInput.error_list.password}</span>
 
                                         </div>
                                         <div className="mb-3">
                                             <label className="form-label">Confirmer le nouveau mot de passe</label>
-                                            <input name="password_confirmation" onChange={handleInput} value={resetforgottenpasswordInput.password_confirmation} autoComplete="on" className="form-control" placeholder="Confirmation du mot de passe" type="password" />
+                                            <input name="password_confirmation" onChange={handleInput} value={resetforgottenpasswordInput.password_confirmation} autoComplete="on" className="form-control" placeholder="Confirmation du mot de passe" type="password" required />
                                             <span className="text-danger">{resetforgottenpasswordInput.error_list.password}</span>
 
                                         </div>
 
                                         <div className="text-center">
-                                            <button type="submit" className="btn bg-gradient-dark btn-lg w-100 my-4 mb-2">Réinitialiser le mot de passe!</button>
+                                            <button type="submit" className="btn bg-gradient-info btn-lg w-100 my-4 mb-2">Réinitialiser le mot de passe!</button>
                                         </div>
                                     </form>
                                 </div>

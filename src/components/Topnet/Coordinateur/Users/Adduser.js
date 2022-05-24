@@ -141,33 +141,33 @@ export default function Adduser() {
 
                             <div className="col-md-4">
                                 <label className="form-label">Matricule</label>
-                                <input onChange={handleInput} value={UserInput.matricule} type="text" name="matricule" className="form-control" placeholder='Matricule' />
+                                <input onChange={handleInput} value={UserInput.matricule} type="text" name="matricule" className="form-control" placeholder='Matricule' required />
                                 <small className="text-danger">{errorlist.matricule}</small>
 
                             </div>
 
                             <div className="col-md-4">
                                 <label className="form-label">Nom</label>
-                                <input onChange={handleInput} value={UserInput.nom} type="text" name="nom" className="form-control" placeholder='Nom' />
+                                <input onChange={handleInput} value={UserInput.nom} type="text" name="nom" className="form-control" placeholder='Nom' required />
                                 <small className="text-danger">{errorlist.nom}</small>
                             </div>
 
 
                             <div className="col-md-4">
                                 <label className="form-label">Prénom</label>
-                                <input onChange={handleInput} value={UserInput.prenom} type="text" name="prenom" className="form-control" placeholder='Prénom' />
+                                <input onChange={handleInput} value={UserInput.prenom} type="text" name="prenom" className="form-control" placeholder='Prénom' required />
                                 <small className="text-danger">{errorlist.prenom}</small>
                             </div>
 
                             <div className="col-md-4">
                                 <label className="form-label">Adresse e-mail</label>
-                                <input onChange={handleInput} value={UserInput.email} type="email" name="email" className="form-control" placeholder='Adresse e-mail' />
+                                <input onChange={handleInput} value={UserInput.email} type="email" name="email" className="form-control" placeholder='Adresse e-mail' required />
                                 <small className="text-danger">{errorlist.email}</small>
                             </div>
 
                             <div className="col-md-4">
                                 <label className="form-label">Mot de passe</label>
-                                <input onChange={handleInput} value={UserInput.password} type="password" name="password" autoComplete="on" className="form-control" placeholder='Mot de passe' />
+                                <input onChange={handleInput} value={UserInput.password} type="password" name="password" autoComplete="on" className="form-control" placeholder='Mot de passe' required />
                                 <small className="text-danger">{errorlist.password}</small>
                             </div>
 
@@ -176,14 +176,14 @@ export default function Adduser() {
 
                                 <div className="input-group mb-3">
                                     <span className="input-group-text" id="topnet">TOPNET\</span>
-                                    <input onChange={handleInput} value={UserInput.loginTOPNET} name="loginTOPNET" type="text" className="form-control" placeholder="Login" a-label="Email" aria-describedby="topnet" />
+                                    <input onChange={handleInput} value={UserInput.loginTOPNET} name="loginTOPNET" type="text" className="form-control" placeholder="Login" a-label="Email" aria-describedby="topnet" required />
                                     <span className="text-danger">{errorlist.loginTOPNET}</span>
                                 </div>
                             </div>
 
                             <div className="col-md-4">
                                 <label className="form-label">Adresse</label>
-                                <input onChange={handleInput} value={UserInput.adresse} type="text" name="adresse" className="form-control" placeholder="Adresse" />
+                                <input onChange={handleInput} value={UserInput.adresse} type="text" name="adresse" className="form-control" placeholder="Adresse" required />
                                 <small className="text-danger">{errorlist.adresse}</small>
                             </div>
 
@@ -191,7 +191,7 @@ export default function Adduser() {
 
                             <div className="col-md-4">
                                 <label className="form-label">Téléphone</label>
-                                <input onChange={handleInput} value={UserInput.tel} type="text" name="tel" className="form-control" placeholder="Téléphone" />
+                                <input onChange={handleInput} value={UserInput.tel} type="text" name="tel" className="form-control" placeholder="Téléphone" required />
                                 <small className="text-danger">{errorlist.tel}</small>
                             </div>
 

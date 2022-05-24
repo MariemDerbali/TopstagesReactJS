@@ -30,16 +30,16 @@ export default function Sidebar() {
 
 
     return (
-        <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+        <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main" style={{ backgroundColor: '#081339' }}>
             <div className="sidenav-header mb-4">
                 <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <Link className="navbar-brand m-0" to="#" target="_blank">
 
-                    <img src="../assets/img/logos/logo-topstages.png" className="navbar-brand-img h-100" style={{ maxHeight: '80px' }} alt="main_logo" />
+                    <img src="/assets/img/logos/logo-topstages.png" className="navbar-brand-img h-100" style={{ maxHeight: '80px', marginLeft: '35px' }} alt="main_logo" />
                 </Link>
             </div>
 
-            <hr className="horizontal dark mt-0" />
+            <hr style={{ marginTop: '40px', width: "170px", marginLeft: '35px' }} />
 
             <div className="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
                 <ul className="navbar-nav ">

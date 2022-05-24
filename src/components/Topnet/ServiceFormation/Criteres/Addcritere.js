@@ -81,7 +81,7 @@ export default function Addcritere() {
 
                             <div className="col-md-6">
                                 <label className="form-label">Type de stage</label>
-                                <select name="typestage" onChange={handleInput} value={CritereInput.typestage} className="form-select">
+                                <select name="typestage" onChange={handleInput} value={CritereInput.typestage} className="form-select" >
                                     <option >Type</option>
                                     <option>Stage PFE ingénieur</option>
                                     <option>Stage PFE licence</option>
@@ -94,40 +94,40 @@ export default function Addcritere() {
 
                             <div className="col-md-6">
                                 <label className="form-label">Nombre questions faciles</label>
-                                <input type="number" name="nombrequestionsfaciles" onChange={handleInput} value={CritereInput.nombrequestionsfaciles} className="form-control" placeholder='Nombre questions faciles' />
+                                <input type="number" name="nombrequestionsfaciles" onChange={handleInput} value={CritereInput.nombrequestionsfaciles} className="form-control" placeholder='Nombre questions faciles' required />
                                 <small className="text-danger">{errorlist.nombrequestionsfaciles}</small>
 
                             </div>
                             <div className="col-md-6">
                                 <label className="form-label">Note question facile</label>
-                                <input type="number" name="notequestionfacile" onChange={handleInput} value={CritereInput.notequestionfacile} className="form-control" placeholder='Note question facile' />
+                                <input type="number" name="notequestionfacile" onChange={handleInput} value={CritereInput.notequestionfacile} className="form-control" placeholder='Note question facile' required />
                                 <small className="text-danger">{errorlist.notequestionfacile}</small>
 
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Nombre questions moyennes</label>
-                                <input type="number" name="nombrequestionsmoyennes" onChange={handleInput} value={CritereInput.nombrequestionsmoyennes} className="form-control" placeholder='Nombre questions moyennes' />
+                                <input type="number" name="nombrequestionsmoyennes" onChange={handleInput} value={CritereInput.nombrequestionsmoyennes} className="form-control" placeholder='Nombre questions moyennes' required />
                                 <small className="text-danger">{errorlist.nombrequestionsmoyennes}</small>
 
                             </div>
                             <div className="col-md-6">
                                 <label className="form-label">Note question moyenne</label>
-                                <input type="number" name="notequestionmoyenne" onChange={handleInput} value={CritereInput.notequestionmoyenne} className="form-control" placeholder='Note question moyenne' />
+                                <input type="number" name="notequestionmoyenne" onChange={handleInput} value={CritereInput.notequestionmoyenne} className="form-control" placeholder='Note question moyenne' required />
                                 <small className="text-danger">{errorlist.notequestionmoyenne}</small>
 
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Nombre questions difficiles</label>
-                                <input type="number" name="nombrequestionsdifficiles" onChange={handleInput} value={CritereInput.nombrequestionsdifficiles} className="form-control" placeholder='Nombre questions difficiles' />
+                                <input type="number" name="nombrequestionsdifficiles" onChange={handleInput} value={CritereInput.nombrequestionsdifficiles} className="form-control" placeholder='Nombre questions difficiles' required />
                                 <small className="text-danger">{errorlist.nombrequestionsdifficiles}</small>
 
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Note question difficile</label>
-                                <input type="number" name="notequestiondifficile" onChange={handleInput} value={CritereInput.notequestiondifficile} className="form-control" placeholder='Note question difficile' />
+                                <input type="number" name="notequestiondifficile" onChange={handleInput} value={CritereInput.notequestiondifficile} className="form-control" placeholder='Note question difficile' required />
                                 <small className="text-danger">{errorlist.notequestiondifficile}</small>
 
                             </div>

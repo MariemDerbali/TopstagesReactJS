@@ -302,7 +302,7 @@ export default function Addquestion() {
 
                                 <div className="col-md-6">
                                     <label className="form-label">Durée de la question (En secondes)</label>
-                                    <input onChange={handleInput} value={QuestionInput.duree} type="number" name="duree" className="form-control" placeholder='Durée question (En secondes)' />
+                                    <input onChange={handleInput} value={QuestionInput.duree} type="number" name="duree" className="form-control" placeholder='Durée question (En secondes)' required />
                                     <small className="text-danger">{errorlist.duree}</small>
 
                                 </div>

@@ -99,7 +99,7 @@ export default function Adddepartement() {
 
                                         <input onChange={handleInput} value={DepInput.nomdep}
                                             type="text" name="nomdep" className="form-control"
-                                            placeholder='Nom' />
+                                            placeholder='Nom' required />
                                         <small className="text-danger">{errorlist.nomdep}</small>
                                     </div>
                                     <div className="col-md-6">
@@ -107,7 +107,7 @@ export default function Adddepartement() {
 
                                         <input onChange={handleInput} value={DepInput.chefdep}
                                             type="text" name="chefdep" className="form-control"
-                                            placeholder='Chef' />
+                                            placeholder='Chef' required />
                                         <small className="text-danger">{errorlist.chefdep}</small>
                                     </div>
 
@@ -141,7 +141,7 @@ export default function Adddepartement() {
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <label className="form-label">Nom</label>
-                                                        <input onChange={handleInputservice} value={ServiceInput.nomService} type="text" name="nomService" className="form-control" placeholder='Nom' />
+                                                        <input onChange={handleInputservice} value={ServiceInput.nomService} type="text" name="nomService" className="form-control" placeholder='Nom' required />
                                                         <small className="text-danger">{errorlist.nomService}</small>
 
                                                     </div>

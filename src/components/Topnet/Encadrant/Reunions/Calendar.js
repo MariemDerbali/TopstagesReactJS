@@ -10,6 +10,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import 'moment/locale/fr';
 import moment from 'moment'
+import { colors } from '@material-ui/core'
 
 export default function Calendar() {
     const [errorlist, setError] = useState([]);
@@ -131,14 +132,14 @@ export default function Calendar() {
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <label className="form-label">Titre</label>
-                                                <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='Titre' />
+                                                <input type="text" value={title} onChange={handleTitle} name="title" className="form-control" placeholder='Titre' required />
                                                 <small className="text-danger">{errorlist.title}</small>
 
                                             </div>
 
                                             <div className="col-md-6">
                                                 <label className="form-label">Lien</label>
-                                                <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='Lien' />
+                                                <input type="text" value={url} onChange={handleUrl} name="url" className="form-control" placeholder='Lien' required />
                                                 <small className="text-danger">{errorlist.url}</small>
 
                                             </div>
@@ -180,45 +181,54 @@ export default function Calendar() {
                 null
             }
 
+            <div style={{ backgroundColor: '#ccdef2' }}>
+                <FullCalendar
 
-            <FullCalendar
-                ref={calendarRef}
-                locale={frLocale}
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                initialView="dayGridMonth"
-                events={events}
-                headerToolbar={{
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                }}
-                aspectRatio={6}
-                height={400}
-                eventAdd={submitreunions}
-                eventClick={
-                    function (arg) {
-                        var dateObj = arg.event.start;
-                        var month = dateObj.getUTCMonth() + 1; //months from 1-12
-                        var day = dateObj.getUTCDate();
-                        var year = dateObj.getUTCFullYear();
-                        var hours = dateObj.getHours();
-                        var minutes = dateObj.getMinutes();
-                        var dateObjend = arg.event.end;
-                        var hoursend = dateObjend.getHours();
-                        var minutesend = dateObjend.getMinutes();
+                    ref={calendarRef}
+                    locale={frLocale}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
 
+                    initialView="dayGridMonth"
+                    events={
+                        events
 
-                        arg.jsEvent.preventDefault();
-                        swal({
-                            title: arg.event.title,
-                            text: 'Date et heure : le ' + year + "/" + month + "/" + day + ' ' + hours + ':' + minutes + '-' + hoursend + ':' + minutesend + '\n' + 'URL: ' + arg.event.url
-                        })
-
+                    }
+                    headerToolbar={{
+                        left: 'prev,next',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
                     }}
+                    aspectRatio={6}
+                    height={400}
 
-            />
+                    eventAdd={submitreunions}
+                    eventClick={
+                        function (arg) {
+                            var dateObj = arg.event.start;
+                            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+                            var day = dateObj.getUTCDate();
+                            var year = dateObj.getUTCFullYear();
+                            var hours = dateObj.getHours();
+                            var minutes = dateObj.getMinutes();
+                            var dateObjend = arg.event.end;
+                            var hoursend = dateObjend.getHours();
+                            var minutesend = dateObjend.getMinutes();
 
 
+                            arg.jsEvent.preventDefault();
+                            swal({
+                                title: arg.event.title,
+                                text: 'Date et heure : le ' + year + "/" + month + "/" + day + ' ' + hours + ':' + minutes + '-' + hoursend + ':' + minutesend + '\n' + 'URL: ' + arg.event.url
+                            })
+
+                        }}
+                    eventColor='red'
+
+
+
+                />
+
+            </div>
 
 
         </div >

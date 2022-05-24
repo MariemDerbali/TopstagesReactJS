@@ -116,6 +116,9 @@ export default function Departements() {
                 icons={tableIcons}
                 options={{
                     padding: "dense",
+                    pageSize: 4,
+                    pageSizeOptions: [2, 3, 4],
+
                 }}
 
             />

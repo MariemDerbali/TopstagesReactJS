@@ -100,21 +100,21 @@ export default function Addoffre() {
 
                             <div className="col-md-6">
                                 <label className="form-label">Sujet</label>
-                                <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet' />
+                                <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet' required />
                                 <small className="text-danger">{errorlist.sujet}</small>
 
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Période (En mois)</label>
-                                <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période (En mois)' />
+                                <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période (En mois)' required />
                                 <small className="text-danger">{errorlist.periode}</small>
 
                             </div>
 
                             <div className="col-md-6">
                                 <label className="form-label">Technologies</label>
-                                <input type="text" name="technologies" onChange={handleInput} value={OffreInput.technologies} className="form-control" placeholder='Téchnologies' />
+                                <input type="text" name="technologies" onChange={handleInput} value={OffreInput.technologies} className="form-control" placeholder='Téchnologies' required />
                                 <small className="text-danger">{errorlist.technologies}</small>
 
                             </div>
@@ -145,7 +145,7 @@ export default function Addoffre() {
 
                             <div className="col-md-6">
                                 <label className="form-label">Déscription</label>
-                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
+                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3" required></textarea>
                                 <small className="text-danger">{errorlist.description}</small>
                             </div>
 
