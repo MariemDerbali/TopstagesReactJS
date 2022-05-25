@@ -124,6 +124,15 @@ export default function Criteres() {
                                     )
                                 }
                             },
+                            {
+                                title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pourcentage de réussite</h1>
+                                , render: criteres => {
+                                    return (
+                                        <span className="text-xs text-secondary mb-0" style={{ marginLeft: '30px' }}>{criteres.pourcentage}</span>
+
+                                    )
+                                }
+                            },
 
                             {
                                 title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5" >Etat</h1>//Cellule d'en-tête <th>

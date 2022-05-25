@@ -3,6 +3,7 @@ import axios from 'axios'
 import "../css/Homestyle.css"
 import buttonSound from '../audio/button-sound.mp3';
 import Loading from '../../Topnet/Loading';
+import background from '../imgbackgroundTest/test-psychotechnique.png'
 
 export default class TestPsychotechnique extends React.Component {
     constructor(props) {
@@ -26,6 +27,7 @@ export default class TestPsychotechnique extends React.Component {
             currentQuestionIndex: 0,
             score: 0,
             notetotale: 0,
+            pourcentage: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
             time: {}
@@ -42,12 +44,14 @@ export default class TestPsychotechnique extends React.Component {
                     const questionrep = res.data.questionsreponses;
                     const currentStagiaire = res.data.stagiaire;
                     const noteTesttotale = res.data.notetotale;
+                    const Pourcentage = res.data.pourcentage;
                     const postID = res.data.postid;
                     this.setState(this.state.questionsreponses = questionrep);
                     this.setState(this.state.stagiaire = currentStagiaire);
                     this.setState({ postID: postID });
                     this.setState({ postID: postID });
                     this.setState({ notetotale: noteTesttotale });
+                    this.setState({ pourcentage: Pourcentage });
 
                     if (this.state.questionsreponses.length != 0) {
 
@@ -198,6 +202,7 @@ export default class TestPsychotechnique extends React.Component {
         const stagiaireStats = {
             score: this.state.score,
             notetotale: this.state.notetotale,
+            pourcentage: this.state.pourcentage,
             numberOfQuestions: this.state.numberOfQuestions,
             numberOfAnsweredQuestions: this.state.numberOfAnsweredQuestions,
             correctAnswers: this.state.correctAnswers,
@@ -214,19 +219,20 @@ export default class TestPsychotechnique extends React.Component {
     render() {
         return (
 
-            <div className='mainTest'  >
+            <div className='mainTest' style={{ backgroundImage: `url(${background})` }} >
 
-                <div className='questions mb-5' >
-                    <h2 className='H2'>Test psychotechnique</h2>
+                <div className='questions mb-3' >
+                    <h2 className='H2 mb-7' >TEST PSYCHOTECHNIQUE</h2>
                     <audio ref={this.buttonSound} src={buttonSound}></audio>
 
-                    {this.state.loading ? <Loading /> :
+                    {this.state.loading ?
+                        <div style={{ color: '#fff' }}><Loading /> </div>
+                        :
                         <div >
-                            <p>
-                                <span className='left'  >{this.state.currentQuestionIndex + 1} sur {this.state.numberOfQuestions}</span>
-                                <span className='right'  > {this.state.time.minutes}:{this.state.time.seconds} <span className="far fa-clock"></span></span>
+                            <span className='left' style={{ color: '#d3d3d3' }} >{this.state.currentQuestionIndex + 1}/{this.state.numberOfQuestions}</span>
+                            <span className='right'  ><span style={{ color: '#0f1a5a' }}> {this.state.time.minutes}:{this.state.time.seconds} </span><span className="far fa-clock" style={{ color: '#082a55' }}></span></span>
 
-                            </p>
+
 
 
 
@@ -239,8 +245,12 @@ export default class TestPsychotechnique extends React.Component {
                                         <div className='options-container' >
 
 
-                                            <h5 ><span className="textDanger">Q.</span><span  >{this.state.currentQuestion.questionText}</span></h5>
-                                            <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} />
+                                            <h5 >
+                                                <span className="badge  text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
+                                                    {this.state.currentQuestion.questionText}
+                                                    &nbsp;&nbsp; <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} />
+                                                </span>
+                                            </h5>
                                         </div>
                                     </div>
                                     :
@@ -248,14 +258,17 @@ export default class TestPsychotechnique extends React.Component {
                                         <div className='container-ques' data-aos="zoom-in-left" style={{ margin: 'auto' }}>
                                             <div className='options-container'  >
 
-                                                <h5 ><span className="textDanger">Q.</span><span  >{this.state.currentQuestion.questionText}</span></h5>
+                                                <h5 ><span className="badge text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
+                                                    {this.state.currentQuestion.questionText}</span></h5>
                                             </div>
                                         </div>
                                         :
-                                        <div className='container-ques' data-aos="zoom-in-left">
+                                        <div className='container-ques' data-aos="zoom-in-left" style={{ marginLeft: "310px" }}>
                                             <div className='options-container'  >
-                                                <span className="textDanger">Q.</span>
-                                                <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
+                                                <span className="badge text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
+
+                                                    <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
+                                                </span>
                                             </div>
                                         </div>
 

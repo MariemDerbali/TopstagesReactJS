@@ -18,6 +18,7 @@ export default function Addcritere() {
         notequestionfacile: '',
         notequestionmoyenne: '',
         notequestiondifficile: '',
+        pourcentage: '',
 
     });
 
@@ -27,15 +28,6 @@ export default function Addcritere() {
         e.persist();
         setCritere({ ...CritereInput, [e.target.name]: e.target.value });
     }
-    const [serviceslist, setServices] = useState([]);
-
-    useEffect(() => {
-        axios.get('/api/critere-services').then(res => {
-            if (res.data.status === 200) {
-                setServices(res.data.services);
-            }
-        });
-    }, []);
 
 
     //fonction pour créer offre
@@ -51,6 +43,8 @@ export default function Addcritere() {
         formData.append('notequestionfacile', CritereInput.notequestionfacile);
         formData.append('notequestionmoyenne', CritereInput.notequestionmoyenne);
         formData.append('notequestiondifficile', CritereInput.notequestiondifficile);
+        formData.append('pourcentage', CritereInput.pourcentage);
+
 
         axios.post('/api/criteres', formData).then(res => {
             if (res.data.status === 200) {
@@ -129,6 +123,12 @@ export default function Addcritere() {
                                 <label className="form-label">Note question difficile</label>
                                 <input type="number" name="notequestiondifficile" onChange={handleInput} value={CritereInput.notequestiondifficile} className="form-control" placeholder='Note question difficile' required />
                                 <small className="text-danger">{errorlist.notequestiondifficile}</small>
+
+                            </div>
+                            <div className="col-md-6">
+                                <label className="form-label">Pourcentage de réussite</label>
+                                <input type="number" name="pourcentage" onChange={handleInput} value={CritereInput.pourcentage} className="form-control" placeholder='Pourcentage de réussite' required />
+                                <small className="text-danger">{errorlist.pourcentage}</small>
 
                             </div>
 

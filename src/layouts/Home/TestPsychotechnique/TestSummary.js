@@ -19,6 +19,7 @@ export default class TestSummary extends Component {
         this.setState({
             score: state.score,
             notetotale: state.notetotale,
+            pourcentage: state.pourcentage,
             numberOfQuestions: state.numberOfQuestions,
             numberOfAnsweredQuestions: state.correctAnswers + state.wrongAnswers,
             correctAnswers: state.correctAnswers,
@@ -31,22 +32,18 @@ export default class TestSummary extends Component {
     }
 
 
+
     render() {
         const { state } = this.props.location;
         let stats, remark;
         const userScore = (this.state.score / this.state.notetotale) * 100;
 
+        console.log((this.state.score / this.state.notetotale) * 100);
 
-        if (userScore <= 30) {
-            remark = 'Vous avez besoin de plus de pratique !';
-        } else if (userScore > 30 && userScore <= 50) {
+        if (userScore < this.state.pourcentage) {
             remark = 'Plus de chance la prochaine fois';
-        } else if (userScore <= 70 && userScore > 50) {
-            remark = 'Vous pouvez faire mieux';
-        } else if (userScore >= 71 && userScore <= 84) {
+        } else if (userScore >= this.state.pourcentage) {
             remark = 'Excellent!';
-        } else {
-            remark = 'Vous êtes un génie absolu!';
         }
 
         if (state !== undefined) {

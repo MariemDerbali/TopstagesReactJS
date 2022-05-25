@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from '../Topnet/Loading';
 
 
 export default function Offresdestage() {
@@ -16,6 +17,7 @@ export default function Offresdestage() {
     // Le hook useHistory() renvoie une instance history , qui contient l'emplacement actuel (URL) du composant que nous pouvons utiliser pour naviguer entre les pages.
     const history = useHistory();
 
+    const [loading, setLoading] = useState(true);
 
     //Variables d'état pour obtenir la liste des offres
     const [offreslist, setOffreslist] = useState([
@@ -32,7 +34,7 @@ export default function Offresdestage() {
                 //stockage des offres dans les variables détat
 
                 setOffreslist(res.data.offres);
-                console.log(res.data.offres);
+                setLoading(false);
             }
         });
 
@@ -235,117 +237,121 @@ export default function Offresdestage() {
 
     }
 
+    if (loading) {
+        return <div style={{ marginTop: "300px" }}><Loading /></div>
+    } else {
+        return (
+            <div>
+                <form className="row"  >
 
-    return (
-        <div>
-            <form className="row"  >
+                    <div className="container d-flex align-items-center mb-3 mt-3" style={{ marginLeft: "20px" }}>
 
-                <div className="container d-flex align-items-center mb-3 mt-3" style={{ marginLeft: "20px" }}>
+                        <h1 className="logo me-auto"><Link to="/">
+                            <img src="../assets/img/logos/logo-topstages.png" className="navbarHome-brand-img h-100" style={{ maxHeight: '90px' }} alt="main_logo" />
+                        </Link></h1>
 
-                    <h1 className="logo me-auto"><Link to="/">
-                        <img src="../assets/img/logos/logo-topstages.png" className="navbarHome-brand-img h-100" style={{ maxHeight: '90px' }} alt="main_logo" />
-                    </Link></h1>
-
-                </div>
-                <div className="container" style={{ width: '70%' }}>
-                    <div className="row shadow-lg p-3 mb-5   rounded justify-content-center" style={{ backgroundColor: '#0a1e5e' }}>
-                        <div className='col-md-3'>
-                            <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
-
-                                <option value="">Domaine de stage</option>
-                                {//obtenir la liste des services
-                                    serviceslist.map((service, index) => {
-                                        return (
-                                            <option value={service.id} key={index}>{service.nomService}</option>
-
-
-                                        )
-                                    })
-                                }
-
-
-                            </select>
-                        </div>
-                        <div className="col-md-3 ">
-                            <select className="form-control w-100 mt-2" name="type" value={type} onChange={handleSelectType}>
-
-                                <option value="">Type de stage</option>
-                                <option>Stage PFE ingénieur</option>
-                                <option>Stage PFE licence</option>
-                                <option>Stage PFE master</option>
-                                <option>Stage Perfectionnement</option>
-                                <option>Stage Initiation</option>
-
-
-                            </select>
-
-
-
-                        </div>
                     </div>
+                    <div className="container" style={{ width: '70%' }}>
+                        <div className="row shadow-lg p-3 mb-5   rounded justify-content-center" style={{ backgroundColor: '#0a1e5e' }}>
+                            <div className='col-md-3'>
+                                <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
 
-                </div >
+                                    <option value="">Domaine de stage</option>
+                                    {//obtenir la liste des services
+                                        serviceslist.map((service, index) => {
+                                            return (
+                                                <option value={service.id} key={index}>{service.nomService}</option>
 
 
-                <div className="container h-100" style={{ width: '80%' }}>
-                    <div className="row justify-content-center h-100">
-                        {/**s'il n'y a pas de sujet  pour le type de stage initiaton & perfectionnement*/}
+                                            )
+                                        })
+                                    }
 
-                        {(type === 'Stage Initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?
-                            <div className="col-md-6 " data-aos="fade-down" style={{ textAlign: 'center' }}>
 
-                                <button type='button' className='btn btn-primary ' onClick={submit1}  >Cliquez ici pour postuler!</button>
+                                </select>
+                            </div>
+                            <div className="col-md-3 ">
+                                <select className="form-control w-100 mt-2" name="type" value={type} onChange={handleSelectType}>
 
-                            </div> :
-                            /**s'il n'y a pas de sujet  pour le type de stage PFE*/
+                                    <option value="">Type de stage</option>
+                                    <option>Stage PFE ingénieur</option>
+                                    <option>Stage PFE licence</option>
+                                    <option>Stage PFE master</option>
+                                    <option>Stage Perfectionnement</option>
+                                    <option>Stage Initiation</option>
 
-                            filteredOffres.length == 0 ?
-                                <div className="alert alert-danger" data-aos="zoom-in-right" role="alert" style={{ color: 'white' }}>
-                                    Il n'y a pas de sujet pour le moment...veuillez vérifier à nouveau ultérieurement.
+
+                                </select>
+
+
+
+                            </div>
+                        </div>
+
+                    </div >
+
+
+                    <div className="container h-100" style={{ width: '80%' }}>
+                        <div className="row justify-content-center h-100">
+                            {/**s'il n'y a pas de sujet  pour le type de stage initiaton & perfectionnement*/}
+
+                            {(type === 'Stage Initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?
+                                <div className="col-md-6 " data-aos="fade-down" style={{ textAlign: 'center' }}>
+
+                                    <button type='button' className='btn btn-primary ' onClick={submit1}  >Cliquez ici pour postuler!</button>
+
                                 </div> :
-                                /**sinon afficher les offres de stage*/
-                                (filteredOffres.map((offre, index) => {
+                                /**s'il n'y a pas de sujet  pour le type de stage PFE*/
 
-                                    return (
-                                        <div className="col-md-6  " key={index}  >
-                                            <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
-                                                <div className="card h-100">
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{offre.sujet}</h5>
-                                                        <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>
-                                                            {offre.periode} mois</h6>
-                                                        <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
+                                filteredOffres.length == 0 ?
+                                    <div className="alert alert-danger" data-aos="zoom-in-right" role="alert" style={{ color: 'white' }}>
+                                        Il n'y a pas de sujet pour le moment...veuillez vérifier à nouveau ultérieurement.
+                                    </div> :
+                                    /**sinon afficher les offres de stage*/
+                                    (filteredOffres.map((offre, index) => {
 
-                                                        <p className="card-text font-weight-bold">
-                                                            <span style={{ color: '#111c6b' }}>Technologies: </span>
-                                                            <span className="badge bg-light text-dark" style={{ whiteSpace: 'normal' }}> {offre.technologies}</span>
+                                        return (
+                                            <div className="col-md-6  " key={index}  >
+                                                <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
+                                                    <div className="card h-100">
+                                                        <div className="card-body">
+                                                            <h5 className="card-title">{offre.sujet}</h5>
+                                                            <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>
+                                                                {offre.periode} mois</h6>
+                                                            <p className="card-text overflow-auto" style={{ height: '150px', overflowY: 'scroll' }}>{offre.description}</p>
 
-                                                        </p>
-                                                        <hr className="my-4" />
+                                                            <p className="card-text font-weight-bold">
+                                                                <span style={{ color: '#111c6b' }}>Technologies: </span>
+                                                                <span className="badge bg-light text-dark" style={{ whiteSpace: 'normal' }}> {offre.technologies}</span>
 
-                                                        <button type="button" className="btn btn-info " onClick={(e) => submit(e, offre)}>Postuler!</button>
+                                                            </p>
+                                                            <hr className="my-4" />
 
+                                                            <button type="button" className="btn btn-info " onClick={(e) => submit(e, offre)}>Postuler!</button>
+
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </div>
 
-                                        </div>
+                                        )
 
+                                    })
                                     )
-
-                                })
-                                )
-                        }
+                            }
 
 
 
 
 
 
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div >
+                </form>
+            </div >
 
-    )
+        )
+    }
+
 }

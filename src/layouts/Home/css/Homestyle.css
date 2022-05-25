@@ -2242,9 +2242,9 @@ h6 {
 
 /* TEST PSYCHOTECHNIQUE*/
 .questions {
-  border-left: 3px solid #1da1f2;
+  border-left: 2px solid #ef8e1f;
   width: 80%;
-  margin: 3rem auto 0 auto;
+  margin: 1rem auto 0 auto;
   padding: 1.5rem 2rem;
 
 }
@@ -2266,9 +2266,9 @@ h6 {
 
 .H2 {
   text-align: center;
-  font-weight: normal;
-  color: #c17216 !important;
-  font-family: 'cursive' !important;
+  font-weight: 900;
+  color: #ffffff99 !important;
+
 }
 
 .lifeline-container {
@@ -2285,8 +2285,9 @@ h6 {
 .options-container {
   width: 400px;
 
-
 }
+
+
 
 .toast-invalid {
   position: absolute !important;
@@ -2319,10 +2320,11 @@ h6 {
 
 .container-ques {
   margin: auto;
-  width: 50%;
+  width: 70%;
 }
 
 .option {
+
   background-color: #0a1e5e;
   border-radius: 30px;
   color: #fff;
@@ -2331,7 +2333,7 @@ h6 {
   padding: 1rem;
   transition: 0.3s linear all;
   text-align: center;
-  height: 110px;
+  height: 80px;
   margin-left: 30px;
   overflow: hidden;
 
@@ -2342,8 +2344,10 @@ h6 {
 
 
 
+
+
 .option:hover {
-  background-color: #06299c;
+  background-color: #082176;
 }
 
 .button-71 {
@@ -2370,7 +2374,7 @@ h6 {
 
 .button-72 {
   margin-right: 8px;
-  background-color: #0078d0;
+  background-color: #ef8e1f;
   border: 0;
   border-radius: 56px;
   color: #fff;
@@ -2448,10 +2452,20 @@ h6 {
 
 .right {
   float: right !important;
+  color: #fff;
+  width: 80px;
+  margin-left: 40px;
+  font-weight: bold;
+
 }
 
 .left {
   float: left !important;
+  color: #fff;
+  margin-right: 40px;
+  font-weight: bold;
+
+
 }
 
 .textDanger {

@@ -22,6 +22,8 @@ export default function Editcritere(props) {
         notequestionfacile: '',
         notequestionmoyenne: '',
         notequestiondifficile: '',
+        pourcentage: '',
+
     });
 
 
@@ -62,6 +64,7 @@ export default function Editcritere(props) {
         formData.append('notequestionfacile', CritereInput.notequestionfacile);
         formData.append('notequestionmoyenne', CritereInput.notequestionmoyenne);
         formData.append('notequestiondifficile', CritereInput.notequestiondifficile);
+        formData.append('pourcentage', CritereInput.pourcentage);
 
 
 
@@ -80,15 +83,7 @@ export default function Editcritere(props) {
             }
         });
     }
-    const [serviceslist, setServices] = useState([]);
 
-    useEffect(() => {
-        axios.get('/api/critere-services').then(res => {
-            if (res.data.status === 200) {
-                setServices(res.data.services);
-            }
-        });
-    }, []);
     //si la page est en cours de chargement, donc afficher un spinner
     if (loading) {
         <Loading />
@@ -160,7 +155,12 @@ export default function Editcritere(props) {
 
 
 
+                            <div className="col-md-6">
+                                <label className="form-label">Pourcentage de réussite</label>
+                                <input type="number" name="pourcentage" onChange={handleInput} value={CritereInput.pourcentage} className="form-control" placeholder='Pourcentage de réussite' required />
+                                <small className="text-danger">{errorlist.pourcentage}</small>
 
+                            </div>
 
 
                             <div className="col-md-6 mt-3">
