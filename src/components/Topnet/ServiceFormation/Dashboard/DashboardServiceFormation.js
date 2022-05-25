@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Charts from '../../ChefDepartement/Statistiques/Charts';
+import Charts from '../StatistiquesStagiaires/Chart';
 export default function DashboardServiceFormation() {
     return (
         <div>

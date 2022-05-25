@@ -3,6 +3,7 @@ import { Route, Redirect, useHistory } from 'react-router-dom';
 import MasterLayouts from '../layouts/Stagiaire/MasterLayouts';
 import axios from 'axios';
 import Loading from '../layouts/Stagiaire/Loading';
+import swal from 'sweetalert';
 
 ////Pour protéger les routes pour le stagiaire
 export default function StagiairePrivateRoute({ ...rest }) {
@@ -12,13 +13,16 @@ export default function StagiairePrivateRoute({ ...rest }) {
     const history = useHistory();
 
 
+
     //Pour vérifier que l'utilisateur authentifié est un stagiaire
     useEffect(() => {
         axios.get('api/checkingStagiaire').then(res => {
             if (res.status === 200) {
                 setAuthenticatedStagiaire(true);
+
             }
             setloading(false);
+
         });
         return () => {
             setAuthenticatedStagiaire(false);
@@ -39,8 +43,9 @@ export default function StagiairePrivateRoute({ ...rest }) {
     axios.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
-        if (error.response.status === 405)//Accès refusé
+        if (error.response.status === 403)//Accès refusé
         {
+            swal("Interdit", error.response.data.message, "warning");
             history.push('/');
         }//Sinon si la page demandée est introuvable
         else if (error.response.status === 404)//Page introuvable
@@ -60,6 +65,7 @@ export default function StagiairePrivateRoute({ ...rest }) {
 
     //Sidebar
     return (
+
         <Route {...rest}
             render={({ props, location }) =>
                 AuthenticatedStagiaire ?//Si l'utilisateur est authentifié , autorisation d'accès aux fonctionnalités de la barre latérale (sidebar)

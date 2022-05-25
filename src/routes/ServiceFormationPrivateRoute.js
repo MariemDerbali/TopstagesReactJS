@@ -3,6 +3,8 @@ import { Route, Redirect, useHistory } from 'react-router-dom';
 import MasterLayouts from '../layouts/Topnet/ServiceFormation/MasterLayouts';
 import axios from 'axios';
 import Loading from '../layouts/Topnet/Loading';
+import swal from 'sweetalert';
+
 
 
 ////Pour protéger les routes pour le service formation
@@ -39,8 +41,9 @@ export default function ServiceFormationPrivateRoute({ ...rest }) {
     axios.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
-        if (error.response.status === 407)//Accès refusé
+        if (error.response.status === 403)//Accès refusé
         {
+            swal("Interdit", error.response.data.message, "warning");
             history.push('/');
         }//Sinon si la page demandée est introuvable
         else if (error.response.status === 404)//Page introuvable

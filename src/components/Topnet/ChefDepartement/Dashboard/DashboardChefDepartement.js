@@ -1,5 +1,5 @@
 import React from 'react'
-import Charts from '../Statistiques/Charts'
+import Charts from '../StatistiquesOffres/Charts'
 
 export default function DashboardChefDepartement() {
     return (
