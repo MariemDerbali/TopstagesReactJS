@@ -32,6 +32,7 @@ export default function Offresdestage() {
                 //stockage des offres dans les variables détat
 
                 setOffreslist(res.data.offres);
+                console.log(res.data.offres);
             }
         });
 
@@ -110,6 +111,7 @@ export default function Offresdestage() {
         formData.append('domaine', OffreDemandee.domaine);
         formData.append('type', OffreDemandee.type);
         formData.append('stagiaireID', stagiaire._id);
+
         formData.append('sujet', offre.sujet);
         formData.append('encadrant', offre.encadrant[0].nom + ' ' + offre.encadrant[0].prenom);
 
@@ -134,12 +136,12 @@ export default function Offresdestage() {
             customUI: ({ onClose }) => {
                 return (
                     <div className="container h-100" style={{ width: '6000px' }} >
-                        <div className="row justify-content-center h-100">
+                        <div className="row justify-content-center h-100" >
                             <div className="col-md-6  "   >
                                 <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
-                                    <div className="card h-100">
+                                    <div className="card h-100" style={{ backgroundColor: '#0a1e5e' }}>
                                         <div className="card-body">
-                                            <h6 className="card-title">Vous êtes sur le point de lancer le test psychotechnique. Vous ne pourrez pas faire de pause. </h6>
+                                            <h6 className="card-title" style={{ color: '#fff' }}>Vous êtes sur le point de lancer le test psychotechnique. Vous ne pourrez pas faire de pause. </h6>
                                             <h4 className="card-subtitle mb-2 " style={{ color: '#ef8e1f', textAlign: 'center' }} >Êtes-vous prêt ?</h4>
 
 
@@ -169,6 +171,69 @@ export default function Offresdestage() {
 
     }
 
+    const submitOffreDemandee1 = () => {
+        const formData = new FormData();
+        formData.append('domaine', OffreDemandee.domaine);
+        formData.append('type', OffreDemandee.type);
+        formData.append('stagiaireID', stagiaire._id);
+
+
+
+
+        axios.post('/api/homepage-postuler', formData).then(res => {
+            if (res.data.status === 200) {
+
+                history.push(`/test-psychotechnique/${stagiaire._id}`);
+
+            } else if (res.data.status === 401) {
+                swal("", res.data.message, "warning");
+            }
+            else {
+                swal("", res.data.message, "warning");//en cas des erreurs des données saisies, stocker une liste des erreurs dans les variables d'état
+            }
+        })
+    }
+
+
+    const submit1 = () => {
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div className="container h-100" style={{ width: '6000px' }} >
+                        <div className="row justify-content-center h-100" >
+                            <div className="col-md-6  "   >
+                                <div data-aos='zoom-in' className=' p-3 mb-5  rounded h-100' >
+                                    <div className="card h-100" style={{ backgroundColor: '#0a1e5e' }}>
+                                        <div className="card-body">
+                                            <h6 className="card-title" style={{ color: '#fff' }}>Vous êtes sur le point de lancer le test psychotechnique. Vous ne pourrez pas faire de pause. </h6>
+                                            <h4 className="card-subtitle mb-2 " style={{ color: '#ef8e1f', textAlign: 'center' }} >Êtes-vous prêt ?</h4>
+
+
+
+                                            <hr className="my-4" />
+
+                                            <button className='btn btn-info' onClick={() => {
+                                                submitOffreDemandee1();
+                                                onClose();
+                                            }}>Commencer le test</button>&nbsp;&nbsp;
+                                            <button onClick={onClose} className="btn btn-light ">Quitter</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                );
+            }
+        });
+
+
+    }
 
 
     return (
@@ -183,7 +248,7 @@ export default function Offresdestage() {
 
                 </div>
                 <div className="container" style={{ width: '70%' }}>
-                    <div className="row shadow-lg p-3 mb-5 bg-body rounded justify-content-center">
+                    <div className="row shadow-lg p-3 mb-5   rounded justify-content-center" style={{ backgroundColor: '#0a1e5e' }}>
                         <div className='col-md-3'>
                             <select className="form-control w-100 mt-2" name="domaine" value={domaine} onChange={handleSelectDomaine}>
 
@@ -225,16 +290,16 @@ export default function Offresdestage() {
                 <div className="container h-100" style={{ width: '80%' }}>
                     <div className="row justify-content-center h-100">
                         {/**s'il n'y a pas de sujet  pour le type de stage initiaton & perfectionnement*/}
+
                         {(type === 'Stage Initiation' || type === 'Stage Perfectionnement') && filteredOffres.length === 0 ?
                             <div className="col-md-6 " data-aos="fade-down" style={{ textAlign: 'center' }}>
-                                {localStorage.getItem('auth_token') ?
-                                    <button type='button' className='btn btn-primary ' onClick={submit}  >Cliquez ici pour postuler!</button> :
-                                    <Link to="/auth" ><button type='button' className='btn btn-primary '>Cliquez ici pour postuler!</button></Link>
-                                }
+
+                                <button type='button' className='btn btn-primary ' onClick={submit1}  >Cliquez ici pour postuler!</button>
+
                             </div> :
                             /**s'il n'y a pas de sujet  pour le type de stage PFE*/
 
-                            type === 'Stage PFE licence' || type === 'Stage PFE master' || type === 'Stage PFE ingénieur' && filteredOffres.length == 0 ?
+                            filteredOffres.length == 0 ?
                                 <div className="alert alert-danger" data-aos="zoom-in-right" role="alert" style={{ color: 'white' }}>
                                     Il n'y a pas de sujet pour le moment...veuillez vérifier à nouveau ultérieurement.
                                 </div> :

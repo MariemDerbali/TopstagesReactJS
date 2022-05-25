@@ -6,8 +6,8 @@ export default function Page403() {
             <div className='row justify-content-center'>
                 <div className='col-md-6'>
                     <div className='card card-body'>
-                        <h1>Page 403 | Forbidden</h1>
-                        <h3>Access Denied.!As you are not coordinateur </h3>
+                        <h1>Page 403 | Interdit</h1>
+                        <h3>Accès refusé. Vous n'êtes pas un coordinateur!</h3>
                     </div>
                 </div>
 
