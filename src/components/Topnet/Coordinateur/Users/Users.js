@@ -80,7 +80,7 @@ export default function Users() {
                     },
 
                     {
-                        title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rôle</h1>//Cellule d'en-tête <th>
+                        title: <h1 className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-5">Rôle</h1>//Cellule d'en-tête <th>
                         , render: (users) => {
                             return (
                                 <p className="text-xs font-weight-bold mb-0">{users.role_id}</p>)//Cellule de données <td>
@@ -135,7 +135,7 @@ export default function Users() {
 
                     },
                     {
-                        title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style={{ marginLeft: '30px' }}>Etat</h1>//Cellule d'en-tête <th>
+                        title: <h1 className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style={{ marginLeft: '40px' }}>Etat</h1>//Cellule d'en-tête <th>
                         , render: users => {
                             return (
                                 //Cellule de données <td>

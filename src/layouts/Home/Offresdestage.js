@@ -327,7 +327,7 @@ export default function Offresdestage() {
                                                             </p>
                                                             <hr className="my-4" />
 
-                                                            <button type="button" className="btn btn-info " onClick={(e) => submit(e, offre)}>Postuler!</button>
+                                                            <button type="button" className="btn btn-info " onClick={(e) => submit(e, offre)}>Choisir</button>
 
                                                         </div>
                                                     </div>

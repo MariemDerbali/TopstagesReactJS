@@ -25,7 +25,7 @@ export default function Charts() {
                     {
                         label: "Offres des stages publiées",
                         data: statOffres.map((data) => data.offres),
-                        backgroundColor: ["#008ac5", "#00a9b5", "#00c698", "#1fe074"]
+                        backgroundColor: ["#c4e8ff", "#bbcafa", "#ffe0bd", "#cad6fc"]
                     },
                 ]
             }} />
@@ -39,7 +39,7 @@ export default function Charts() {
                     {
                         label: "Offres",
                         data: statOffres.map((data) => data.offres),
-                        backgroundColor: ["#008ac5", "#00a9b5", "#00c698", "#1fe074"]
+                        backgroundColor: ["#c4e8ff", "#bbcafa", "#ffe0bd", "#cad6fc"]
                     },
                 ]
             }} />
