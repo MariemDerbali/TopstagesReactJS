@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import "../css/testSummary.css"
+//import "../css/testSummary.css"
+import "../css/Homestyle.css"
+import imgTestSummary from '../imgbackgroundTest/test-summary.jpg'
 
 export default class TestSummary extends Component {
     constructor(props) {
@@ -49,25 +51,25 @@ export default class TestSummary extends Component {
         if (state !== undefined) {
             stats = (
                 <div>
-                    <div style={{ textAlign: 'center' }}><span className='success-icon'><i className="bi bi-check-circle "></i></span></div>
-                    <div ><h1 className='H1 mt-3 '>Le test est terminé</h1>
-                        <div className='stats mt-5'>
-                            <h4>{remark}</h4>
-                            <h2 className='score'>Votre note: {this.state.score.toFixed(0)}/{this.state.notetotale}</h2>
-                            <span className='stat left'>Nombre total de questions :</span>
+
+                    <div ><h1 className=' mt-3 ' style={{ color: '#fff' }}>VOTRE RÉSULTAT DE TEST</h1>
+                        <div className='mt-5'>
+                            <h4 style={{ color: '#fff', fontWeight: '300', fontSize: '1.5em', lineHeight: '1.17em' }}>{remark}</h4>
+                            <h2 style={{ color: '#ef8e1f' }}  >Note: {this.state.score.toFixed(0)}/{this.state.notetotale}</h2>
+                            <span className='left'>Nombre total de questions :</span>
                             <span className='right'>
                                 {this.state.numberOfQuestions}
                             </span><br />
 
-                            <span className='stat left'>Nombre total de questions répondues :</span><span className='right'>
+                            <span className='left'>Nombre total de questions répondues :</span><span className='right'>
                                 {this.state.numberOfAnsweredQuestions}
                             </span><br />
 
-                            <span className='stat left'>Nombre de bonnes réponses :</span><span className='right'>
+                            <span className='left'>Nombre de bonnes réponses :</span><span className='right'>
                                 {this.state.correctAnswers}
                             </span><br />
 
-                            <span className='stat left'>Nombre de mauvaises réponses :</span><span className='right'>
+                            <span className='left'>Nombre de mauvaises réponses :</span><span className='right'>
                                 {this.state.wrongAnswers}
                             </span><br />
 
@@ -93,9 +95,25 @@ export default class TestSummary extends Component {
                 </section></div>);
         }
         return (
-            <div className='test-summary'>
-                {stats}
-            </div>
+
+            <section id="hero">
+                <div >
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                            <div className="carousel-container">
+                                <div className="carousel-content animate__animated animate__fadeInUp text-center">
+                                    <p>  {stats}</p>
+                                </div>
+                            </div>
+                            <img src={imgTestSummary} className="d-block w-100" alt="..." />
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
         )
     }
 }

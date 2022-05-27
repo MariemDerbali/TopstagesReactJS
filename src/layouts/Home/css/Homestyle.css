@@ -78,7 +78,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #fff;
+  background: #040c28;
   transition: all 0.5s;
   z-index: 997;
   padding: 5px 0;
@@ -112,7 +112,7 @@ h6 {
 --------------------------------------------------------------*/
 .header-social-links {
   margin-left: 20px;
-  border-left: 1px solid #c4c4c4;
+  border-left: 1px solid #ef8e1f;
 }
 
 .header-social-links a {
@@ -169,7 +169,7 @@ h6 {
   font-family: "Roboto", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #111;
+  color: #fff;
   white-space: nowrap;
   text-transform: uppercase;
   transition: 0.3s;
@@ -186,7 +186,7 @@ h6 {
 .navbarHome .active,
 .navbarHome .active:focus,
 .navbarHome li:hover>a {
-  color: #00a6eb;
+  color: #b1b1b1;
 }
 
 .navbarHome .dropdown ul {
@@ -409,7 +409,7 @@ h6 {
 }
 
 #hero .carousel-content h2 {
-  color: #fff;
+  color: #ef8e1f;
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: 700;
@@ -2471,4 +2471,50 @@ h6 {
 .textDanger {
   color: #dc3545 !important;
   font-size: 30px !important;
+}
+
+/*Resultat test*/
+
+.section ul {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.section ul li {
+  display: inline-block;
+}
+
+.section ul li a {
+  padding: 1.5rem !important;
+}
+
+.section ul li a:hover {
+  color: #fff;
+}
+
+.section ul li:first-child {
+  border: 1px solid #1da1f2;
+  margin-right: 1.5rem;
+  transition: 0.3s linear all;
+}
+
+.section ul li:first-child:hover {
+  background-color: #1da1f2;
+}
+
+.section ul li:last-child {
+  border: 1px solid #ef8e1f;
+  transition: 0.3s linear all;
+}
+
+.section ul li:last-child:hover {
+  background-color: #ef8e1f;
+}
+
+.section ul li:last-child a {
+  color: #ef8e1f;
+}
+
+.section ul li:last-child a:hover {
+  color: #fff;
 }

@@ -246,7 +246,7 @@ export default class TestPsychotechnique extends React.Component {
 
 
                                             <h5 >
-                                                <span className="badge  text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
+                                                <span className="badge   " style={{ color: '#041228', backgroundColor: 'rgb(255 255 255 / 94%)' }}>
                                                     {this.state.currentQuestion.questionText}
                                                     &nbsp;&nbsp; <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} />
                                                 </span>
@@ -258,14 +258,15 @@ export default class TestPsychotechnique extends React.Component {
                                         <div className='container-ques' data-aos="zoom-in-left" style={{ margin: 'auto' }}>
                                             <div className='options-container'  >
 
-                                                <h5 ><span className="badge text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
-                                                    {this.state.currentQuestion.questionText}</span></h5>
+                                                <h5 >
+                                                    <span className="badge   " style={{ color: '#041228', backgroundColor: 'rgb(255 255 255 / 94%)' }}>
+                                                        {this.state.currentQuestion.questionText}</span></h5>
                                             </div>
                                         </div>
                                         :
                                         <div className='container-ques' data-aos="zoom-in-left" style={{ marginLeft: "310px" }}>
                                             <div className='options-container'  >
-                                                <span className="badge text-dark" style={{ backgroundColor: 'rgb(255 255 255 / 44%)' }}>
+                                                <span className="badge   " style={{ color: '#041228', backgroundColor: 'rgb(255 255 255 / 94%)' }}>
 
                                                     <img style={{ width: '2rem' }} src={`http://127.0.0.1:8000/${this.state.currentQuestion.questionImage}`} className="img-fluid" />
                                                 </span>
