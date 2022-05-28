@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from '../Footer'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 import routes from '../../../routes/routes'
@@ -28,7 +27,6 @@ export default function MasterLayouts() {
                         {/*La page affichée par défaut est le tableau de bord*/}
                         <Redirect from="chefdepartement" to="/chefdepartement/dashboard" />
                     </Switch>
-                    <Footer /> {/*afficher le pied de page*/}
                 </div>
             </main>
         </div>

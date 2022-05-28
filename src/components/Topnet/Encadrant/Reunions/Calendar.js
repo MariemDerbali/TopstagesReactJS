@@ -11,6 +11,8 @@ import swal from 'sweetalert';
 import 'moment/locale/fr';
 import moment from 'moment'
 import { colors } from '@material-ui/core'
+import Footer from '../../../../layouts/Topnet/Footer';
+
 
 export default function Calendar() {
     const [errorlist, setError] = useState([]);
@@ -229,7 +231,7 @@ export default function Calendar() {
                 />
 
             </div>
-
+            <Footer />
 
         </div >
     )

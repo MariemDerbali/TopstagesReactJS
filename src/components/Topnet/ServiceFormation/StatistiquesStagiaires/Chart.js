@@ -25,7 +25,7 @@ export default function Charts() {
                     {
                         label: "Stagiaires pris en charge",
                         data: statStagiaires.map((data) => data.stagiaires),
-                        backgroundColor: ["#c4e8ff", "#bbcafa", "#ffe0bd", "#cad6fc"]
+                        backgroundColor: ["#c4e8ff", "#a9bbf6f0", "#ffe0bd", "#cad6fc"]
 
                     },
                 ]
@@ -38,9 +38,9 @@ export default function Charts() {
                 labels: statStagiaires.map((data) => data.annee),
                 datasets: [
                     {
-                        label: "Offres",
+                        label: "Stagiaires",
                         data: statStagiaires.map((data) => data.stagiaires),
-                        backgroundColor: ["#c4e8ff", "#bbcafa", "#ffe0bd", "#cad6fc"]
+                        backgroundColor: ["#c4e8ff", "#a9bbf6f0", "#ffe0bd", "#cad6fc"]
                     },
                 ]
             }} />

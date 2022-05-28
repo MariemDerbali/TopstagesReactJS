@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import Loading from '../../../../layouts/Topnet/Loading';
+import Footer from '../../../../layouts/Topnet/Footer';
 
 
 
@@ -138,80 +139,83 @@ export default function Editoffre(props) {
 
 
     return (
-        <div> <div className="row">
-            <div className="col-12">
-                <div className="card mb-4">
-                    <div className="card-header pb-0">
-                        <h6>Modifier offre</h6>
-                    </div>
-                    <div className="card-body ">
+        <div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="card mb-4">
+                        <div className="card-header pb-0">
+                            <h6>Modifier offre</h6>
+                        </div>
+                        <div className="card-body ">
 
-                        <form className="row" onSubmit={updateOffre} >
+                            <form className="row" onSubmit={updateOffre} >
 
-                            <div className="col-md-6">
-                                <label className="form-label">Sujet</label>
-                                <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet' />
-                                <small className="text-danger">{errorlist.sujet}</small>
+                                <div className="col-md-6">
+                                    <label className="form-label">Sujet</label>
+                                    <input type="text" name="sujet" onChange={handleInput} value={OffreInput.sujet} className="form-control" placeholder='Sujet' />
+                                    <small className="text-danger">{errorlist.sujet}</small>
 
-                            </div>
+                                </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Période (En mois)</label>
-                                <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période (En mois)' />
-                                <small className="text-danger">{errorlist.periode}</small>
+                                <div className="col-md-6">
+                                    <label className="form-label">Période (En mois)</label>
+                                    <input type="number" name="periode" onChange={handleInput} value={OffreInput.periode} className="form-control" placeholder='Période (En mois)' />
+                                    <small className="text-danger">{errorlist.periode}</small>
 
-                            </div>
+                                </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Technologies</label>
-                                <input type="text" name="technologies" onChange={handleInput} value={OffreInput.technologies} className="form-control" placeholder='Téchnologies' />
-                                <small className="text-danger">{errorlist.technologies}</small>
+                                <div className="col-md-6">
+                                    <label className="form-label">Technologies</label>
+                                    <input type="text" name="technologies" onChange={handleInput} value={OffreInput.technologies} className="form-control" placeholder='Téchnologies' />
+                                    <small className="text-danger">{errorlist.technologies}</small>
 
-                            </div>
+                                </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Domaine</label>
-                                <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select" disabled>
-                                    <option  >Domaine</option>
-                                    <option>{user.direction}</option>
+                                <div className="col-md-6">
+                                    <label className="form-label">Domaine</label>
+                                    <select name="domaine" onChange={handleInput} value={OffreInput.domaine} className="form-select" disabled>
+                                        <option  >Domaine</option>
+                                        <option>{user.direction}</option>
 
-                                </select>
-                                <small className="text-danger">{errorlist.domaine}</small>
+                                    </select>
+                                    <small className="text-danger">{errorlist.domaine}</small>
 
-                            </div>
+                                </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Type</label>
-                                <select name="type" onChange={handleInput} value={OffreInput.type} className="form-select">
-                                    <option >Type</option>
-                                    <option>Stage PFE ingénieur</option>
-                                    <option>Stage PFE licence</option>
-                                    <option>Stage PFE master</option>
-                                    <option>Stage Perfectionnement</option>
-                                    <option>Stage Initiation</option>
-                                </select>
-                                <small className="text-danger">{errorlist.type}</small>
-                            </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">Type</label>
+                                    <select name="type" onChange={handleInput} value={OffreInput.type} className="form-select">
+                                        <option >Type</option>
+                                        <option>Stage PFE ingénieur</option>
+                                        <option>Stage PFE licence</option>
+                                        <option>Stage PFE master</option>
+                                        <option>Stage Perfectionnement</option>
+                                        <option>Stage Initiation</option>
+                                    </select>
+                                    <small className="text-danger">{errorlist.type}</small>
+                                </div>
 
-                            <div className="col-md-6">
-                                <label className="form-label">Déscription</label>
-                                <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
-                                <small className="text-danger">{errorlist.description}</small>
-                            </div>
-
-
-                            <div className="col-md-6 mt-3">
-                                <button type="submit" className="btn btn-info">Modifier</button>
-
-                            </div>
+                                <div className="col-md-6">
+                                    <label className="form-label">Déscription</label>
+                                    <textarea className="form-control" name="description" onChange={handleInput} value={OffreInput.description} placeholder='Déscription' rows="3"></textarea>
+                                    <small className="text-danger">{errorlist.description}</small>
+                                </div>
 
 
-                        </form>
+                                <div className="col-md-6 mt-3">
+                                    <button type="submit" className="btn btn-info">Modifier</button>
+
+                                </div>
 
 
+                            </form>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div></div>
+            <Footer />
+        </div>
     )
 }

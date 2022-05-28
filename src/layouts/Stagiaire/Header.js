@@ -83,8 +83,8 @@ export default function Header() {
                 <div className="container-fluid py-1 px-3">
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                            <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Pages</Link></li>
-                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Mon espace</li>
+                            <li className="breadcrumb-item text-sm"><Link className="opacity-5 text-dark" to="#">Espace</Link></li>
+                            <li className="breadcrumb-item text-sm text-dark active" aria-current="page">Stagiaire</li>
                         </ol>
                         {/*afficher le rôle de l'utilisateur authentifié actuel */}
                         <h6 className="font-weight-bolder mb-0">{user.role_id}</h6>

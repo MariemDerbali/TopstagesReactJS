@@ -3,6 +3,7 @@ import axios from "axios";
 import swal from 'sweetalert';
 import Loading from '../../layouts/Topnet/Loading';
 import { Link } from 'react-router-dom';
+import Footer from '../../layouts/Topnet/Footer';
 
 //Profil pour tous les utilisateurs
 export default function Profil() {
@@ -294,6 +295,12 @@ export default function Profil() {
 
 
             </div>
+
+            {user.role_id === 'Encadrant' || user.role_id === 'ChefDepartement' ?
+                <Footer /> :
+                null
+
+            }
         </div>
 
 

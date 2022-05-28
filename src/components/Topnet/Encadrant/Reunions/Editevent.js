@@ -5,6 +5,8 @@ import swal from 'sweetalert';
 import Loading from '../../../../layouts/Topnet/Loading';
 import Datetime from 'react-datetime';
 import moment from 'moment';
+import Footer from '../../../../layouts/Topnet/Footer';
+
 
 export default function Editevent(props) {
 
@@ -98,61 +100,64 @@ export default function Editevent(props) {
 
 
     return (
-        <div> <div className="row">
-            <div className="col-12">
-                <div className="card mb-4">
-                    <div className="card-header pb-0">
-                        <h6>Modifier réunion</h6>
-                    </div>
-                    <div className="card-body ">
+        <div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="card mb-4">
+                        <div className="card-header pb-0">
+                            <h6>Modifier réunion</h6>
+                        </div>
+                        <div className="card-body ">
 
-                        <form className="row" onSubmit={updateReunion} >
+                            <form className="row" onSubmit={updateReunion} >
 
-                            <div className="col-md-6">
-                                <label className="form-label">Titre</label>
-                                <input type="text" name="title" onChange={handleInput} value={EventInput.title} className="form-control" placeholder='Titre' />
-                                <small className="text-danger">{errorlist.title}</small>
+                                <div className="col-md-6">
+                                    <label className="form-label">Titre</label>
+                                    <input type="text" name="title" onChange={handleInput} value={EventInput.title} className="form-control" placeholder='Titre' />
+                                    <small className="text-danger">{errorlist.title}</small>
 
-                            </div>
-
-
-                            <div className="col-md-6">
-                                <label className="form-label">Début</label>
-
-                                <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleStart} value={start} name="start" />
-                                <small className="text-danger">{errorlist.start}</small>
-
-                            </div>
-
-                            <div className="col-md-6">
-                                <label className="form-label">Fin</label>
-
-                                <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleEnd} value={end} name="end" />
-                                <small className="text-danger">{errorlist.end}</small>
-
-                            </div>
-
-                            <div className="col-md-6">
-                                <label className="form-label">Lien</label>
-                                <input type="text" name="lien" onChange={handleInput} value={EventInput.url} className="form-control" placeholder='Url' />
-                                <small className="text-danger">{errorlist.url}</small>
-
-                            </div>
+                                </div>
 
 
+                                <div className="col-md-6">
+                                    <label className="form-label">Début</label>
 
-                            <div className="col-md-6 mt-3">
-                                <button type="submit" className="btn btn-info">Modifier</button>
+                                    <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleStart} value={start} name="start" />
+                                    <small className="text-danger">{errorlist.start}</small>
 
-                            </div>
+                                </div>
+
+                                <div className="col-md-6">
+                                    <label className="form-label">Fin</label>
+
+                                    <Datetime locale="fr-ca" isValidDate={disablePastDt} onChange={handleEnd} value={end} name="end" />
+                                    <small className="text-danger">{errorlist.end}</small>
+
+                                </div>
+
+                                <div className="col-md-6">
+                                    <label className="form-label">Lien</label>
+                                    <input type="text" name="lien" onChange={handleInput} value={EventInput.url} className="form-control" placeholder='Url' />
+                                    <small className="text-danger">{errorlist.url}</small>
+
+                                </div>
 
 
-                        </form>
+
+                                <div className="col-md-6 mt-3">
+                                    <button type="submit" className="btn btn-info">Modifier</button>
+
+                                </div>
 
 
+                            </form>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div></div>
+            <Footer />
+        </div>
     )
 }

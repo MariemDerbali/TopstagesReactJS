@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import Loading from '../../../../layouts/Topnet/Loading';
+import Footer from '../Footer';
 
 export default function Offres() {
     const [user, setUser] = useState([]);
@@ -159,11 +160,17 @@ export default function Offres() {
 
                                             {user.role_id === "ChefDepartement" ?
                                                 <div >
-                                                    <span class="badge mb-2" style={{ backgroundColor: '#8392ab9c' }}>
+                                                    <span class="badge mb-2" style={{ backgroundColor: 'rgb(15 155 209 / 24%)' }}>
                                                         <span style={{ color: "#3a416f" }}>Encadrant: </span>
-                                                        {offre.encadrant[0].nom} {offre.encadrant[0].prenom} <br /><br />
-                                                        <span style={{ color: "#3a416f" }}>Téléphone: </span> {offre.encadrant[0].tel} <br /><br />
-                                                        <span style={{ color: "#3a416f" }}>E-mail: </span> {offre.encadrant[0].email}</span>
+                                                        <span style={{ color: "rgb(194 115 30)" }}> {offre.encadrant[0].nom} {offre.encadrant[0].prenom}</span>  <br /><br />
+                                                        <span style={{ color: "#3a416f" }}>Téléphone: </span>
+                                                        <span style={{ color: "rgb(194 115 30)" }}>
+                                                            {offre.encadrant[0].tel}    </span> <br /><br />
+                                                        <span style={{ color: "#3a416f" }}>E-mail: </span>
+                                                        <span style={{ color: "rgb(194 115 30)" }}>
+                                                            {offre.encadrant[0].email}</span>
+
+                                                    </span>
                                                     <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>
                                                 </div>
                                                 : <h6 className="card-subtitle mb-2 " style={{ color: '#ef8e1f' }}>{offre.periode} mois</h6>}
@@ -217,6 +224,8 @@ export default function Offres() {
                     })
                     }
                 </div>
+                <Footer />
+
             </div>
 
         )
